@@ -1,0 +1,43 @@
+\contentsline {chapter}{\numberline {1}Introduction}{5}
+\contentsline {section}{\numberline {1.1}Context}{5}
+\contentsline {section}{\numberline {1.2}Problem Objectives}{5}
+\contentsline {section}{\numberline {1.3}Problem Statement}{5}
+\contentsline {section}{\numberline {1.4}Application/ Motivation}{5}
+\contentsline {section}{\numberline {1.5}Outline of the dissertation}{5}
+\contentsline {chapter}{\numberline {2}Background Literature Survey}{6}
+\contentsline {section}{\numberline {2.1}Papers? - if required}{7}
+\contentsline {section}{\numberline {2.2}ROS}{7}
+\contentsline {section}{\numberline {2.3}Turtlebot}{7}
+\contentsline {section}{\numberline {2.4}Cameras}{7}
+\contentsline {subsection}{\numberline {2.4.1}RGB-D}{7}
+\contentsline {subsection}{\numberline {2.4.2}Stereo}{7}
+\contentsline {section}{\numberline {2.5}SLAM}{7}
+\contentsline {subsection}{\numberline {2.5.1}RtabMap}{7}
+\contentsline {subsection}{\numberline {2.5.2}Others}{7}
+\contentsline {section}{\numberline {2.6}Frontier Exploration}{7}
+\contentsline {section}{\numberline {2.7}Object Detection}{7}
+\contentsline {subsection}{\numberline {2.7.1}Feature Detection}{7}
+\contentsline {subsection}{\numberline {2.7.2}Tensorflow}{7}
+\contentsline {subsection}{\numberline {2.7.3}Haar Cascades}{7}
+\contentsline {subsection}{\numberline {2.7.4}Google Vision API}{7}
+\contentsline {subsection}{\numberline {2.7.5}3D Detection}{7}
+\contentsline {chapter}{\numberline {3}Requirements}{8}
+\contentsline {chapter}{\numberline {4}System Design}{9}
+\contentsline {chapter}{\numberline {5}System Implementation}{10}
+\contentsline {section}{\numberline {5.1}Mapping}{10}
+\contentsline {section}{\numberline {5.2}Frontier Exploration}{10}
+\contentsline {section}{\numberline {5.3}Object Detection and Recognition}{10}
+\contentsline {subsection}{\numberline {5.3.1}Blob Detection}{10}
+\contentsline {subsection}{\numberline {5.3.2}Detecting Clusters}{10}
+\contentsline {subsection}{\numberline {5.3.3}Creating Boxes}{10}
+\contentsline {subsection}{\numberline {5.3.4}Tracking Boxes}{10}
+\contentsline {subsection}{\numberline {5.3.5}Positioning Boxes in Map/Loop Closure}{10}
+\contentsline {subsection}{\numberline {5.3.6}Recognising Objects}{10}
+\contentsline {subsection}{\numberline {5.3.7}Publishing to Rviz/Rtabmap}{10}
+\contentsline {chapter}{\numberline {6}Evaluation}{11}
+\contentsline {section}{\numberline {6.1}Testing}{11}
+\contentsline {chapter}{\numberline {7}Conclusion}{12}
+\contentsline {subsection}{\numberline {7.0.1}Future work}{12}
+\contentsline {chapter}{\numberline {A}First appendix}{13}
+\contentsline {section}{\numberline {A.1}Section of first appendix}{13}
+\contentsline {chapter}{\numberline {B}Second appendix}{14}
