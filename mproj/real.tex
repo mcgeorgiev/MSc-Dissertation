@@ -243,7 +243,7 @@ Slam is difficult because both path and map are unknown, but they are correlated
 
 
 
-On a high level SLAM is solved by using the environment to update the pose of the robot.  Using odometry as the sole measurement of localisation has an element of uncertainity due to extraneous factors such as wheels slipping on different environments meaning that a stated distance given by an odometry reading may be over or under estimated. Therefore laser scans or other forms of depth readings are used to correct the robot's position by extracting features from the surrounding environment. These are called landmarks and can be extracted by various methods such as Random Sampling Consensus (RANSAC) and provide a growing map of the enviroment. 
+On a high level SLAM is solved by using the environment to update the pose of the robot. Using odometry as the sole measurement of localisation has an element of uncertainity due to extraneous factors such as wheels slipping on different environments meaning that a stated distance given by an odometry reading may be over or under estimated. Therefore laser scans or other forms of depth readings are used to correct the robot's position by extracting features from the surrounding environment. These are called landmarks and can be extracted by various methods such as Random Sampling Consensus (RANSAC) and provide a growing map of the enviroment. 
 
 
 The robot estimates the location of it's own pose relative to these different landmarks which are all correlated together and increase with successive observations. \cite{Hugh1988}
@@ -287,12 +287,13 @@ Compare rtabmap and other papers Cartographer
 
 \subsection{Introduction to Detection}
 
-Within Computer Science object detection refers to finding real-world objects within images or videos. Alongside robotics, such technology has applications in areas such as surveillance, medical image analysis and human computer interaction. It is useful to think of object detection software in terms of an intelligent agent which is an autonomous entity that gathers and observers information through sensors and acts upon an environment using actuators to direct its activity to achieve goals.\cite{Norvig2003}
+Within Computer Science object detection refers to finding real-world objects within images or videos. Alongside robotics, such technology has applications in areas such as surveillance, medical image analysis and human computer interaction. It is useful to think of object detection software in terms of an intelligent agent which is an autonomous entity that gathers and observers information through sensors and acts upon an environment using actuators to direct its activity to achieve goals.\cite{Norvig2003} Why?
 
 \subsection{What happens?}
 Modelling a computer vision intelligent agent requires an understanding of natural visual systems. For most systems while everything is seen for the first time our senses do not keep telling us things we already know, this is because between scenes most important environmental information stays constant. This process is a form of sensory adaption where perception is temporarily changed when exposed to new stimuli in an attempt to normalise visual experience.\cite{Webster2015} This happens at a retinal and neural level, where information provided by past experience have a greater say on how a scene has been interpreted than immediate information provided by external organs.
 %\cite{The eye the brain the computer p208}
 
+Why talk about this?
 
 \subsection{What happens at low level species level}
 This can be seen in visual 
@@ -416,6 +417,9 @@ What problems I encounted etc.
 \subsection{Creating Boxes with DBScan}
 \subsection{Tracking Boxes}
 \subsection{Recognising Objects}
+
+Using google vision means that speed does not decreae with more objects detected, statys constant
+
 \subsection{Publishing to Rviz/Rtabmap}
 \section{The whole package - how to utilise}
 
