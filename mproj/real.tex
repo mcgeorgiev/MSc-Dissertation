@@ -163,6 +163,8 @@ Drone missles, resucue robots, self driving cars, roomba, mail robots.
 
 The Turtlebot 2 is a part of a series of low cost, open-source mobile robots by Clearpath Robotics**. These robots are intended for educational and research purposes and provide an 'low-barrier-of-entry' platform for development. The robot consists of a Kobuki base, a computer running ROS and some form of RGB-D or Stereo Camera such as the Xbox Kinect or Asus Xtion.
 
+Developed by ... for the intended purpose...
+
 The Kobuki Base contains IR, bump, cliff and wheel drop sensors as well as different power connectors and ports.
 
 The Kobuki Base requires a computer running ROS to communicate with, in most cases this can simply involve a laptop attached to the top of the base connected by a usb cable. However in some cases it may be more convienent to attach a small netbook or Raspberry Pi to the base and use a seperate computer to communicate with the host.
@@ -268,6 +270,8 @@ Uncertanity is kept track of.
 
 Online slam, seeks to recover only the most recent pose, not the entire path algorithm
 
+Localisation of a known map can be achieved with similar to orientation flight on animals insects -
+
 \subsection{Others}
 
 Compare rtabmap and other papers Cartographer
@@ -281,21 +285,77 @@ Compare rtabmap and other papers Cartographer
 
 \section{Object Detection}
 
-At low levels of the evolutionary scale the eye acts as a type of goal detector rather than a camera. 
+\subsection{Introduction to Detection}
 
-The information provided by past experience have a greater say on how a scene has been interpreted than immediate information provided by external organs.
-The eye the brain the computer p208
+Within Computer Science object detection refers to finding real-world objects within images or videos. Alongside robotics, such technology has applications in areas such as surveillance, medical image analysis and human computer interaction. It is useful to think of object detection software in terms of an intelligent agent which is an autonomous entity that gathers and observers information through sensors and acts upon an environment using actuators to direct its activity to achieve goals.\cite{Norvig2003}
 
-However in contrast to simple organisms whose focus is on detection resulting in a sensitive and broad field of vision the programme must have the ability to classify which requires precise resolution when required.
+\subsection{What happens?}
+Modelling a computer vision intelligent agent requires an understanding of natural visual systems. For most systems while everything is seen for the first time our senses do not keep telling us things we already know, this is because between scenes most important environmental information stays constant. This process is a form of sensory adaption where perception is temporarily changed when exposed to new stimuli in an attempt to normalise visual experience.\cite{Webster2015} This happens at a retinal and neural level, where information provided by past experience have a greater say on how a scene has been interpreted than immediate information provided by external organs.
+%\cite{The eye the brain the computer p208}
 
-Everything is seen for the first time.
-Our sensory systems does not keep telling us things we already know as most important environmental information stays constant, this process is called adaption and happens not only at a retinal level but at higher levels in the brain.
+
+\subsection{What happens at low level species level}
+This can be seen in visual 
+
+
+Goal based visual memory systems
+  Animals much simpler than humans tend to engage in one activity at a time and only one way of doing it pg 17 easier to model intelligence agents. Similarly animals of much less sensors than camera, can acheve complex goals and tasks.
+  
+  Insects direct themselves towards features in environment - flowers, beehive, similar to how humans adjust the fovea to the location. 
+  Visual system must identify as well as direct e.g to distinguish items - SEARCH IMAGES pg 21
+  
+  
+  Species that already have image forming eyes
+  Active vision means movement - "actively acquire the visual cues needed to cope with a particular task" pg 17
+  At low levels of the evolutionary scale the eye acts as a type of goal detector rather than a camera. 
+  How do Frogs do it?
+  
+  Feature Extraction by eye scanning - constant, SNAIL
+  Jumping spiders look for distinct patterns when looking for legs, then perform a scan.
+  
+  Difference between active and passive - incorporate active detection of features next time.
+
+
+\subsection{What type of structure is used to detect objects}
 
 What different types of neural structure are used to extract information from a visual signal
 
 1) areas of high level of features
 2) depth/closeness
 3) shapes/edge detection - particularly light and dark
+
+\subsection{R-CNN, Deformable parts models, YOLO}
+
+\subsection{Attention Systems - Memory Hierachy}
+
+Neurophysiologic studies have shown that, in humans, these two 
+factors are the main responsible ones to drive attention. Bottom-up factors emanate from the scene and 
+focus attention on regions whose features are sufficiently discriminative with respect to the features 
+of their surroundings. On the other hand, top-down factors are derived from cognitive issues, such as 
+knowledge about the current task.
+http://www.prip.tuwien.ac.at/people/krw/more/papers/2012/Antunez2012a.pdf
+
+How long do organism retain visual information.
+
+How spatial temporal reasoning
+- don't overload memory
+- Have a Buffer
+- reaffirm spatial temporal Attention
+Memory Hierarchy
+- 9 seconds, How long?
+- What is long term?
+- What is short term? 
+- What is important
+- How to decide
+- Intelligence agents
+
+\subsection{Open CV Feature Detection}
+\subsubsection{About OpenCV and how it can be used to model visual systems}
+\subsubsection{SIFT and subsequently FAST}
+
+\subsection{Visual Object Recognition}
+
+However in contrast to simple organisms whose focus is on detection resulting in a sensitive and bespoke! and broad field of vision the programme must have the ability to classify which requires precise resolution when required.
 
 Not feasible to search for objects at all locations in a visual field
 Partioning or perceptual organisation.
@@ -313,20 +373,13 @@ relational matching approach
 
 From page 281 --> talk about image labeling
 
-Neurophysiologic studies have shown that, in humans, these two 
-factors are the main responsible ones to drive attention. Bottom-up factors emanate from the scene and 
-focus attention on regions whose features are sufficiently discriminative with respect to the features 
-of their surroundings. On the other hand, top-down factors are derived from cognitive issues, such as 
-knowledge about the current task.
-http://www.prip.tuwien.ac.at/people/krw/more/papers/2012/Antunez2012a.pdf
-
-\subsection{opencv}
-\subsection{Feature Detection}
-\subsection{Deep Learning}
+\subsubsection{Spatial temporal Attention Models}
+\subsubsection{Deep Leaning}
+\subsubsection{Software Applications}
 \subsubsection{Tensorflow}
 \subsubsection{Haar Cascades}
 \subsubsection{Google Vision API}
-\subsubsection{3D Detection}
+
 \subsection{Summary and Discussion}
 \subsubsection{What currently exists for completing the objectives}
 \subsubsection{What are the Gaps, What do I have to do to fill the gaps}
@@ -337,26 +390,43 @@ http://www.prip.tuwien.ac.at/people/krw/more/papers/2012/Antunez2012a.pdf
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Approach/Implementation/System Implementation}
+
+\section{Requirements}
+
+
 \section{Anaylsis the approaches}
 
 What problems I encounted etc.
 
+\section{Analysis of approaches}
+\section{How did I go about it}
+
 \section{Mapping}
 \subsection{Transforming data}
 \subsection{Calibration}
+
 \section{Frontier Exploration}
+
 \section{Object Detection and Recognition}
-\subsection{Blob Detection} 
-\subsection{Detecting Clusters - different methods}
-\subsection{Creating Boxes}
+\subsection{Detecting ROI in FOV}
+\subsubsection{Masking}
+\subsubsection{Depth Mask}
+\subsubsection{HSV Mask}
+\subsection{Detecting Objects Clustering - different methods}
+\subsection{Creating Boxes with DBScan}
 \subsection{Tracking Boxes}
-\subsection{Positioning Boxes in Map/Loop Closure}
 \subsection{Recognising Objects}
 \subsection{Publishing to Rviz/Rtabmap}
 \section{The whole package - how to utilise}
+
+I did this because of that which allows me to do this
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Evaluation}
 \section{Testing}
+
+I think by doing this I will achieve...
+Experiments to answer questions
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Conclusion}\label{conclusion}
