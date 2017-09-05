@@ -1,8 +1,19 @@
 \begin{thebibliography}{1}
 
+\bibitem{Hugh1988}
+Hugh Durrant-Whyte.
+\newblock Uncertain geometry in robotics.
+\newblock {\em IEEE Trans. Robotics and Automation}, 1988.
+
 \bibitem{Hugh2006}
 Hugh Durrant-Whyte, Fellow, IEEE, and Tim Bailey.
 \newblock Simultaneous localisation and mapping (slam): Part i the essential
   algorithms, 2006.
+
+\bibitem{Webster2015}
+Michael~A. Webster.
+\newblock Visual adaptation.
+\newblock {\em Annual Review of Vision Science}, 1(1):547--567, 2015.
+\newblock PMID: 26858985.
 
 \end{thebibliography}

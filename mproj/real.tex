@@ -87,15 +87,8 @@ Object detection can be used to detect humans via heat sensors etc. Aswell as id
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Background}\label{survey}
 
-Existing/similar applications
+This chapter will provide research into the hardware and software required to run the turtlebot and perform autonomous SLAM mapping. Currently there is a selection of applications which already perform individual tasks required to achieve this project and thus it is a case of discussing and evaluating each component. The area of object detection and recognition is firstly considered in context of natural visual systems and then in software applications where a discussion of two seminal methods of detection are discussed.
 
-Why choosing to talk about these things. 
-
-More references.
-
-Include Photos of everything
-\section{Papers}
-Semantic Slam
 \section{Robot Operating System (ROS)}
 \subsection{What is ROS}
 
@@ -146,34 +139,28 @@ Gazebo provides a simulated environment to build and test applications in ROS. A
 \section{Mobile Robots}
 
 
-Mobile robots are robots that are not fixed to one location and are capable of moving around their environments. Movement is achieved generally through legs, wheels or tracks but aerial and nautical robots can use propellors. The robot can be controlled through manual-tele operation involving a human driver, line-following which follow visual cues such as painted lines to navigate or autonomously.
+Mobile robots are robots that are not fixed to one location and are capable of moving around their environments. Movement is achieved generally through legs, wheels or tracks but aerial and nautical robots can use propellors. The robot can be controlled through manual-tele operation involving a human driver, line-following which follow visual cues such as painted lines to navigate or autonomously. These robots have many applications in areas such as military, agricultural, rescue, transport and domestic usage and include Unmanned Aerial Vehicles (UAV or commonly drones), rescue robots and self-driving cars.
 
-
-
-These robots have many applications covering military, agricultural, rescue, transport and domestic usage.
-
-
- For example: Unmanned Ground Vehicles can include military robots but also self-driving cars and
-delivery robots. Aerial robots (UAVs) , underwate(AUVS).
-
-Drone missles, resucue robots, self driving cars, roomba, mail robots.
 
 \subsection{Turtlebot 2}
 
-
 The Turtlebot 2 is a part of a series of low cost, open-source mobile robots by Clearpath Robotics**. These robots are intended for educational and research purposes and provide an 'low-barrier-of-entry' platform for development. The robot consists of a Kobuki base, a computer running ROS and some form of RGB-D or Stereo Camera such as the Xbox Kinect or Asus Xtion.
 
-Developed by ... for the intended purpose...
+Developed by ... for the intended purpose... 
 
 The Kobuki Base contains IR, bump, cliff and wheel drop sensors as well as different power connectors and ports.
 
 The Kobuki Base requires a computer running ROS to communicate with, in most cases this can simply involve a laptop attached to the top of the base connected by a usb cable. However in some cases it may be more convienent to attach a small netbook or Raspberry Pi to the base and use a seperate computer to communicate with the host.
 
+Why use the turtlebot?
+
 - Lots of software standard packages support, gazebo models, teleoperation, slam as well as large and growing community of stuff...
 - Abstracted hardware, no need to understand how it works, just recieve the data,
 
 How it works in ros
+
 Odometry
+
 \section{Cameras}
 Why do we need them
 Why discuss both of these? - exemplar
@@ -283,52 +270,110 @@ Compare rtabmap and other papers Cartographer
 
 
 
-\section{Object Detection}
+\section{Object Detection and Classification}
 
-\subsection{Introduction to Detection}
+\subsection{Introduction}
+Object detection is the task of finding the different objects in an image and classifying them 
 
 Within Computer Science object detection refers to finding real-world objects within images or videos. Alongside robotics, such technology has applications in areas such as surveillance, medical image analysis and human computer interaction. It is useful to think of object detection software in terms of an intelligent agent which is an autonomous entity that gathers and observers information through sensors and acts upon an environment using actuators to direct its activity to achieve goals.\cite{Norvig2003} Why?
 
-\subsection{What happens?}
-Modelling a computer vision intelligent agent requires an understanding of natural visual systems. For most systems while everything is seen for the first time our senses do not keep telling us things we already know, this is because between scenes most important environmental information stays constant. This process is a form of sensory adaption where perception is temporarily changed when exposed to new stimuli in an attempt to normalise visual experience.\cite{Webster2015} This happens at a retinal and neural level, where information provided by past experience have a greater say on how a scene has been interpreted than immediate information provided by external organs.
+Understood in natural world with particular emphasis on lower organisms.
+
+\subsection{Detection in the natural world}
+
+It is easy to assume that an eye is comparable to a camera in that it streams data through the lense. Many organism's vision systems have much less resolution, sensitivity and field of vision than a modern camera yet are able to perform incredibly complex tasks successfully. 
+
+Modelling a intelligent agent that interprets objects in scenes requires an understanding of natural visual systems. For most systems while everything is seen for the first time our senses do not keep telling us things we already know, this is because between scenes most important environmental information stays constant. This process is a form of sensory adaption where perception is temporarily changed when exposed to new stimuli in an attempt to normalise visual experience.\cite{Webster2015} This happens at a retinal and neural level, where information provided by past experience have a greater say on how a scene has been interpreted than immediate information provided by external organs. 
+
+Contrast human vs lower
+
+For example an ellipse projected into a human retina can be interpreted as a circle due to our experiences with perspective. 
 %\cite{The eye the brain the computer p208}
 
-Why talk about this?
+Many species exhibit a form of pattern or feature detection to trigger neural responses to visual changes. In contrast to humans which detect generic images features such as shapes many lower organisms utilise goal-based feature detection, this is useful to the field of computer science because it allows us to model intelligence agents on such processes and tend to engage in one activity at a time using only one way of doing it \cite{} while achieving complex goals and tasks.pg 17 easier to model intelligence agents.
 
-\subsection{What happens at low level species level}
-This can be seen in visual 
+For example arthopods such as honey bees readily distinguish features such as flowers in the environment that pertain to the goal of gathering food. Similarly a frog's eye is stimulated when a black disc moves in an arc rapidly within the receptor field indicating that a flying insect is near and triggers the frogs feeding response \cite{} thus satisfying the goal of feeding.
+
+It is important to note that these examples all feature a form of active vision whereby the  eye will "actively acquire the visual cues needed to cope with a particular task" pg 17  in the case of a human the fovea will align with the area of interest in the environment, comparable to something like a pan and tilt surveillance system which focus on areas of interest.
+ 
+ 
+\subsection{Extracting Features}
+
+What is a feature? Somewhere!
+
+In contrast to higher organisms Lettvin et al. \cite{} determined that a frog's retina has four  classes of ganglion cells which specialize in extracting features from a visual signal. 
+\begin{itemize}
+  \item edge detectors for borders between light and dark areas
+  \item moving edge detectors
+  \item dimming detectors 
+  \item convex detectors that react when a black disc is in the field of vision
+\end{itemize}
+
+Image processing software has a similar definition of feature of extraction but in most cases they are generic. Explain
+
+\subsubsection{FAST Feature Detection}
+
+There are many different software applications of edge and corner detection, this includes SIFT (Scale-Invariant Feature Transform) which performs extremely well in most contexts. \cite{Mikolajczyk} However for applications in real-time image processing such as SLAM and Augmented Reality it is often not fast enough. FAST (Features from Accelerated Segment Test) \cite{rosten_2006_machine}\cite{rosten_2005_annotations} avoids the costly difference of Gaussians (DoG) method found in SIFT and is subsequently considerably faster.
+
+Using an appropriate threshold T which is usually 12, the algorithm selects a pixel P which is the centre of a circle with a circumference of 16 pixels n and the pixel's p intensity is Ip. The pixel P is determined to be a corner if n are all brighter that  Ip + t or are all darker than Ip - t. 
+
+\begin{figure}[h]
+  \caption{Illustration of the FAST}
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/fast_speedtest.jpg}
+  \label{fig:FAST diagram}
+\end{figure}
+
+If a threshold T of 12 or greater is used a high speed test is performed to reject a large number of non-corner points which involves examining the pixels at 1, 9, 5, 13. If either pixel 1 or 9 are brighter or darker than T then 5 and 13 are checked. If three of these pixels are either all darker than the threshold or all brighter than p is a corner. 
+
+\subsubsection{software appliations involving fast}
+
+\subsection{Object Classification}
+
+However in contrast to simple organisms whose focus is on detection resulting in a sensitive and bespoke! and broad field of vision the programme must have the ability to classify which requires precise resolution when required.
+
+Not feasible to search for objects at all locations in a visual field
+Partioning or perceptual organisation.
+
+Law of proximity = Stimulus that are close together are percieved to be a group.
+
+Geometric, Photometric modeling scene degmentation, naming+labeling,
+
+Image matching:
+correlation approach
+ 
+feature matching approach
+eges remain across two images of the same scene. 
+relational matching approach
+
+From page 281 --> talk about image labeling
+
+\subsubsection{Deep Leaning}
+
+  \subsubsection{Tensorflow}
+  \subsubsection{Haar Cascades}
+  \subsubsection{Google Vision API}
+
+\subsection{Regions with Convolutional Neural Networks (R-CNN)}
+
+Detection systems utilise classifiers to evaluate potential objects. Yet there is know standard way of localising objects within an image. One such approach is called Regions with Convolutional Neural Networks (R-CNN) and is considerable more efficient than previous approaches and at the time of it's release, R-CNN had the best detection performance on the PASCAL VOC 2012 image dataset. In the paper "Rich feature hierarchies for accurate object detection and semantic segmentation"\cite{Girshick2014} the authors suggest a method which involves taking an image and identifying objects using bounding boxes and then performing a classification on these areas to create a label for each object. 
+
+\begin{figure}[h]
+  \caption{Illustration of the process stages found in R-CNN}
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/RCNN.png}
+  \label{fig:RCNN Diagram}
+\end{figure}
+
+Roughly two thousand bounding boxes, or region proposals are created using the process of Selective Search which performs a segmentation algorithm that groups regions together by color, intensity or texture.\cite{Sande2013} This is in contrast to using an exhaustive sliding window approach found in Deformable Parts Models.\cite{voc-release4} Each selected region is warped to a 227 x 227 square RGB image and fed through a convulutional neural network (CNN) which computes features. The final stage involves running a Support Vector Machine (SVM) on the feature vector of each region classify and score the object within the region (if any). Greedy non-maximum suppression is applied to merge the regions which share the same object resulting in accurate bounding boxes for each object. 
+
+This method is slow as it requires the CNN to be run on every region created for the image.
 
 
-Goal based visual memory systems
-  Animals much simpler than humans tend to engage in one activity at a time and only one way of doing it pg 17 easier to model intelligence agents. Similarly animals of much less sensors than camera, can acheve complex goals and tasks.
-  
-  Insects direct themselves towards features in environment - flowers, beehive, similar to how humans adjust the fovea to the location. 
-  Visual system must identify as well as direct e.g to distinguish items - SEARCH IMAGES pg 21
-  
-  
-  Species that already have image forming eyes
-  Active vision means movement - "actively acquire the visual cues needed to cope with a particular task" pg 17
-  At low levels of the evolutionary scale the eye acts as a type of goal detector rather than a camera. 
-  How do Frogs do it?
-  
-  Feature Extraction by eye scanning - constant, SNAIL
-  Jumping spiders look for distinct patterns when looking for legs, then perform a scan.
-  
-  Difference between active and passive - incorporate active detection of features next time.
 
-
-\subsection{What type of structure is used to detect objects}
-
-What different types of neural structure are used to extract information from a visual signal
-
-1) areas of high level of features
-2) depth/closeness
-3) shapes/edge detection - particularly light and dark
-
-\subsection{R-CNN, Deformable parts models, YOLO}
 
 \subsection{Attention Systems - Memory Hierachy}
-
+\subsubsection{Spatial temporal Attention Models}
 Neurophysiologic studies have shown that, in humans, these two 
 factors are the main responsible ones to drive attention. Bottom-up factors emanate from the scene and 
 focus attention on regions whose features are sufficiently discriminative with respect to the features 
@@ -350,36 +395,7 @@ Memory Hierarchy
 - How to decide
 - Intelligence agents
 
-\subsection{Open CV Feature Detection}
-\subsubsection{About OpenCV and how it can be used to model visual systems}
-\subsubsection{SIFT and subsequently FAST}
 
-\subsection{Visual Object Recognition}
-
-However in contrast to simple organisms whose focus is on detection resulting in a sensitive and bespoke! and broad field of vision the programme must have the ability to classify which requires precise resolution when required.
-
-Not feasible to search for objects at all locations in a visual field
-Partioning or perceptual organisation.
-
-Law of proximity = Stimulus that are close together are percieved to be a group.
-
-Geometric, Photometric modeling scene degmentation, naming+labeling,
-
-Image matching:
-correlation approach
- 
-feature matching approach
-eges remain across two images of the same scene. 
-relational matching approach
-
-From page 281 --> talk about image labeling
-
-\subsubsection{Spatial temporal Attention Models}
-\subsubsection{Deep Leaning}
-\subsubsection{Software Applications}
-\subsubsection{Tensorflow}
-\subsubsection{Haar Cascades}
-\subsubsection{Google Vision API}
 
 \subsection{Summary and Discussion}
 \subsubsection{What currently exists for completing the objectives}
@@ -407,6 +423,9 @@ What problems I encounted etc.
 \subsection{Calibration}
 
 \section{Frontier Exploration}
+Hybrid approach taken from RCNN, currently only has an official matlab binding of RCNN.
+
+Do not use bounding boxes, as not entirely useful in mapping as this requires new detections and classifiations when changing the object pose. A simple sspherical location detector is used to show the object is located within the this region of alpha
 
 \section{Object Detection and Recognition}
 \subsection{Detecting ROI in FOV}
@@ -428,6 +447,13 @@ I did this because of that which allows me to do this
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Evaluation}
 \section{Testing}
+https://www.koen.me/research/pub/vandesande-iccv2011.pdf
+
+Experiment 1
+Question
+Experiment 2
+Experiment 3
+
 
 I think by doing this I will achieve...
 Experiments to answer questions
@@ -435,6 +461,8 @@ Experiments to answer questions
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Conclusion}\label{conclusion}
 \subsection{Future work}
+
+incorporate active detection of features next time.
 
 \appendix % first appendix
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
