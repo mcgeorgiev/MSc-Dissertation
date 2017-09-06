@@ -7,63 +7,53 @@
 \contentsline {subsection}{\numberline {1.5.1}System Diagram}{7}
 \contentsline {section}{\numberline {1.6}Outline of the dissertation}{7}
 \contentsline {chapter}{\numberline {2}Background}{8}
-\contentsline {section}{\numberline {2.1}Robot Operating System (ROS)}{8}
-\contentsline {subsection}{\numberline {2.1.1}What is ROS}{8}
-\contentsline {subsection}{\numberline {2.1.2}Why do people use ROS}{8}
-\contentsline {subsection}{\numberline {2.1.3}How does ROS works?}{9}
-\contentsline {subsubsection}{RViz}{10}
-\contentsline {subsubsection}{Gazebo}{10}
-\contentsline {section}{\numberline {2.2}Mobile Robots}{10}
-\contentsline {subsection}{\numberline {2.2.1}Turtlebot 2}{10}
-\contentsline {section}{\numberline {2.3}Cameras}{11}
-\contentsline {subsection}{\numberline {2.3.1}RGB-D}{11}
-\contentsline {subsection}{\numberline {2.3.2}Stereo}{11}
-\contentsline {section}{\numberline {2.4}SLAM}{11}
-\contentsline {subsection}{\numberline {2.4.1}RtabMap}{13}
-\contentsline {subsection}{\numberline {2.4.2}Others}{13}
-\contentsline {section}{\numberline {2.5}Frontier Exploration}{13}
-\contentsline {section}{\numberline {2.6}Object Detection and Classification}{13}
-\contentsline {subsection}{\numberline {2.6.1}Introduction}{13}
-\contentsline {subsection}{\numberline {2.6.2}Detection in the natural world}{13}
-\contentsline {subsection}{\numberline {2.6.3}Extracting Features}{14}
-\contentsline {subsubsection}{FAST Feature Detection}{14}
-\contentsline {subsubsection}{software appliations involving fast}{15}
-\contentsline {subsection}{\numberline {2.6.4}Object Classification}{15}
-\contentsline {subsubsection}{Deep Leaning}{16}
-\contentsline {subsubsection}{Tensorflow}{16}
-\contentsline {subsubsection}{Haar Cascades}{16}
-\contentsline {subsubsection}{Google Vision API}{16}
-\contentsline {subsection}{\numberline {2.6.5}Regions with Convolutional Neural Networks (R-CNN)}{16}
-\contentsline {subsection}{\numberline {2.6.6}Attention Systems - Memory Hierachy}{16}
-\contentsline {subsubsection}{Spatial temporal Attention Models}{16}
-\contentsline {subsection}{\numberline {2.6.7}Summary and Discussion}{17}
-\contentsline {subsubsection}{What currently exists for completing the objectives}{17}
-\contentsline {subsubsection}{What are the Gaps, What do I have to do to fill the gaps}{17}
-\contentsline {subsubsection}{What methods are not appropriate to fill the gap}{17}
-\contentsline {chapter}{\numberline {3}Approach/Implementation/System Implementation}{18}
-\contentsline {section}{\numberline {3.1}Requirements}{18}
-\contentsline {section}{\numberline {3.2}Anaylsis the approaches}{18}
-\contentsline {section}{\numberline {3.3}Analysis of approaches}{18}
-\contentsline {section}{\numberline {3.4}How did I go about it}{18}
-\contentsline {section}{\numberline {3.5}Mapping}{18}
-\contentsline {subsection}{\numberline {3.5.1}Transforming data}{18}
-\contentsline {subsection}{\numberline {3.5.2}Calibration}{18}
-\contentsline {section}{\numberline {3.6}Frontier Exploration}{18}
-\contentsline {section}{\numberline {3.7}Object Detection and Recognition}{19}
-\contentsline {subsection}{\numberline {3.7.1}Detecting ROI in FOV}{19}
-\contentsline {subsubsection}{Masking}{19}
-\contentsline {subsubsection}{Depth Mask}{19}
-\contentsline {subsubsection}{HSV Mask}{19}
-\contentsline {subsection}{\numberline {3.7.2}Detecting Objects Clustering - different methods}{19}
-\contentsline {subsection}{\numberline {3.7.3}Creating Boxes with DBScan}{19}
-\contentsline {subsection}{\numberline {3.7.4}Tracking Boxes}{19}
-\contentsline {subsection}{\numberline {3.7.5}Recognising Objects}{19}
-\contentsline {subsection}{\numberline {3.7.6}Publishing to Rviz/Rtabmap}{19}
-\contentsline {section}{\numberline {3.8}The whole package - how to utilise}{19}
-\contentsline {chapter}{\numberline {4}Evaluation}{20}
-\contentsline {section}{\numberline {4.1}Testing}{20}
-\contentsline {chapter}{\numberline {5}Conclusion}{21}
-\contentsline {subsection}{\numberline {5.0.1}Future work}{21}
-\contentsline {chapter}{\numberline {A}First appendix}{22}
-\contentsline {section}{\numberline {A.1}Section of first appendix}{22}
-\contentsline {chapter}{\numberline {B}Second appendix}{23}
+\contentsline {section}{\numberline {2.1}Mobile Robots}{8}
+\contentsline {subsection}{\numberline {2.1.1}Turtlebot 2}{8}
+\contentsline {subsection}{\numberline {2.1.2}Cameras}{9}
+\contentsline {section}{\numberline {2.2}Robot Operating System (ROS)}{10}
+\contentsline {subsection}{\numberline {2.2.1}How does ROS work?}{10}
+\contentsline {section}{\numberline {2.3}SLAM (Simultaneous Localisation and Mapping)}{11}
+\contentsline {subsection}{\numberline {2.3.1}RTABMap}{13}
+\contentsline {section}{\numberline {2.4}Object Detection and Classification}{14}
+\contentsline {subsection}{\numberline {2.4.1}Introduction}{14}
+\contentsline {subsection}{\numberline {2.4.2}Detection in the Natural World}{14}
+\contentsline {subsection}{\numberline {2.4.3}Attention Systems - Memory Hierachy}{15}
+\contentsline {subsubsection}{Spatial temporal Attention Models}{15}
+\contentsline {subsection}{\numberline {2.4.4}Extracting Features}{15}
+\contentsline {subsubsection}{FAST Feature Detection}{15}
+\contentsline {subsection}{\numberline {2.4.5}Object Classification with Deep Learning}{16}
+\contentsline {subsubsection}{Convolutional Neural Networks (CNN)}{16}
+\contentsline {subsubsection}{MobileNet with TensorFlow}{18}
+\contentsline {subsubsection}{Google Vision API}{18}
+\contentsline {subsection}{\numberline {2.4.6}Regions with Convolutional Neural Networks (R-CNN)}{18}
+\contentsline {section}{\numberline {2.5}Summary and Discussion}{19}
+\contentsline {subsection}{\numberline {2.5.1}What currently exists for completing the objectives}{19}
+\contentsline {subsection}{\numberline {2.5.2}What are the Gaps, What do I have to do to fill the gaps}{19}
+\contentsline {subsection}{\numberline {2.5.3}What methods are not appropriate to fill the gap}{19}
+\contentsline {chapter}{\numberline {3}Approach/Implementation/System Implementation}{20}
+\contentsline {section}{\numberline {3.1}Requirements}{20}
+\contentsline {section}{\numberline {3.2}Anaylsis the approaches}{20}
+\contentsline {section}{\numberline {3.3}Analysis of approaches}{20}
+\contentsline {section}{\numberline {3.4}How did I go about it}{20}
+\contentsline {section}{\numberline {3.5}Mapping}{20}
+\contentsline {subsection}{\numberline {3.5.1}Transforming data}{20}
+\contentsline {subsection}{\numberline {3.5.2}Calibration}{20}
+\contentsline {section}{\numberline {3.6}Frontier Exploration}{20}
+\contentsline {section}{\numberline {3.7}Object Detection and Recognition}{21}
+\contentsline {subsection}{\numberline {3.7.1}Detecting ROI in FOV}{21}
+\contentsline {subsubsection}{Masking}{21}
+\contentsline {subsubsection}{Depth Mask}{21}
+\contentsline {subsubsection}{HSV Mask}{21}
+\contentsline {subsection}{\numberline {3.7.2}Detecting Objects Clustering - different methods}{21}
+\contentsline {subsection}{\numberline {3.7.3}Creating Boxes with DBScan}{21}
+\contentsline {subsection}{\numberline {3.7.4}Tracking Boxes}{21}
+\contentsline {subsection}{\numberline {3.7.5}Recognising Objects}{21}
+\contentsline {subsection}{\numberline {3.7.6}Publishing to Rviz/Rtabmap}{21}
+\contentsline {section}{\numberline {3.8}The whole package - how to utilise}{21}
+\contentsline {chapter}{\numberline {4}Evaluation}{22}
+\contentsline {section}{\numberline {4.1}Testing}{22}
+\contentsline {chapter}{\numberline {5}Conclusion}{23}
+\contentsline {subsection}{\numberline {5.0.1}Future work}{23}
+\contentsline {chapter}{\numberline {A}First appendix}{24}
+\contentsline {section}{\numberline {A.1}Section of first appendix}{24}
+\contentsline {chapter}{\numberline {B}Second appendix}{25}

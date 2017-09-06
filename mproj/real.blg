@@ -5,50 +5,50 @@ The style file: plain.bst
 Database file #1: mproj.bib
 Warning--entry type for "Hugh2006" isn't style-file defined
 --line 1 of file mproj.bib
-I was expecting a `,' or a `}'---line 16 of file mproj.bib
- : title 
- :       = {Artificial Intelligence},
-I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "Norvig2003"
-You've used 3 entries,
+Warning--entry type for "Girshick2014" isn't style-file defined
+--line 22 of file mproj.bib
+Warning--to sort, need author or key in turtlebot
+Warning--to sort, need author or key in gmapping
+Warning--to sort, need author or key in googlevision
+You've used 16 entries,
             2118 wiz_defined-function locations,
-            519 strings with 4396 characters,
-and the built_in function-call counts, 815 in all, are:
-= -- 75
-> -- 37
-< -- 0
-+ -- 15
-- -- 12
-* -- 50
-:= -- 148
-add.period$ -- 9
-call.type$ -- 3
-change.case$ -- 15
+            586 strings with 6457 characters,
+and the built_in function-call counts, 5008 in all, are:
+= -- 471
+> -- 254
+< -- 4
++ -- 101
+- -- 84
+* -- 312
+:= -- 808
+add.period$ -- 47
+call.type$ -- 16
+change.case$ -- 87
 chr.to.int$ -- 0
-cite$ -- 3
-duplicate$ -- 28
-empty$ -- 67
-format.name$ -- 12
-if$ -- 165
+cite$ -- 19
+duplicate$ -- 188
+empty$ -- 407
+format.name$ -- 84
+if$ -- 1073
 int.to.chr$ -- 0
-int.to.str$ -- 3
-missing$ -- 2
-newline$ -- 18
-num.names$ -- 6
-pop$ -- 17
+int.to.str$ -- 16
+missing$ -- 11
+newline$ -- 81
+num.names$ -- 28
+pop$ -- 129
 preamble$ -- 1
-purify$ -- 12
+purify$ -- 72
 quote$ -- 0
-skip$ -- 22
+skip$ -- 153
 stack$ -- 0
-substring$ -- 36
-swap$ -- 3
-text.length$ -- 0
+substring$ -- 227
+swap$ -- 48
+text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 12
-warning$ -- 0
-while$ -- 7
-width$ -- 4
-write$ -- 33
-(There was 1 error message)
+type$ -- 62
+warning$ -- 3
+while$ -- 38
+width$ -- 18
+write$ -- 162
+(There were 5 warnings)

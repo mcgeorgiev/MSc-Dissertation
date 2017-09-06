@@ -1,4 +1,20 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{googlevision}
+Explore the galaxy of images with cloud vision api.
+\newblock
+  https://cloud.google.com/blog/big-data/2016/05/explore-the-galaxy-of-images-with-cloud-vision-api.
+\newblock Accessed: 2017-09-5.
+
+\bibitem{gmapping}
+Gmapping.
+\newblock http://www.openslam.org/gmapping.html.
+\newblock Accessed: 2017-09-5.
+
+\bibitem{turtlebot}
+What is turtlebot?
+\newblock http://www.turtlebot.com/about/.
+\newblock Accessed: 2017-09-5.
 
 \bibitem{Hugh1988}
 Hugh Durrant-Whyte.
@@ -10,10 +26,67 @@ Hugh Durrant-Whyte, Fellow, IEEE, and Tim Bailey.
 \newblock Simultaneous localisation and mapping (slam): Part i the essential
   algorithms, 2006.
 
+\bibitem{voc-release4}
+P.~F. Felzenszwalb, R.~B. Girshick, and D.~McAllester.
+\newblock Discriminatively trained deformable part models, release 4.
+\newblock http://people.cs.uchicago.edu/~pff/latent-release4/.
+
+\bibitem{Girshick2014}
+Ross Girshick, Jeff Donahue, Trevor Darrell, and Jitendra Malik.
+\newblock Rich feature hierarchies for accurate object detection and semantic
+  segmentation, 2014.
+
+\bibitem{HowardZCKWWAA17}
+Andrew~G. Howard, Menglong Zhu, Bo~Chen, Dmitry Kalenichenko, Weijun Wang,
+  Tobias Weyand, Marco Andreetto, and Hartwig Adam.
+\newblock Mobilenets: Efficient convolutional neural networks for mobile vision
+  applications.
+\newblock {\em CoRR}, abs/1704.04861, 2017.
+
+\bibitem{NIPS2012_4824}
+Alex Krizhevsky, Ilya Sutskever, and Geoffrey~E Hinton.
+\newblock Imagenet classification with deep convolutional neural networks.
+\newblock In F.~Pereira, C.~J.~C. Burges, L.~Bottou, and K.~Q. Weinberger,
+  editors, {\em Advances in Neural Information Processing Systems 25}, pages
+  1097--1105. Curran Associates, Inc., 2012.
+
+\bibitem{labbe13appearance}
+M.~Labbe and F.~Michaud.
+\newblock {Appearance-Based Loop Closure Detection for Online Large-Scale and
+  Long-Term Operation}.
+\newblock {\em IEEE Transactions on Robotics}, 29(3):734--745, 2013.
+
+\bibitem{Mikolajczyk}
+K~Mikolajczyk and C~Schmid.
+\newblock A performance evaluation of local descriptors.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  2005.
+
+\bibitem{Norvig2003}
+Peter Norvig and Stuart~J. Russell.
+\newblock {\em Artificial Intelligence}.
+\newblock Prentice Hall, 2003.
+
+\bibitem{rosten_2006_machine}
+Edward Rosten and Tom Drummond.
+\newblock Machine learning for high-speed corner detection.
+\newblock In {\em European Conference on Computer Vision}, volume~1, pages
+  430--443, May 2006.
+
+\bibitem{rosten_2005_annotations}
+Edward Rosten, Gerhard Reitmayr, and Tom Drummond.
+\newblock Real-time video annotations for augmented reality.
+\newblock In {\em Advances in Visual Computing. LNCS 3840}, pages 294--302,
+  December 2005.
+
+\bibitem{Sande2013}
+J.~Uijlings, K.~van~de Sande, T.~Gevers, , and A.~Smeulders.
+\newblock Selective search for object recognition.
+\newblock {\em IJCV}, 2013.
+
 \bibitem{Webster2015}
 Michael~A. Webster.
 \newblock Visual adaptation.
 \newblock {\em Annual Review of Vision Science}, 1(1):547--567, 2015.
-\newblock PMID: 26858985.
 
 \end{thebibliography}

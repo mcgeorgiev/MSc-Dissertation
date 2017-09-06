@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  5 SEP 2017 02:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  6 SEP 2017 02:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -137,6 +137,9 @@ File: pppdftex.def 2015/09/18 v0.5d Pdfpages driver for pdfTeX (AM)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty
 Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
+)
+(/usr/share/texlive/texmf-dist/tex/latex/was/gensymb.sty
+Package: gensymb 2003/07/02 v1.0 (WaS)
 ) (./real.aux)
 \openout1 = `real.aux'.
 
@@ -227,6 +230,18 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 80.
 (/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 ))
+LaTeX Info: Redefining \celsius on input line 20.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 20.
+
+
+
+Package gensymb Warning: Not defining \perthousand.
+
+LaTeX Info: Redefining \ohm on input line 20.
+Package gensymb Info: Using \Omega for \ohm on input line 20.
+
+Package gensymb Warning: Not defining \micro.
+
 <images/CompSci_colour.pdf, id=1, 340.27126pt x 49.18375pt>
 File: images/CompSci_colour.pdf Graphic file (type pdf)
 
@@ -272,111 +287,178 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 
 ] [7]
 Chapter 2.
+<images/turtlebot.JPG, id=37, 773.89125pt x 1114.1625pt>
+File: images/turtlebot.JPG Graphic file (type jpg)
+
+<use images/turtlebot.JPG>
+Package pdftex.def Info: images/turtlebot.JPG used on input line 105.
+(pdftex.def)             Requested size: 216.135pt x 311.16434pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 [8
 
-]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 107.
+] [9 <./images/turtlebot.JPG>]
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 142.
 
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 107.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 142.
 
-<images/ROS_basic_concepts.png, id=40, 229.85875pt x 116.435pt>
+Overfull \hbox (0.78745pt too wide) in paragraph at lines 157--158
+[]\OT1/ptm/b/n/10.95 Services \OT1/ptm/m/n/10.95 forgo the many-to-many paradig
+m and pro-vide a re-quest/reply in-ter-ac-tion via servers
+ []
+
+[10] <images/ROS_basic_concepts.png, id=49, 229.85875pt x 116.435pt>
 File: images/ROS_basic_concepts.png Graphic file (type png)
 
 <use images/ROS_basic_concepts.png>
-Package pdftex.def Info: images/ROS_basic_concepts.png used on input line 118.
+Package pdftex.def Info: images/ROS_basic_concepts.png used on input line 163.
 (pdftex.def)             Requested size: 216.135pt x 109.48976pt.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 122.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 169.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) [9 <./images/ROS_basic_concepts.png>] [10] [11] [12]
+)
+<images/slam_problem.png, id=50, 657.45625pt x 555.07375pt>
+File: images/slam_problem.png Graphic file (type png)
 
-LaTeX Warning: Citation `Norvig2003' on page 13 undefined on input line 278.
-
-[13]
-
-LaTeX Warning: Citation `Mikolajczyk' on page 14 undefined on input line 316.
-
-
-LaTeX Warning: Citation `rosten_2006_machine' on page 14 undefined on input lin
-e 316.
+<use images/slam_problem.png>
+Package pdftex.def Info: images/slam_problem.png used on input line 187.
+(pdftex.def)             Requested size: 216.135pt x 182.47191pt.
 
 
-LaTeX Warning: Citation `rosten_2005_annotations' on page 14 undefined on input
- line 316.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-[14] <images/fast_speedtest.jpg, id=62, 444.66125pt x 216.81pt>
+
+Overfull \hbox (18.26198pt too wide) in paragraph at lines 190--191
+[]\OT1/ptm/m/n/10.95 https://blog.acolyer.org/2015/11/05/simultaneous-localizat
+ion-and-mapping-part-i-history-of-the-slam-
+ []
+
+[11 <./images/ROS_basic_concepts.png>]
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ™ in font ptmr7t!
+ [12 <./images/slam_problem.png>]
+<images/slam_graph.png, id=64, 667.49374pt x 409.53pt>
+File: images/slam_graph.png Graphic file (type png)
+
+<use images/slam_graph.png>
+Package pdftex.def Info: images/slam_graph.png used on input line 222.
+(pdftex.def)             Requested size: 216.135pt x 132.602pt.
+
+<images/graph.png, id=65, 400.49625pt x 175.65625pt>
+File: images/graph.png Graphic file (type png)
+ <use images/graph.png>
+Package pdftex.def Info: images/graph.png used on input line 237.
+(pdftex.def)             Requested size: 216.135pt x 94.79666pt.
+
+<images/memory.png, id=66, 639.38875pt x 401.5pt>
+File: images/memory.png Graphic file (type png)
+ <use images/memory.png>
+Package pdftex.def Info: images/memory.png used on input line 246.
+(pdftex.def)             Requested size: 216.135pt x 135.71788pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[13 <./images/slam_graph.png> <./images/graph.png>] [14 <./images/memory.png>]
+<images/fast_speedtest.jpg, id=73, 444.66125pt x 216.81pt>
 File: images/fast_speedtest.jpg Graphic file (type jpg)
 
 <use images/fast_speedtest.jpg>
-Package pdftex.def Info: images/fast_speedtest.jpg used on input line 323.
+Package pdftex.def Info: images/fast_speedtest.jpg used on input line 306.
 (pdftex.def)             Requested size: 216.135pt x 105.3843pt.
 
 
-LaTeX Warning: Citation `Girshick2014' on page 15 undefined on input line 359.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-[15 <./images/fast_speedtest.jpg>]
-<images/RCNN.png, id=66, 1190.4475pt x 409.53pt>
+[15] <images/layers.png, id=77, 121.45375pt x 127.97812pt>
+File: images/layers.png Graphic file (type png)
+
+<use images/layers.png>
+Package pdftex.def Info: images/layers.png used on input line 319.
+(pdftex.def)             Requested size: 216.135pt x 227.74564pt.
+ [16 <./images/fast_speedtest.jpg> <./images/layers.png>] <images/conv.png, id=
+81, 928.46875pt x 605.26125pt>
+File: images/conv.png Graphic file (type png)
+ <use images/conv.png>
+Package pdftex.def Info: images/conv.png used on input line 341.
+(pdftex.def)             Requested size: 216.135pt x 140.89725pt.
+
+<images/conv_max.png, id=82, 952.55875pt x 722.7pt>
+File: images/conv_max.png Graphic file (type png)
+ <use images/conv_max.png>
+Package pdftex.def Info: images/conv_max.png used on input line 350.
+(pdftex.def)             Requested size: 216.135pt x 163.97891pt.
+
+[17 <./images/conv.png> <./images/conv_max.png>]
+Overfull \hbox (2.86772pt too wide) in paragraph at lines 361--362
+[]\OT1/ptm/m/n/10.95 MobileNet is a is a deep con-vo-lu-tional neu-ral net-work
+ for im-age recog-ni-tion found in TensorFlow[[]].
+ []
+
+<images/RCNN.png, id=87, 1190.4475pt x 409.53pt>
 File: images/RCNN.png Graphic file (type png)
  <use images/RCNN.png>
-Package pdftex.def Info: images/RCNN.png used on input line 364.
-(pdftex.def)             Requested size: 216.135pt x 74.3496pt.
+Package pdftex.def Info: images/RCNN.png used on input line 374.
+(pdftex.def)             Requested size: 432.26999pt x 148.70546pt.
 
 
-LaTeX Warning: Citation `Sande2013' on page 16 undefined on input line 368.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-LaTeX Warning: Citation `voc-release4' on page 16 undefined on input line 368.
-
-[16 <./images/RCNN.png (PNG copy)>] [17]
+[18] [19 <./images/RCNN.png (PNG copy)>]
 Chapter 3.
-[18
-
-] [19]
-Chapter 4.
 [20
 
-]
-Chapter 5.
-[21
-
-]
-Appendix A.
+] [21]
+Chapter 4.
 [22
 
 ]
+Chapter 5.
+[23
+
+]
+Appendix A.
+[24
+
+]
 Appendix B.
-(./real.bbl [23
+(./real.bbl [25
 
-]) [24
+] [26
 
-] (./real.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+]) [27] (./real.aux) ) 
 Here is how much of TeX's memory you used:
- 3412 strings out of 493029
- 49402 string characters out of 6136234
- 120120 words of memory out of 5000000
- 6873 multiletter control sequences out of 15000+600000
+ 3516 strings out of 493029
+ 51176 string characters out of 6136234
+ 120510 words of memory out of 5000000
+ 6964 multiletter control sequences out of 15000+600000
  25217 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,7n,39p,818b,241s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times
-/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on real.pdf (26 pages, 323571 bytes).
+ 38i,9n,39p,799b,239s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.en
+c}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times
+/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on real.pdf (29 pages, 986396 bytes).
 PDF statistics:
- 116 PDF objects out of 1000 (max. 8388607)
- 78 compressed objects within 1 object stream
+ 153 PDF objects out of 1000 (max. 8388607)
+ 99 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 
