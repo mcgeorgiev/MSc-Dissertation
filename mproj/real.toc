@@ -1,11 +1,11 @@
 \contentsline {chapter}{\numberline {1}Introduction}{6}
 \contentsline {section}{\numberline {1.1}Sentence}{6}
 \contentsline {section}{\numberline {1.2}Importance/Context/Motivation}{6}
-\contentsline {section}{\numberline {1.3}Objectives/Hypothesis Karl Popper/Problem statement}{7}
-\contentsline {section}{\numberline {1.4}Description of Objectives}{7}
-\contentsline {section}{\numberline {1.5}How I achieved it}{7}
-\contentsline {subsection}{\numberline {1.5.1}System Diagram}{7}
-\contentsline {section}{\numberline {1.6}Outline of the dissertation}{7}
+\contentsline {section}{\numberline {1.3}Objectives/Problem statement}{6}
+\contentsline {section}{\numberline {1.4}System Overview}{7}
+\contentsline {subsection}{\numberline {1.4.1}System Diagram}{7}
+\contentsline {subsection}{\numberline {1.4.2}How I achieved it}{7}
+\contentsline {section}{\numberline {1.5}Outline of the dissertation}{7}
 \contentsline {chapter}{\numberline {2}Background}{8}
 \contentsline {section}{\numberline {2.1}Mobile Robots}{8}
 \contentsline {subsection}{\numberline {2.1.1}Turtlebot 2}{8}
@@ -28,32 +28,37 @@
 \contentsline {subsection}{\numberline {2.4.6}Regions with Convolutional Neural Networks (R-CNN)}{18}
 \contentsline {section}{\numberline {2.5}Summary and Discussion}{19}
 \contentsline {subsection}{\numberline {2.5.1}What currently exists for completing the objectives}{19}
-\contentsline {subsection}{\numberline {2.5.2}What are the Gaps, What do I have to do to fill the gaps}{19}
-\contentsline {subsection}{\numberline {2.5.3}What methods are not appropriate to fill the gap}{19}
-\contentsline {chapter}{\numberline {3}Approach/Implementation/System Implementation}{20}
+\contentsline {subsection}{\numberline {2.5.2}What are the my knowledge gaps, What do I have to do to fill the gaps}{19}
+\contentsline {subsection}{\numberline {2.5.3}What methods are not appropriate}{19}
+\contentsline {chapter}{\numberline {3}System Design}{20}
 \contentsline {section}{\numberline {3.1}Requirements}{20}
-\contentsline {section}{\numberline {3.2}Anaylsis the approaches}{20}
-\contentsline {section}{\numberline {3.3}Analysis of approaches}{20}
-\contentsline {section}{\numberline {3.4}How did I go about it}{20}
-\contentsline {section}{\numberline {3.5}Mapping}{20}
-\contentsline {subsection}{\numberline {3.5.1}Transforming data}{20}
-\contentsline {subsection}{\numberline {3.5.2}Calibration}{20}
-\contentsline {section}{\numberline {3.6}Frontier Exploration}{20}
-\contentsline {section}{\numberline {3.7}Object Detection and Recognition}{21}
-\contentsline {subsection}{\numberline {3.7.1}Detecting ROI in FOV}{21}
-\contentsline {subsubsection}{Masking}{21}
-\contentsline {subsubsection}{Depth Mask}{21}
-\contentsline {subsubsection}{HSV Mask}{21}
-\contentsline {subsection}{\numberline {3.7.2}Detecting Objects Clustering - different methods}{21}
-\contentsline {subsection}{\numberline {3.7.3}Creating Boxes with DBScan}{21}
-\contentsline {subsection}{\numberline {3.7.4}Tracking Boxes}{21}
-\contentsline {subsection}{\numberline {3.7.5}Recognising Objects}{21}
-\contentsline {subsection}{\numberline {3.7.6}Publishing to Rviz/Rtabmap}{21}
-\contentsline {section}{\numberline {3.8}The whole package - how to utilise}{21}
-\contentsline {chapter}{\numberline {4}Evaluation}{22}
-\contentsline {section}{\numberline {4.1}Testing}{22}
-\contentsline {chapter}{\numberline {5}Conclusion}{23}
-\contentsline {subsection}{\numberline {5.0.1}Future work}{23}
-\contentsline {chapter}{\numberline {A}First appendix}{24}
-\contentsline {section}{\numberline {A.1}Section of first appendix}{24}
-\contentsline {chapter}{\numberline {B}Second appendix}{25}
+\contentsline {subsection}{\numberline {3.1.1}Functional Requirements}{20}
+\contentsline {subsection}{\numberline {3.1.2}Non-Functional Requirements}{21}
+\contentsline {subsubsection}{Platform Requirements}{21}
+\contentsline {subsection}{\numberline {3.1.3}MOSCOW TABLE}{21}
+\contentsline {section}{\numberline {3.2}Anaylsis the approaches}{21}
+\contentsline {subsection}{\numberline {3.2.1}Chosen Approach}{21}
+\contentsline {section}{\numberline {3.3}System Architecture}{21}
+\contentsline {section}{\numberline {3.4}Conclusion}{21}
+\contentsline {chapter}{\numberline {4}Implementation}{22}
+\contentsline {section}{\numberline {4.1}How did I go about it}{22}
+\contentsline {section}{\numberline {4.2}Mapping}{22}
+\contentsline {subsection}{\numberline {4.2.1}Transforming data}{22}
+\contentsline {subsection}{\numberline {4.2.2}Calibration}{22}
+\contentsline {section}{\numberline {4.3}Frontier Exploration}{22}
+\contentsline {section}{\numberline {4.4}Object Detection and Recognition}{23}
+\contentsline {subsection}{\numberline {4.4.1}Detecting ROI in FOV}{23}
+\contentsline {subsubsection}{Masking}{23}
+\contentsline {subsubsection}{Depth Mask}{23}
+\contentsline {subsubsection}{HSV Mask}{23}
+\contentsline {subsection}{\numberline {4.4.2}Detecting Objects Clustering - different methods}{23}
+\contentsline {subsection}{\numberline {4.4.3}Creating Boxes with DBScan}{23}
+\contentsline {subsection}{\numberline {4.4.4}Tracking Boxes}{23}
+\contentsline {subsection}{\numberline {4.4.5}Recognising Objects}{23}
+\contentsline {chapter}{\numberline {5}Evaluation}{24}
+\contentsline {section}{\numberline {5.1}Testing}{24}
+\contentsline {chapter}{\numberline {6}Conclusion}{25}
+\contentsline {subsection}{\numberline {6.0.1}Future work}{25}
+\contentsline {chapter}{\numberline {A}First appendix}{26}
+\contentsline {section}{\numberline {A.1}Section of first appendix}{26}
+\contentsline {chapter}{\numberline {B}Second appendix}{27}

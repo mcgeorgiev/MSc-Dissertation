@@ -20,7 +20,7 @@
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{Title of project placed here}
-\author{Name of author placed here}
+\author{Michael Georgiev}
 \date{Date of submission placed here}
 \maketitle
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -71,13 +71,16 @@ Object detection can be used to detect humans via heat sensors etc. Aswell as id
 
 
 
-\section{Objectives/Hypothesis Karl Popper/Problem statement}
+\section{Objectives/Problem statement}
 
-\section{Description of Objectives}
+While the Turtlebot has been increasingly used by developers and researchers to create robotic software much of this development has been in focused and isolated components and not combined into useful applications. Similarly much work has primarily been developed using simulated environments and not tested using the Turtlebot or cameras.
 
-\section{How I achieved it} 
+The objective of this project is to build a prototypical system which combines pre-built SLAM software with frontier exploration and implements a bespoke object detection and recognition service on the Turtlebot. When placed in an unknown room the Turtlebot will autonomously create a 3D map of the environment while creating an inventory of classified and localised objects in the map.
+
+\section{System Overview} 
 
 \subsection{System Diagram} 
+\subsection{How I achieved it}
 
 \section{Outline of the dissertation} 
 
@@ -93,7 +96,7 @@ It will consider the processes of object detection and recognition by first cons
 \section{Mobile Robots}
 
 
-Mobile robots are robots that are not fixed to one location and are capable of moving around their environments. Movement is achieved generally through legs, wheels or tracks but aerial and nautical robots can use propellors. The robot can be controlled through manual-tele operation involving a human driver, line-following which follow visual cues such as painted lines to navigate or autonomously. These robots have many applications in areas such as the military, agriculture, rescue, transport and domestic use and include Unmanned Aerial Vehicles (UAV or commonly drones)and self-driving cars.
+Mobile robots are robots that are not fixed to one location and are capable of moving around their environments. Movement is achieved generally through legs, wheels or tracks but aerial and nautical robots can use propellors. The robot can be controlled through manual-tele operation involving a human driver, line-following which follow visual cues such as painted lines to navigate or autonomously. These robots have many applications in areas such as the military, agriculture, rescue, transport and domestic use and include Unmanned Aerial Vehicles (UAVs or more commonly known as drones)and self-driving cars.
 
 \subsection{Turtlebot 2}
 
@@ -289,6 +292,8 @@ Memory Hierarchy
 - Intelligence agents
 
 Humans forget things when they leave a room.
+
+Pre attentive queue
  
 \subsection{Extracting Features}
 
@@ -380,25 +385,71 @@ Roughly two thousand bounding boxes, or region proposals are created using the p
 
 \section{Summary and Discussion}
 \subsection{What currently exists for completing the objectives}
-\subsection{What are the Gaps, What do I have to do to fill the gaps}
-\subsection{What methods are not appropriate to fill the gap}
-
-
-
+\subsection{What are the my knowledge gaps, What do I have to do to fill the gaps}
+\subsection{What methods are not appropriate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Approach/Implementation/System Implementation}
+\chapter{System Design}
+
+This chapter first examines and prioritises the different requirements of the project. Considering these requirements, this chapter will identify different approaches to fufil the project objective. These approaches will be discussed in context of their feasibility and chance of success. Finally a high-level description of the system design will be provided. 
 
 \section{Requirements}
+ 
+The problem statement/objective of this project is broad enough that it can be interpreted in many different ways. Therefore at the beginning stage of the project key system requirements were developed which help create an overaching system design and well as create a focused implementation stage. These are divided into functional and non-functional requirements. A functional requirement specifies a behaviour of the system, while a non-functional requirement describes a constraint of how the system must be developed. The defined requirements are prioritised in a MoSCoW table which states whether the requirement is Must have, Should have, Could have or Won’t have
 
-Open project - requires stating specific requirements to focus the task
+\subsection{Functional Requirements}
+\begin{itemize}
+\item Autonomously explore an unknown environment
+\item Perform SLAM mapping
+\item Perform autonomous SLAM mapping of an unknown environment
+\item Locate areas of a map which may contain potential objects
+\item Locate and map predefined objects within the environment
+\item Locate, classify and map undefined objects within the environment
+\item Display discovered objects in the map
+\item Display a 3D map of the environment
+\item Visually distinguish between predefined and undefined objects
+\item Allow localisation of previously mapped environment
+\item Display discovered objects from within a GUI
+\item Perform calibration for different environments
+\item Actively create a 3D point cloud of detected objects
+\item Create a database of features for detected objects
+\item Navigate to object within localised map 
+\item Save a map and detected object locations
+\item Create a contour map of object locations
+\end{itemize}
+ 
+\subsection{Non-Functional Requirements}
+\begin{itemize}
+\item Turtlebot maps a sufficiently large room with in real-time
+\item Object detection and recognition runs concurrently to mapping
+\item Turtlebot maps different room environments (e.g. different floor and wall types)
+\item Produce sufficiently accurate object classification
+\end{itemize}
+
+\subsubsection{Platform Requirements}
+\begin{itemize}
+\item Use ROS with Ubuntu v16.04
+\item Use a Kinect v2 RGB-D camera
+\item Use a ZED stereo camera
+\item Use a Intel Realsense ZR300 camera
+\item Application be able to be simulated in Gazebo
+\end{itemize}
+
+\subsection{MOSCOW TABLE}
+
 \section{Anaylsis the approaches}
 
-What problems I encounted etc.
+\subsection{Chosen Approach}
 
-\section{Analysis of approaches}
+\section{System Architecture}
+
+\section{Conclusion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Implementation}
+
 \section{How did I go about it}
-
+What problems I encounted etc.
 \section{Mapping}
 \subsection{Transforming data}
 \subsection{Calibration}
@@ -420,12 +471,27 @@ Do not use bounding boxes, as not entirely useful in mapping as this requires ne
 
 Using google vision means that speed does not decreae with more objects detected, statys constant
 
-
 Transfer learning whereby a pre trained model is retrained for a similar problem.
-\subsection{Publishing to Rviz/Rtabmap}
-\section{The whole package - how to utilise}
 
 I did this because of that which allows me to do this
+
+
+
+Uses a buffer so that the robot can operate in real time asynchronous
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Evaluation}
@@ -446,6 +512,9 @@ Experiments to answer questions
 \subsection{Future work}
 
 incorporate active detection of features next time.
+
+A signature map can be created from the locations of objects in the map. Indicating whether a floor is here. Similar to geological mapping
+
 
 \appendix % first appendix
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
