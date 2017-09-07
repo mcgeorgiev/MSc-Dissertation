@@ -11,6 +11,10 @@ Gmapping.
 \newblock http://www.openslam.org/gmapping.html.
 \newblock Accessed: 2017-09-5.
 
+\bibitem{otsu}
+Otsu's method.
+\newblock https://en.wikipedia.org/wiki/Otsu%27s_method.
+
 \bibitem{turtlebot}
 What is turtlebot?
 \newblock http://www.turtlebot.com/about/.

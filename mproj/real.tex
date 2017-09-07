@@ -6,6 +6,10 @@
 \usepackage[final]{pdfpages}
 \usepackage{times}
 \usepackage{gensymb}
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage[linesnumbered,ruled]{algorithm2e}
 % for alternative page numbering use the following package
 % and see documentation for commands
 %\usepackage{fancyheadings}
@@ -40,7 +44,7 @@ abstract goes here
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Acknowledgements}
 
-acknowledgements go here sdfsdf
+Yo! If you are reading this... I love you $<3$ You will be my acknowledgement.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \tableofcontents
@@ -122,14 +126,15 @@ The Kinect is a very affordable RGB-D camera developed for use on machines runni
 \begin{table}[ht]
 \caption{Comparison of the Zed Camera and Xbox Kinect v2}
 \centering 
-\begin{tabular}{c | c | c | c}
+\begin{tabular}{c | c | c  }
 \hline
- Feature     & Kinect         & Zed Camera \\
+ \rowcolor{gray!50}Feature     & Kinect         & Zed Camera \\
  \hline
  Resolution  & 1080p at 30fps & 1080p at 30fps \\
  Depth range & 0.5 - 8m       & 0.5 - 20m \\
  FOV         & 70\degree horz. and 60\degree vert. & 110\degree \\
  Power       & 12V Adapter	  & 5V USB \\			  
+\bottomrule
 \hline
 \end{tabular}
 \label{table:camera comparison}
@@ -391,7 +396,7 @@ Roughly two thousand bounding boxes, or region proposals are created using the p
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{System Design}
 
-This chapter first examines and prioritises the different requirements of the project. Considering these requirements, this chapter will identify different approaches to fufil the project objective. These approaches will be discussed in context of their feasibility and chance of success. Finally a high-level description of the system design will be provided. 
+This chapter first examines and prioritises the different requirements of the project. Then considering these requirements, this chapter will identify different approaches to fufil the project objective. These approaches will be discussed in context of their feasibility and potential successfulness. Finally a high-level description of the system design will be provided. 
 
 \section{Requirements}
  
@@ -435,39 +440,207 @@ The problem statement/objective of this project is broad enough that it can be i
 \item Application be able to be simulated in Gazebo
 \end{itemize}
 
-\subsection{MOSCOW TABLE}
+ \subsection{MOSCOW TABLE}
 
-\section{Anaylsis the approaches}
+\begin{tabular}{*5l}    \toprule
+\emph{Prority} & \emph{Requirement} & \emph{Type} \\\midrule
+\rowcolor{green!50} Must have & Perform SLAM mapping & Functional\\
+\rowcolor{green!50} & Autonomously explore an unknown environment & Functional\\
+\rowcolor{green!50} & Perform autonomous SLAM mapping of an unknown environment & Functional\\
+\rowcolor{green!50} & Locate areas of a map which may contain potential objects & Functional\\
+\rowcolor{green!50} & Locate and map predefined objects within the environment & Functional\\
+\rowcolor{green!50} & Display a 3D map of the environment & Functional\\
+\rowcolor{green!50} & Perform SLAM mapping & Functional\\
+\rowcolor{yellow!50} Should have & Locate, classify and map undefined objects within the environment & Functional\\
+\rowcolor{yellow!50} & Visually distinguish between predefined and undefined objects & Functional\\
+\rowcolor{yellow!50} & Display discovered objects from within a GUI & Functional\\
+\rowcolor{yellow!50} & Allow localisation of previously mapped environment  & Functional\\
+\rowcolor{orange!50} Could have & Perform calibration for different environments  & Functional\\
+\rowcolor{orange!50} & Navigate to object within localised map  & Functional\\
+\rowcolor{orange!50} & Save a map and detected object locations  & Functional\\
+\rowcolor{red!50} Would like & Create a contour map of object locations & Functional\\
+\rowcolor{red!50} & Create a database of features for detected objects & Functional\\
+\rowcolor{red!50} & Actively create a 3D point cloud of detected objects & Functional\\
 
-\subsection{Chosen Approach}
+\bottomrule
+ \hline
+\end{tabular}
+
+
+\section{Design Approach}
+
+The project will consist of four main processes, SLAM mapping, exploration, object detection and recognition and visualisation. It will utilise a pre-built SLAM package for mapping and which will be adapted to work with the Turtlebot and the desired cameras. A pre-built frontier exploration package will also be used but will have to be adapted to work with the Turtlebot and the object detection processes. Object detection and recognition will be created from scratch for use with a map building robot and the desired cameras. Finally visualisation will be handled primarily by RViz. The stated design approach is a composite, having been informed by many different alternative approaches
+
+\subsection{Alternative Approaches}
+
+\begin{enumerate}
+\item Utilise prebuilt software for all components of the system. The project would stitch them together while providing a facade for user interaction. - This approach would require using a general purpose object recognition system which would not easily provide the localisation of objects in a 3D map without editing the source code. This would task would involve decomposing very large and complex systems which is unnessessary. Similarly, stitching together components means the project will be highly coupled to external software which may affect futureproofing and futher reuse.
+\item Create a bespoke object detection package which by default does not need a map, but has functionality to locate objects within a map. This would also require incorporating external packages for SLAM etc. into the project. - This approach would produce a highly reusable generic object detection service that could be used with just a RGB-D or Stereo camera. However, this is not required to achieve the project objectives and would require substantial research and time invested into developing a process of maintaining  persistance when tracking objects in a 2D image.
+\item Create a package from scratch which would solve simple SLAM while providing exploration and object detection. - This approach  would require a considerable amount of time and an advanced background in mathematics.
+\end{enumerate}
+
 
 \section{System Architecture}
 
+Due to there being many different ways to implement the project at a low-level either by choice of technology or algorithms etc. a high-level system architecture diagram will be discussed. The system is described as a graph and this is informed by the stated approach and background research undertaken.
+
+\begin{figure}[h]
+  \caption{High-Level System Architecture. Consisting of the four main active processes of the project, as well as the passive hardware components (Turtlebot and camera).}
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/system-diagram.png}
+  \label{fig:System Diagram}
+\end{figure}
+
+The advantage of using this type of design is it that it maps directly to the way ROS works. A node is equivalent to a ROS node and contains a process while edges are equivalent to ROS topics. This design allows some nodes to be removed, for example frontier exploration and map visualisation and the other nodes will still work as expected. This is useful because the system can developed and tested in modular stages. Similarly nodes can be replaced, for example the Turtlebot and camera can be replaced by a simulation which will provide the same edges meaning their is scope for adaption and code reuse for future projects.
+
 \section{Conclusion}
+
+Formulating requirements provides a clear understanding of the scope of the project. This also allows the system design to be flexible and account for an iterative processes where different modules can be completed and tested in stages. The high-level system is able to capture the requirements and is sufficiently modular. The next chapter will describe the implementation process of the stated design... More***  
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Implementation}
+\section{Introduction}
 
-\section{How did I go about it}
-What problems I encounted etc.
 \section{Mapping}
-\subsection{Transforming data}
-\subsection{Calibration}
-
-\section{Frontier Exploration} !!!
-Hybrid approach taken from RCNN, currently only has an official matlab binding of RCNN.
-
-Do not use bounding boxes, as not entirely useful in mapping as this requires new detections and classifiations when changing the object pose. A simple spherical location detector is used to show the object is located within the this region of alpha
+\section{Frontier Exploration}
 
 \section{Object Detection and Recognition}
-\subsection{Detecting ROI in FOV}
-\subsubsection{Masking}
-\subsubsection{Depth Mask}
-\subsubsection{HSV Mask}
-\subsection{Detecting Objects Clustering - different methods}
-\subsection{Creating Boxes with DBScan}
-\subsection{Tracking Boxes}
-\subsection{Recognising Objects}
+The purpose of the object detection and recognition package is to be able to locate potential objects within a scene, classify them and note their location within the map being built using SLAM.
+
+This package was determined to be written from scratch as it required bespoke functionality however certain other software was consulted such as Find Object \cite{} and Bing\cite{}. Why? Because the detection would primarily be carried out by a mobile robot certain aspects were modelled on lower organisms visual systems. Both of these pieces of research helped form the completed package.
+
+This package was written in Python 2.7 primarily to make use of the ROS and OpenCV bindings which are required. The ROS bindings (Rospy) permits the interfacing of ROS components in Python. It allows nodes to be implemented very quickly at the expense of runtime speed, but this tradeoff was considered acceptable as this project is prototypical and can be ported to the faster C++ API in the future if required. OpenCV is a library of computer vision functions such as displaying, processing and machine learning.
+
+
+\subsection{Detection}
+
+Similar detection software was consulted and in all cases some form of blob detection was used to determine salient regions, frequently called Regions of Interest (ROI) \cite{HosangBS14}. Blob detection allows areas of a 2D image with similiar parameters such as brightness or colour to be distinguished from their surroundings. Blob detection is a sequential process and each stage is described.  **** What does R-CNN do... hybrid system...
+
+\subsubsection{0. Initial Exploratory Blob Detection}
+
+Initially a naive method was concieved that took SIFT or FAST features as regions of interest within an image and the created a blob around clusters of these features. This method used a handwritten blob creator algorithm that determined blobs based on a closeness value in pixels to the current blob's edge.
+
+ \begin{algorithm}
+    \SetKwInOut{Input}{Input}
+    \SetKwInOut{Output}{Output}
+
+    \underline{function isNearEdge} $(x,y)$\;
+    \Input{External feature vector $x$ and $y$}
+    \Output{Boolean}
+    Where $blobFeatures$ are current features within the blob\;
+    $shortestDistance \leftarrow 10000 $\;
+    \For{$vector$ \textbf{in} $blobFeatures$}
+    {
+    $tempDistance \leftarrow euclideanDistance( x,y,vector ) $\;
+    \If {$ tempDistance < shortestDistance $}
+    {
+    	$shortestDistance \leftarrow tempDistance$
+    }
+    }
+    \lIf {$ shortestDistance < minimumDistance$}
+    { 
+    	\Return True
+    }
+
+    
+    \caption{Determine if a given feature is within the distance of a blob.  }
+\end{algorithm}
+
+This method generally worked, however it is a very slow and costly function whereby every feature vector has to be compared against every other feature vector but moreover it fundamentally assumed that objects contained more features than their surrounding environments which is flawed. 
+
+The environment that will be encountered when the project is run is unknown but it can be assumed that objects are likely to be found in the environment. The type of environment will be variable but will typically be an office or workplace which will feature some areas of high entropy such as book shelves, exterior windows and patterned carpets. Therefore in some cases the object may have less features than it's surroundings.
+
+\subsubsection{1. Thresholding with Otsu's Method}
+
+Considering this, an assumption was made that potential objects will be in the foreground of an scene. This means that objects can be distinguishable even when there is a high degree of variance in the overall scene. 
+
+To achieve this the grey-scale of the image was thresholded using Otsu's method which creates a histogram of intensity and then chooses an  threshold value to split the image into two classes. This method was chosen because it is very fast and assumes that an image has two kinds of pixel, foreground and background\cite{otsu}. Objects in the foreground are considered to be sparce compared to the background and therefore the class with the lesser number of pixels is determined to be the foreground. In, FIGURE this process correctly distinguishes the high contrast guitar in the foreground. However, the white walls distort this and constitute a great deal of the image (although there are still slightly less white pixels than black here) this could lead to the foreground being incorrectly determined.
+
+\begin{figure}
+   \caption{High-Level System Architecture. Consisting of the four main active processes of the project, as well as the passive hardware components (Turtlebot and camera).}
+   \centering
+   \includegraphics[width=0.475\textwidth]{images/basic.png}
+   \hfill
+   \includegraphics[width=0.475\textwidth]{images/otsu.png}
+\end{figure}
+
+\subsubsection{1.5. Calibration Tool}
+
+No picture, but illustrate it with getting rid of white areas.
+
+\subsubsection{2. Combining with a Depth Mask}
+
+To properly seperate the foreground the Otsu method is combined with the a depth mask taken from the Kinect or Zed Camera's range finding where a depth threshold is pre-determined. This allows only locations within a certain range to be located therefore considerably improving the the clarity of the foreground. (However it is important to note the books FIGURE are just at the edge of the Kinect sensor's range and not fully rendered.) A morphological operation removeSmallObjects found in the Scikit-Image library is used to perform erosion and dilation based on a specified kernal size, this has the effect of removing small regions of spurious pixels and somewhat provides blobs with well defined edges.
+
+\begin{figure}
+   \caption{High-Level System Architecture. Consisting of the four main active processes of the project, as well as the passive hardware components (Turtlebot and camera).}
+   \centering
+   \includegraphics[width=0.475\textwidth]{images/depth.png}
+   \hfill
+   \includegraphics[width=0.475\textwidth]{images/combined.png}
+\end{figure}
+
+\subsubsection{3. Clustering}
+
+With the blobs sufficiently seperate from the background they can be clustered with the aim of creating segments. This allows bounding boxes to be defined around each segment forming a region of interest. 
+
+This is similar to how R-CNN finds bounding boxes however in R-CNN the number of clusters is a known variable, usually 2000 and the Selection Search algorithm is used to find this many clusters. In this project the number of potential objects in a scene is unknown and therefore the number of clusters is also unknown, this limits the number of algorithms that can be used.
+
+A clustering algorithm, Density-based spatial clustering of applications with noise (DBSCAN)\cite{} is applicable to this problem as it works with an unknown cluster number and an implementation is provided in in the Scikit-learn package. This has a best case complexity of $O(n log n)$ which is considerably faster the inital clustering algorithm ALGORITHM 1 which has a best case of $O(n^{2})$
+
+
+DBSCAN has two parameters: $\varepsilon (epsilon)$ which defines the radius around a data point $p$ and a minimum number of points that consist of a cluster $minPoints$
+
+The algorithm can be abstractly described as thus:
+
+    Find $\varepsilon$ neighbours of $p_{n}$ and identify the core points
+    
+    Find connected components of core points
+    
+    Assign border points or otherwise outliers
+  
+Where $N$ is a neighbourhood:
+ 
+Core points are  $N_{\varepsilon} >= minPoints $
+
+Border points are $N_{\varepsilon} < minPoints $ but still reachable from a Core point
+
+Outliers are neither core or border points
+
+
+Clusters are thus created from the core and border points while outliers in can be discounted.
+
+The algorithm was initially tested with (x,y and the colour image) features however this resulted in a very slow runtime. Offseting this by reducing the step size and desampling the image gave poor overfitted clusters. Therefore (x, y, depth and grey-scale image) was used which produces satisfactory clusters.
+
+ 
+Using a low $\varepsilon$  value results in many clusters similar to the results found in R-CNN's Selection Search, however, R-CNN classifies every bounding box created from the the cluster. This is not feasible for this project which must be implemented in real-time. Therefore a larger $\varepsilon$ is used which produces larger clusters that fit the blobs closer to their real world images.
+
+\begin{figure}
+   \caption{High-Level System Architecture. Consisting of the four main active processes of the project, as well as the passive hardware components (Turtlebot and camera).}
+   \centering
+   \includegraphics[width=0.475\textwidth]{images/many.png}
+   \hfill
+   \includegraphics[width=0.475\textwidth]{images/clusters.png}
+\end{figure}
+
+
+
+\subsubsection{4. Creating Bounding Boxes}
+
+
+
+ and filter by number of features, get rid of part of the door
+ 
+ Image FAST Features
+ 
+ Explain the bounding mechanism
+ 
+ Do not use bounding boxes, as not entirely useful in mapping as this requires new detections and classifiations when changing the object pose. A simple spherical location detector is used to show the object is located within the this region of alpha
+
+\subsection{Classification}
+
+Haar Cascade
 
 Using google vision means that speed does not decreae with more objects detected, statys constant
 
@@ -475,15 +648,9 @@ Transfer learning whereby a pre trained model is retrained for a similar problem
 
 I did this because of that which allows me to do this
 
-
-
 Uses a buffer so that the robot can operate in real time asynchronous
 
-
-
-
-
-
+\subsubsection{Adding markers}
 
 
 

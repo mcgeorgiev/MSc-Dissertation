@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  6 SEP 2017 16:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  7 SEP 2017 02:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -140,39 +140,183 @@ Package: times 2005/04/12 PSNFSS-v9.2a (SPQR)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/was/gensymb.sty
 Package: gensymb 2003/07/02 v1.0 (WaS)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2012/02/13 v1.0a Color table columns (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen109
+\extrarowheight=\dimen110
+\NC@list=\toks16
+\extratabsurround=\skip46
+\backup@length=\skip47
+)
+\everycr=\toks17
+\minrowclearance=\skip48
+)
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2005/04/14 v1.61803 publication quality tables
+\heavyrulewidth=\dimen111
+\lightrulewidth=\dimen112
+\cmidrulewidth=\dimen113
+\belowrulesep=\dimen114
+\belowbottomsep=\dimen115
+\aboverulesep=\dimen116
+\abovetopsep=\dimen117
+\cmidrulesep=\dimen118
+\cmidrulekern=\dimen119
+\defaultaddspace=\dimen120
+\@cmidla=\count96
+\@cmidlb=\count97
+\@aboverulesep=\dimen121
+\@belowrulesep=\dimen122
+\@thisruleclass=\count98
+\@lastruleclass=\count99
+\@thisrulewidth=\dimen123
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2016/03/03 v2.15a AMS math features
+\@mathmargin=\skip49
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks18
+\ex@=\dimen124
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen125
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count100
+LaTeX Info: Redefining \frac on input line 199.
+\uproot@=\count101
+\leftroot@=\count102
+LaTeX Info: Redefining \overline on input line 297.
+\classnum@=\count103
+\DOTSCASE@=\count104
+LaTeX Info: Redefining \ldots on input line 394.
+LaTeX Info: Redefining \dots on input line 397.
+LaTeX Info: Redefining \cdots on input line 518.
+\Mathstrutbox@=\box29
+\strutbox@=\box30
+\big@size=\dimen126
+LaTeX Font Info:    Redeclaring font encoding OML on input line 630.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 631.
+\macc@depth=\count105
+\c@MaxMatrixCols=\count106
+\dotsspace@=\muskip11
+\c@parentequation=\count107
+\dspbrk@lvl=\count108
+\tag@help=\toks19
+\row@=\count109
+\column@=\count110
+\maxfields@=\count111
+\andhelp@=\toks20
+\eqnshift@=\dimen127
+\alignsep@=\dimen128
+\tagshift@=\dimen129
+\tagwidth@=\dimen130
+\totwidth@=\dimen131
+\lineht@=\dimen132
+\@envbody=\toks21
+\multlinegap=\skip50
+\multlinetaggap=\skip51
+\mathdisplay@stack=\toks22
+LaTeX Info: Redefining \[ on input line 2735.
+LaTeX Info: Redefining \] on input line 2736.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+Package: algorithm2e 2013/01/06 v5.00 algorithms environments
+\c@AlgoLine=\count112
+\algocf@hangindent=\skip52
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+)
+********************************************************
+Package `algorithm2e' Release 5.1 -- october 19 2015 --
+- algorithm2e-announce@lirmm.fr mailing list for announcement about releases
+- algorithm2e-discussion@lirmm.fr mailing list for discussion about package
+subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
+- Author: Christophe Fiorio (christophe.fiorio@umontpellier.fr)
+********************************************************
+\skiptotal=\skip53
+\skiplinenumber=\skip54
+\skiprule=\skip55
+\skiphlne=\skip56
+\skiptext=\skip57
+\skiplength=\skip58
+\algomargin=\skip59
+\skipalgocfslide=\skip60
+\algowidth=\dimen133
+\inoutsize=\dimen134
+\inoutindent=\dimen135
+\interspacetitleruled=\dimen136
+\interspacealgoruled=\dimen137
+\interspacetitleboxruled=\dimen138
+\algocf@ruledwidth=\skip61
+\algocf@inoutbox=\box31
+\algocf@inputbox=\box32
+\AlCapSkip=\skip62
+\AlCapHSkip=\skip63
+\algoskipindent=\skip64
+\algocf@nlbox=\box33
+\algocf@hangingbox=\box34
+\algocf@untilbox=\box35
+\algocf@skipuntil=\skip65
+\algocf@capbox=\box36
+\algoheightruledefault=\skip66
+\algoheightrule=\skip67
+\algotitleheightruledefault=\skip68
+\algotitleheightrule=\skip69
+\c@algocfline=\count113
+\c@algocfproc=\count114
+\c@algocf=\count115
+\algocf@algoframe=\box37
+\algocf@algobox=\box38
 ) (./real.aux)
 \openout1 = `real.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 20.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 24.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count96
-\scratchdimen=\dimen109
-\scratchbox=\box29
-\nofMPsegments=\count97
-\nofMParguments=\count98
-\everyMPshowfont=\toks16
-\MPscratchCnt=\count99
-\MPscratchDim=\dimen110
-\MPnumerator=\count100
-\makeMPintoPDFobject=\count101
-\everyMPtoPDFconversion=\toks17
+\scratchcounter=\count116
+\scratchdimen=\dimen139
+\scratchbox=\box39
+\nofMPsegments=\count117
+\nofMParguments=\count118
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count119
+\MPscratchDim=\dimen140
+\MPnumerator=\count120
+\makeMPintoPDFobject=\count121
+\everyMPtoPDFconversion=\toks24
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -217,7 +361,7 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box30
+\AtBeginShipoutBox=\box40
 
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/pdflscape.sty
 Package: pdflscape 2008/08/11 v0.10 Display of landscape pages in PDF (HO)
@@ -230,15 +374,15 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 80.
 (/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 ))
-LaTeX Info: Redefining \celsius on input line 20.
-Package gensymb Info: Faking symbols for \degree and \celsius on input line 20.
+LaTeX Info: Redefining \celsius on input line 24.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 24.
 
 
 
 Package gensymb Warning: Not defining \perthousand.
 
-LaTeX Info: Redefining \ohm on input line 20.
-Package gensymb Info: Using \Omega for \ohm on input line 20.
+LaTeX Info: Redefining \ohm on input line 24.
+Package gensymb Info: Using \Omega for \ohm on input line 24.
 
 Package gensymb Warning: Not defining \micro.
 
@@ -246,32 +390,19 @@ Package gensymb Warning: Not defining \micro.
 File: images/CompSci_colour.pdf Graphic file (type pdf)
 
 <use images/CompSci_colour.pdf>
-Package pdftex.def Info: images/CompSci_colour.pdf used on input line 25.
+Package pdftex.def Info: images/CompSci_colour.pdf used on input line 29.
 (pdftex.def)             Requested size: 300.43684pt x 9.35004pt.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 25.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 29.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24.88> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 25.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <20.74> on input line 25.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 25.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 25.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 29.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./images/CompSci_colour.pd
 f>]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 29.
- [1]
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 35.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 35.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 35.
- [1] [2] (./real.toc [3
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 33.
+ [1] [1] [2] (./real.toc [3
 
 ] [4])
 \tf@toc=\write4
@@ -280,19 +411,19 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  [5]
 Chapter 1.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <20.74> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 50.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 54.
 [6
 
 ]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 82.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 86.
  [7]
 Chapter 2.
-<images/turtlebot.JPG, id=37, 773.89125pt x 1114.1625pt>
+<images/turtlebot.JPG, id=39, 773.89125pt x 1114.1625pt>
 File: images/turtlebot.JPG Graphic file (type jpg)
 
 <use images/turtlebot.JPG>
-Package pdftex.def Info: images/turtlebot.JPG used on input line 108.
+Package pdftex.def Info: images/turtlebot.JPG used on input line 112.
 (pdftex.def)             Requested size: 216.135pt x 311.16434pt.
 
 
@@ -301,44 +432,44 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [8
 
 ] [9 <./images/turtlebot.JPG>]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 145.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 150.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 145.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 150.
 
-Overfull \hbox (0.78745pt too wide) in paragraph at lines 160--161
+Overfull \hbox (0.78745pt too wide) in paragraph at lines 165--166
 []\OT1/ptm/b/n/10.95 Services \OT1/ptm/m/n/10.95 forgo the many-to-many paradig
 m and pro-vide a re-quest/reply in-ter-ac-tion via servers
  []
 
-[10] <images/ROS_basic_concepts.png, id=49, 229.85875pt x 116.435pt>
+[10] <images/ROS_basic_concepts.png, id=51, 229.85875pt x 116.435pt>
 File: images/ROS_basic_concepts.png Graphic file (type png)
 
 <use images/ROS_basic_concepts.png>
-Package pdftex.def Info: images/ROS_basic_concepts.png used on input line 166.
+Package pdftex.def Info: images/ROS_basic_concepts.png used on input line 171.
 (pdftex.def)             Requested size: 216.135pt x 109.48976pt.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 172.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 177.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-<images/slam_problem.png, id=50, 657.45625pt x 555.07375pt>
+<images/slam_problem.png, id=52, 657.45625pt x 555.07375pt>
 File: images/slam_problem.png Graphic file (type png)
 
 <use images/slam_problem.png>
-Package pdftex.def Info: images/slam_problem.png used on input line 190.
+Package pdftex.def Info: images/slam_problem.png used on input line 195.
 (pdftex.def)             Requested size: 216.135pt x 182.47191pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Overfull \hbox (18.26198pt too wide) in paragraph at lines 193--194
+Overfull \hbox (18.26198pt too wide) in paragraph at lines 198--199
 []\OT1/ptm/m/n/10.95 https://blog.acolyer.org/2015/11/05/simultaneous-localizat
 ion-and-mapping-part-i-history-of-the-slam-
  []
@@ -352,19 +483,19 @@ Missing character: There is no ™ in font ptmr7t!
 File: images/slam_graph.png Graphic file (type png)
 
 <use images/slam_graph.png>
-Package pdftex.def Info: images/slam_graph.png used on input line 225.
+Package pdftex.def Info: images/slam_graph.png used on input line 230.
 (pdftex.def)             Requested size: 216.135pt x 132.602pt.
 
 <images/graph.png, id=65, 400.49625pt x 175.65625pt>
 File: images/graph.png Graphic file (type png)
  <use images/graph.png>
-Package pdftex.def Info: images/graph.png used on input line 240.
+Package pdftex.def Info: images/graph.png used on input line 245.
 (pdftex.def)             Requested size: 216.135pt x 94.79666pt.
 
 <images/memory.png, id=66, 639.38875pt x 401.5pt>
 File: images/memory.png Graphic file (type png)
  <use images/memory.png>
-Package pdftex.def Info: images/memory.png used on input line 249.
+Package pdftex.def Info: images/memory.png used on input line 254.
 (pdftex.def)             Requested size: 216.135pt x 135.71788pt.
 
 
@@ -375,7 +506,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 File: images/fast_speedtest.jpg Graphic file (type jpg)
 
 <use images/fast_speedtest.jpg>
-Package pdftex.def Info: images/fast_speedtest.jpg used on input line 311.
+Package pdftex.def Info: images/fast_speedtest.jpg used on input line 316.
 (pdftex.def)             Requested size: 216.135pt x 105.3843pt.
 
 
@@ -385,23 +516,23 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 File: images/layers.png Graphic file (type png)
 
 <use images/layers.png>
-Package pdftex.def Info: images/layers.png used on input line 324.
+Package pdftex.def Info: images/layers.png used on input line 329.
 (pdftex.def)             Requested size: 216.135pt x 227.74564pt.
  [16 <./images/fast_speedtest.jpg> <./images/layers.png>] <images/conv.png, id=
 81, 928.46875pt x 605.26125pt>
 File: images/conv.png Graphic file (type png)
  <use images/conv.png>
-Package pdftex.def Info: images/conv.png used on input line 346.
+Package pdftex.def Info: images/conv.png used on input line 351.
 (pdftex.def)             Requested size: 216.135pt x 140.89725pt.
 
 <images/conv_max.png, id=82, 952.55875pt x 722.7pt>
 File: images/conv_max.png Graphic file (type png)
  <use images/conv_max.png>
-Package pdftex.def Info: images/conv_max.png used on input line 355.
+Package pdftex.def Info: images/conv_max.png used on input line 360.
 (pdftex.def)             Requested size: 216.135pt x 163.97891pt.
 
 [17 <./images/conv.png> <./images/conv_max.png>]
-Overfull \hbox (2.86772pt too wide) in paragraph at lines 366--367
+Overfull \hbox (2.86772pt too wide) in paragraph at lines 371--372
 []\OT1/ptm/m/n/10.95 MobileNet is a is a deep con-vo-lu-tional neu-ral net-work
  for im-age recog-ni-tion found in TensorFlow[[]].
  []
@@ -409,7 +540,7 @@ Overfull \hbox (2.86772pt too wide) in paragraph at lines 366--367
 <images/RCNN.png, id=87, 1190.4475pt x 409.53pt>
 File: images/RCNN.png Graphic file (type png)
  <use images/RCNN.png>
-Package pdftex.def Info: images/RCNN.png used on input line 379.
+Package pdftex.def Info: images/RCNN.png used on input line 384.
 (pdftex.def)             Requested size: 432.26999pt x 148.70546pt.
 
 
@@ -422,51 +553,109 @@ Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
 [20
 
-] [21]
+] [21] [22] <images/system-diagram.png, id=103, 382.42876pt x 452.69125pt>
+File: images/system-diagram.png Graphic file (type png)
+
+<use images/system-diagram.png>
+Package pdftex.def Info: images/system-diagram.png used on input line 490.
+(pdftex.def)             Requested size: 216.135pt x 255.84702pt.
+ [23 <./images/system-diagram.png>] [24]
 Chapter 4.
-[22
 
-] [23]
-Chapter 5.
-[24
+LaTeX Warning: Citation `HosangBS14' on page 25 undefined on input line 518.
 
-]
-Chapter 6.
 [25
 
 ]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 528.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 541.
+ [26] <images/basic.png, id=120, 963.6pt x 545.03625pt>
+File: images/basic.png Graphic file (type png)
+
+<use images/basic.png>
+Package pdftex.def Info: images/basic.png used on input line 563.
+(pdftex.def)             Requested size: 205.33087pt x 116.13261pt.
+ <images/otsu.png, id=121, 962.59625pt x 542.025pt>
+File: images/otsu.png Graphic file (type png)
+
+<use images/otsu.png>
+Package pdftex.def Info: images/otsu.png used on input line 565.
+(pdftex.def)             Requested size: 205.33087pt x 115.61505pt.
+ <images/depth.png, id=122, 960.58875pt x 541.02126pt>
+File: images/depth.png Graphic file (type png)
+
+<use images/depth.png>
+Package pdftex.def Info: images/depth.png used on input line 579.
+(pdftex.def)             Requested size: 205.33087pt x 115.64037pt.
+
+<images/combined.png, id=123, 962.59625pt x 545.03625pt>
+File: images/combined.png Graphic file (type png)
+
+<use images/combined.png>
+Package pdftex.def Info: images/combined.png used on input line 581.
+(pdftex.def)             Requested size: 205.33087pt x 116.25737pt.
+ [27 <./images/basic.png (PNG copy)> <./images/otsu.png (PNG copy)> <./images/d
+epth.png (PNG copy)> <./images/combined.png (PNG copy)>] <images/many.png, id=1
+27, 963.6pt x 545.03625pt>
+File: images/many.png Graphic file (type png)
+ <use images/many.png>
+Package pdftex.def Info: images/many.png used on input line 622.
+(pdftex.def)             Requested size: 205.33087pt x 116.13261pt.
+
+<images/clusters.png, id=128, 963.6pt x 545.03625pt>
+File: images/clusters.png Graphic file (type png)
+ <use images/clusters.png>
+Package pdftex.def Info: images/clusters.png used on input line 624.
+(pdftex.def)             Requested size: 205.33087pt x 116.13261pt.
+
+[28] [29 <./images/many.png (PNG copy)> <./images/clusters.png (PNG copy)>]
+Chapter 5.
+[30
+
+]
+Chapter 6.
+[31
+
+]
 Appendix A.
-[26
+[32
 
 ]
 Appendix B.
-(./real.bbl [27
+(./real.bbl [33
 
-] [28
+] [34
 
-]) [29] (./real.aux) ) 
+]) [35] (./real.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 3516 strings out of 493029
- 51176 string characters out of 6136234
- 120510 words of memory out of 5000000
- 6964 multiletter control sequences out of 15000+600000
- 25217 words of font info for 54 fonts, out of 8000000 for 9000
+ 5240 strings out of 493029
+ 75656 string characters out of 6136234
+ 161925 words of memory out of 5000000
+ 8641 multiletter control sequences out of 15000+600000
+ 31928 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,9n,39p,799b,239s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.en
-c}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times
-/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on real.pdf (31 pages, 989361 bytes).
+ 38i,15n,39p,824b,458s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr
+8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/urw/times/utmri8a.pfb>
+Output written on real.pdf (37 pages, 2967500 bytes).
 PDF statistics:
- 161 PDF objects out of 1000 (max. 8388607)
- 104 compressed objects within 2 object streams
+ 195 PDF objects out of 1000 (max. 8388607)
+ 123 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 61 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 96 words of extra memory for PDF output out of 10000 (max. 10000000)
 

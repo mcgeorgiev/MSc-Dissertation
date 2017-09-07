@@ -10,45 +10,46 @@ Warning--entry type for "Girshick2014" isn't style-file defined
 Warning--to sort, need author or key in turtlebot
 Warning--to sort, need author or key in gmapping
 Warning--to sort, need author or key in googlevision
-You've used 16 entries,
+Warning--to sort, need author or key in otsu
+You've used 17 entries,
             2118 wiz_defined-function locations,
-            586 strings with 6457 characters,
-and the built_in function-call counts, 5008 in all, are:
-= -- 471
-> -- 254
+            589 strings with 6519 characters,
+and the built_in function-call counts, 5167 in all, are:
+= -- 486
+> -- 255
 < -- 4
-+ -- 101
++ -- 102
 - -- 84
-* -- 312
-:= -- 808
-add.period$ -- 47
-call.type$ -- 16
-change.case$ -- 87
+* -- 317
+:= -- 825
+add.period$ -- 49
+call.type$ -- 17
+change.case$ -- 90
 chr.to.int$ -- 0
-cite$ -- 19
-duplicate$ -- 188
-empty$ -- 407
+cite$ -- 21
+duplicate$ -- 195
+empty$ -- 430
 format.name$ -- 84
-if$ -- 1073
+if$ -- 1113
 int.to.chr$ -- 0
-int.to.str$ -- 16
+int.to.str$ -- 17
 missing$ -- 11
-newline$ -- 81
+newline$ -- 85
 num.names$ -- 28
-pop$ -- 129
+pop$ -- 137
 preamble$ -- 1
-purify$ -- 72
+purify$ -- 74
 quote$ -- 0
-skip$ -- 153
+skip$ -- 161
 stack$ -- 0
-substring$ -- 227
-swap$ -- 48
+substring$ -- 232
+swap$ -- 49
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 62
-warning$ -- 3
+type$ -- 66
+warning$ -- 4
 while$ -- 38
-width$ -- 18
-write$ -- 162
-(There were 5 warnings)
+width$ -- 19
+write$ -- 169
+(There were 6 warnings)
