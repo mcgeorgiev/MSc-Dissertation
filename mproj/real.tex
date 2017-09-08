@@ -10,6 +10,9 @@
 \usepackage{booktabs}
 \usepackage{amsmath}
 \usepackage[linesnumbered,ruled]{algorithm2e}
+\usepackage{tikz}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+
 % for alternative page numbering use the following package
 % and see documentation for commands
 %\usepackage{fancyheadings}
@@ -277,29 +280,6 @@ Many species exhibit a form of pattern or feature detection to trigger neural re
 
 For example arthopods such as honey bees readily distinguish features such as flowers in the environment that pertain to the goal of gathering food. Similarly a frog's eye is stimulated when a black disc moves in an arc rapidly within the receptor field indicating that a flying insect is near and triggers the frogs feeding response \cite{} thus satisfying the goal of feeding.
 
-Once objects have been detected and classified by a creature are they retained in memory...
- 
-\subsection{Attention Systems - Memory Hierachy}
-\subsubsection{Spatial temporal Attention Models}
-
-How long do organism retain visual information.
-
-How spatial temporal reasoning
-- don't overload memory
-- Have a Buffer
-- reaffirm spatial temporal Attention
-Memory Hierarchy
-- 9 seconds, How long?
-- What is long term?
-- What is short term? 
-- What is important
-- How to decide
-- Intelligence agents
-
-Humans forget things when they leave a room.
-
-Pre attentive queue
- 
 \subsection{Extracting Features}
 
 What determines if an area of a scene is worth triggering neural activity is different for different species. In image processing software attempts are made to find features which are unique, that can be easily tracked and can be easily compared. These features can be used for many different types of processing such as calculating a histogram of oriented gradients (HOG) which can then used for object classifiers.
@@ -443,8 +423,8 @@ The problem statement/objective of this project is broad enough that it can be i
  \subsection{MOSCOW TABLE}
 
 \begin{tabular}{*5l}    \toprule
-\emph{Prority} & \emph{Requirement} & \emph{Type} \\\midrule
-\rowcolor{green!50} Must have & Perform SLAM mapping & Functional\\
+\emph{Prority} & \emph{Requirement} & \emph{Version} \\\midrule
+\rowcolor{green!50} Must have & Perform SLAM mapping & 1\\
 \rowcolor{green!50} & Autonomously explore an unknown environment & Functional\\
 \rowcolor{green!50} & Perform autonomous SLAM mapping of an unknown environment & Functional\\
 \rowcolor{green!50} & Locate areas of a map which may contain potential objects & Functional\\
@@ -502,9 +482,28 @@ Formulating requirements provides a clear understanding of the scope of the proj
 \chapter{Implementation}
 \section{Introduction}
 
+Emphasis the connection between nodes. Tested throughout
+
+\subsection{System Diagram}
+
 \section{Mapping}
+
+I did this because of this which allows this
+
+Integrating with the cameras tricky.
+
+RTABMap has software
+
+More about RVIZ
+
 \section{Frontier Exploration}
 
+why I choose it justify.
+
+How it works brieflfly.
+
+Slowed down
+Too fast camera motion for the framerate: If the camera is moved too fast, there will be less features to match between successive frames. RGB images can be also blurry depending of the camera, which decreases the number of good visual matches between frames.
 \section{Object Detection and Recognition}
 The purpose of the object detection and recognition package is to be able to locate potential objects within a scene, classify them and note their location within the map being built using SLAM.
 
@@ -567,7 +566,8 @@ To achieve this the grey-scale of the image was thresholded using Otsu's method 
 
 \subsubsection{1.5. Calibration Tool}
 
-No picture, but illustrate it with getting rid of white areas.
+In some cases large expanses of the same material with the same colour such as carpet or walls can be overrepresented in the mask thus inversing the foreground and the background incorrectly. To mitigate the chance of this happening a calibration tools was written. While running this program the camera can be pointed at a region of the environment that will be subtracted from subsequent image processing. This tool extracts the mean hue, saturation and luminance (HSV) values of the region which is used to subtract other areas which feature a HSV within a certain range of the mean. HSV is used as opposed to RGB or BGR image spaces because it seperates colour from luminance (intesity), this means that changes in lighting such as shadows or sunlight do not affect the detection of similar regions thus produces more accurate masks. SEE APPENDIX
+
 
 \subsubsection{2. Combining with a Depth Mask}
 
@@ -628,51 +628,252 @@ Using a low $\varepsilon$  value results in many clusters similar to the results
 
 \subsubsection{4. Creating Bounding Boxes}
 
+Given the (x, y) points of each cluster a bounding box determined giving a region of interest. This area can then be classified with the assumption that at least part of an object is within the area. Unfortunately, as can be seen in Figure ... some blobs detected are not that interesting notably the area of the door in the right side of the image. This area has very few edges or corners meaning very few noteworthy features. Therefore a minimum threshold of features can be used to determine whether a region of interest is actually interesting thus removing the part of the door. Features will have to be extracted every frame and thus FAST feature detection is used primarily because it is more speed efficient than SIFT.
 
+These objects contained in the bounding boxes exist in a 3D plane meaning that the width and height of each box is arbitary and variable according to the scale and angle of which the object is represented as in 2D. Instead a simplistic of method surrounding the object in a circle is used. The center point of this circle is calculated as the mean point of the previously extracted features for the bounding box, this ensures that the central pixel (u,v) is very likely to be part of the object and not located in the background. The radius of the circle is calculated from the width and height of the bounding box providing a wide location in which the object can be contained.
 
- and filter by number of features, get rid of part of the door
- 
- Image FAST Features
- 
- Explain the bounding mechanism
- 
- Do not use bounding boxes, as not entirely useful in mapping as this requires new detections and classifiations when changing the object pose. A simple spherical location detector is used to show the object is located within the this region of alpha
+\begin{figure}
+   \caption{FAST features for the stack of books. Note the features are extracted from a RGB image combined with the detected object mask.}
+   \centering
+   \includegraphics[width=0.5\textwidth]{images/fast.png}
+   
+\end{figure}
+
+In future iterations of the project the features (possibly using highly discriminate descriptors such as SIFT) of each salient region can be used to create a bag of visual words and be recorded with the label given by the classification process. Over time the histogram of words for each label would increase and become more developed meaning that eventually the system can learn to recognise objects using feature matching. 
+
 
 \subsection{Classification}
 
-Haar Cascade
+The next step after having detected salient regions within an image is to classify them. Image classification is typically achieved using a CNN which is available in cloud based APIs such as Google Vision, IBM... and also in able to be trained and used locally using Tensorflow. However initially an alternative Haar Feature-based Cascade Classifier was considered before examining a robotic visual memory model was and more successful CNN based classifiers used.
 
-Using google vision means that speed does not decreae with more objects detected, statys constant
+\subsubsection{Haar Cascade}
 
-Transfer learning whereby a pre trained model is retrained for a similar problem.
+A Haar Cascade is based on Viola-Jones face detection and has the advantages of being very fast and suitable for real-time applications\cite{viola} as well as having a framework built into OpenCV. The model is trained with positive images of the desired object in different environments at different scales and sizes and with negative images of anything other than the positive image. Creating the positives first required extracting the object so that the background is transparent. This process required different methods for different objects but was tested with a Coca-Cola can. APPENDIX. OpenCV contains a script to take these transparencies and impose them at different perspectives and scales within negative background images which were taken from ImageNet\cite{}. The training stage was also handled by OpenCV and was trained to 10 Adaboost stages. This process took an unbelievably long time and had to be aborted after 9 stages having taken more than 16 hours despite using the maximum amount of memory. The classifier could still be tested after the completed stages and while it did detect the Coca-Cola Can with no occurence of false positives, the training process is too long particularly if a selection of objects need to be detected.    
 
-I did this because of that which allows me to do this
+\subsubsection{Robot Visual Memory Model}
 
-Uses a buffer so that the robot can operate in real time asynchronous
+Instead a model was developed inspired by natural visual memory systems, that which allowed a simple hierarchy of objects to be built from exploring an environment. This limited the need to recognise a large amount of objects while also recognising that not all regions of interest are actually important objects within the room. Frogs neural responses are triggered by goal based features where features are remembered more readily if they constitute part of or all of a goal. For example the goal of feeding is associated with black ellipsical objects indicating flies, while being carnivorous a seed pod shaped object would less likely be remembered.
+
+This model is invoked after a salient object has been detected. Once an object is classified it is determined to either exist in the robot's long term or short term memory. The long term memory constitute of objects which have been defined. These are objects which are necessary for a goal, where the first step of achieving this goal is correctly identifing these objects. This means the objects are distinct and important such as a computer, coffee maker or in the case of Figure, a guitar. When the Turtlebot explores a room the first question asked when a region of interest has been detected is "Is this one of the goal-based objects?" If the result is affirmative then the object is remembered within it's environment perpetually in long term memory. 
+
+On the otherhand if the object is not pre-defined it is stored in short term memory where it will be forgotten after time. When a mapping and exploration session is finished and all objects have been classified, objects which currently exist in STM are forgotton while objects in LTM are associated and assumed to exist with the completed map.
+
+Because the project intends to map whole rooms, the manner in which STM is dumped after completion is comparable to the concept of event boundaries or the "Doorway effect". \cite{} This phenomena occurs when human's leave rooms they have a tendancy to forget what they were previously doing. This exists because spatial changes such as entering a bathroom often correspond with physical and mental changes such as needing to use the bathroom and thus can readjusting our hierarchy of memories.
+
+\subsubsection{Implementing the Memory Model}
+
+Two different kinds of CNN classifiers are used to determine if an object will be stored in LTM or STM. 
+
+The first is the TensorFlow MobileNet CNN which is trained with a selection of objects that if found will be stored in LTM. MobileNet was chosen over other types of image classifiers because it can operate in real-time with performance testing indicating that it takes between 0.1 and 0.3 seconds to classify from six potential objects. Using it through TensorFlow simplified the training process which only took roughly 30 minutes. The training sets were chosen by bulk from Google Images. This allowed regions of interest to be scored from the defined objects, if the score was less than a confidence level (such as 0.9) then the object is considered to be important and is not stored in LTM.
+
+The second classifier is the Google Vision API. A cloud based classifier was chosen over training one from scratch as training one to contain all the types of objects in office based environments would take too long. Similarly using a pre-trained classifier locally such as Inception \cite{} would potentially schew the classifications with irrelevant labels such as animals or landscapes. An image is send to the API and the response contains the most confident single label and score of the object. This compares to the IBM classifier which returns all labels with all the scores resulting in situations where an object can be labeled a car and a tomato and both have a score of 0.9 which is not as useful for the purposes of this project. 
+
+Illustration of the scoring
+
+Another advantage of the Google Vision API was discovered through sustained use in that the labels it provides are very vague. For example a chair is labeled as furniture and bottles are labelled as products. As this classifier is determining short term memories it is enough for the robot to know what an area of an environment vaguely is as it is not concerned with the goal of finding important objects. Unfortunately the Google Vision API is slow, with classifications taking from 0.3 to 1 second depending on internet connectivity and speed. However, a buffer of request is formed while also noting the location where the object is found meaning the robot can operate in real-time and correctly classify objects at locations in the map being built.
+
+
 
 \subsubsection{Adding markers}
 
 
 
+These two classifiers are combined in a process where on discovering a new region of interest...
+
+Objects need to be detected in 3D and previously classified objects need to persist meaning that the same object is identified between frames.
 
 
+This is achieved through the use of ROS markerArray. A marker is an (x, y, z) point which exists in a coordinate frame in this case the map frame. There are too cases that need to be accounted for: 1) A new object is detected and 2) An existing object is detected.
 
 
+If a new object is detected and classified an approximate location of this object is calculated by finding the mean feature point of the object and finding the corresponding value from the point cloud image. This is transformed into an (x, y, z) point in the map coordinate frame and is published as a marker with an associated label in ROS. 
+
+For every 2D region of interest found a test is made to see if a real-world marker exists within it's vincinity. This is calculated by assuming an object has a sector where it is highly likely this object is the sole occupant. This avoids seperate markers from being created for what is the same object. Considering a point $P (x, y, z)$  and a sphere with a centre $ C (x_{0}, y_{0}, z_{0}) $ and radius $r$ . $P$ exists within $C$ if $(x-x_{0})^{2} +  (z-z_{0})^{2} + (z-z_{0})^{2} <r^2$
+
+The complete algorithm for the process of classification can be can be seen in Figure... This process provides a way remember locations of discovered objects in a map and to minimize costly classifications to only when new objects are discovered. 
+
+ALGORITHM
+
+These markers are displayed in RVIZ as text at the relevant point in the map. A simple GUI in OpenCV was created which also displayed the detected objects.
+Red = long term, Yellow = STM
+
+\subsection{Conclusion}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Evaluation}
+
+A testing stategy was developed which would allow the project to be tested in its entirity this involved a set of three expriments to ensure the project was successful or highlight areas for improvement.
+
 \section{Testing}
-https://www.koen.me/research/pub/vandesande-iccv2011.pdf
+\subsection{Experiments}
 
-Experiment 1
-Question
-Experiment 2
-Experiment 3
+Three experiments were developed to determine whether the project objective has been achieved and to what extend, due to the fact that specific hardware was required and ongoing issues with the Turtlebot the experiments were completed in one sitting at the end of the project development period. 
+
+The project objective: 
+
+The Turtlebot will autonomously create a 3D map of an unknown room while creating an inventory of classified and localised objects in the map.
+
+Five qualitive measures are used determine if parts of an experiment were successful, a more quantitive assessment would require more advanced software to compare completed maps and pointclouds with precise ones and is out of the scope of the project. 
+
+- Adequate Performance - The map is produced with no noticable delay in the robot's movements 
+
+- Accuracy of a map - The map produced is complete and the shape of the room is easily distinguishable
+
+- Accuracy of point cloud - The point cloud does not feature any repition or gaps and objects are distinguishable.
+
+- Successfulness of classification - The guitar is identified once.
+
+- Successfulness of object detection - Some objects are detected and classified with vaguely relavent labels.
+
+\subsubsection{Experiment Setup}
+
+A small-medium enclosed room was chosen to perform testing. This allows the room to be mapped in a reasonable time due to issues pertaining to the Turtlebot battery life and temperamental connectivity between the laptop and the Kobuki and is free from human disturbances. The room was adequately lit with no natural light. 
+
+A guitar is placed in the room, this has been chosen as the goal of the robot with the MobileNet having been trained to detect guitars. It is the only significant object in the room with the rest consisting of a chair, bag, bin, wardrobe, bed and desk.
+
+An Xbox Kinect v2 was used as the Turtlebot camera sensor and was connected the Lenovo Ideapad Y700 which had the RTABMap Visualisation tool and RViz open.
 
 
-I think by doing this I will achieve...
-Experiments to answer questions
+DIAGRAM
+Map of the room accurate
+
+FIGURE words
+A map features light gray for discovered with no barriers, black barriers, medium grey for undiscovered.
+
+Yellow = STM
+RED = LTM
+
+
+\subsubsection{Experiment 1}
+
+Does the system autonomous map the environment?
+
+Hypothesis: The Turtlebot will successfully explore the two sections of the room, the map produced will be relatively accurate but may miss areas out in the narrower part of the room.
+
+Result A: 
+
+- Adequate Performance - n/a
+
+- Accuracy of a map - Poor
+
+- Accuracy of point cloud - Poor
+
+- Successfulness of classification - n/a
+
+- Successfulness of object detection - n/a
+
+Process: 
+The Turtlebot was placed 60-70 cm from the wall Figure A. The Turtlebot span less than 90 degrees and RTABMap indicated that odometry had been lost and mapping would not continue. The process was terminated.
+
+Remarks: The Turtlebot was so close to the wall that the field of vision for the Kinect was entirely consumed by a white wall and no features and thus no landmarks could be extracted for SLAM to work. This indicates that the start position of the robot is very important.Unfortunately, nothing can be done to mitigate the program and thus the user must decide the start position.
+
+
+ \begin{figure}
+   \caption{RTABMap visualisation indicating that no landmarks can be found and odometry has been lost.}
+   \centering
+   \includegraphics[width=0.475\textwidth]{images/resulta.png}
+   \hfill
+   \includegraphics[width=0.475\textwidth]{images/otsu.png}
+\end{figure}
+
+Result B: 
+
+- Adequate Performance - \checkmark
+
+- Accuracy of a map - Acceptable
+
+- Accuracy of point cloud - Good
+
+- Successfulness of classification - n/a
+
+- Successfulness of object detection - n/a
+
+
+Process: The Turtlebot was placed in the center of the room equidistant from walls. The Turtlebot proceeded to begin explore and map the large section of the room. The narrow part of the room was visited but was not traversed the whole length. The process terminated naturally.
+
+Comments: The Turtlebot produced an accurate point cloud of the image. The  map is generally accurate but with some walls slightly distorted and a shadowy region underneath a desk producing a cluster of thick barriers in this area (Black region at bottom of map).The map is missing the circumference where the Turtlebot began as the Kinect range scanner has a minimum threshold. The frontier exploration algorithm relized leased this area was still enclosed so did not explore it. However, this could be completely solved by editing the frontier exploration source code to account for non-discovered regions within an enclosed area. 
+\begin{figure}
+   \caption{Red arrow indicating the start pose}
+   \centering
+   \includegraphics[width=0.475\textwidth]{images/exp1map.png}
+   \hfill
+   \includegraphics[width=0.475\textwidth]{images/ex1pc.png}
+\end{figure}
+
+
+\subsubsection{Experiment 2}
+
+Can objects be detected while mapping with manual teleoperation?
+
+Hypothesis: The Turtlebot will successfully map the room including the start position. The guitar will successfully be detected and classified. Other objects will be detected in the room and classification should be somewhat accurate.
+
+
+
+Results: 
+
+- Adequate Performance - \checkmark
+
+- Accuracy of a map - Good
+
+- Accuracy of point cloud - Good
+
+- Successfulness of classification - Good
+
+- Successfulness of object detection - Acceptable
+
+Process: The Turtlebot was controlled using teleoperation to all areas of the room. The guitar was approached intially head on and then from the sides and was classified successfully and only once. Other regions of the room were classified.
+
+Comments: Using teleoperation resulted in a map with more coverage than Experiment 1. However, due to non fluid angles that the Turtlebot was moving in there are some incorrect doubled barriers. The guitar is successfully located and classified. Other objects are detected but while most of these are correctly identified such as wall, others are given very vague descriptors such as blue. (Presumeably because the furniture is a blue colour). This may be because the bounding box used to enclose the object was too restrictive  thus and it can only be identified as a whole
+
+
+ \begin{figure}
+   \caption{Red arrow indicating the start pose}
+   \centering
+   \includegraphics[width=0.5\textwidth]{images/ex2.png}
+\end{figure}
+
+\subsubsection{Experiment 3}
+
+Can objects be detected while autonomously mapping in real-time?
+
+Hypothesis: The Turtlebot will successfully map the room but not the starting location. The guitar will successfully be detected and classified. Other objects will be detected in the room and classification should be somewhat accurate.
+
+Results: 
+
+- Adequate Performance - \checkmark
+
+- Accuracy of a map - Good
+
+- Accuracy of point cloud - Good
+
+- Successfulness of classification - Good
+
+- Successfulness of object detection - Good 
+
+Process: The Turtlebot was placed in the center of the room equidistant from walls. The Turtlebot proceeded to begin explore and map the large section of the room. The guitar was classified successfully and only once. Other regions of the room were classified. 
+
+Comments: The map suffers the same missing regions as in Experiment 1. However the point cloud is complete. The guitar is successfully located and classified. Interestingly the STM classifications are better than in Experiment 2, giving the furniture descriptor for the wardrobe and the chair. A floor was detected outside of the map.
+
+Experiment 3 was successful it produced the most accurate map and point cloud despite missing the starting location. The guitar was located and classified correctly as well many other objects in the room such as the wardrobe and chair being given a furniture descriptor. This may be because the frontier exploration package used is very conservative with movements which means objects can be detected from a distance making them distinguishable from their background. The floor was detected outside of the map which may have been caused by the pointcloud readjusted itself during the mapping process leaving the marker at it's original location.
+
+ \begin{figure}
+   \caption{Red arrow indicating the start pose}
+   \centering
+   \includegraphics[width=0.475\textwidth]{images/ex3.png}
+   \hfill
+\end{figure}
+
+ \begin{figure}
+   \caption{Text partially obscured by point cloud}
+   \centering
+   \includegraphics[width=0.8\textwidth]{images/ex3pc.png}
+   \hfill
+\end{figure}
+
+\section{Conclusion}
+
+The hypothesises stated are all proved correct and thus the project objectives have been achieved, with an environment accurately mapped autonomously and the contents classified successfully. The requirements indicated for completion in the first version were all completed. Results varied across experiments and with even slight changes to the setup giving very different readings. While the individual components were tested iteratively during the implementation stage it was difficult and time consuming to do comprehensive tests of the whole project until all components were completed. The overall project could be improved by implementing solutions to some of the problems found during the testing process. This would essentially constitute a  second version whereby other requirements could be completed also. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Conclusion}\label{conclusion}
@@ -681,6 +882,8 @@ Experiments to answer questions
 incorporate active detection of features next time.
 
 A signature map can be created from the locations of objects in the map. Indicating whether a floor is here. Similar to geological mapping
+
+Create database of objects
 
 
 \appendix % first appendix
