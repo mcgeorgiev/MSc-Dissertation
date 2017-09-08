@@ -12,6 +12,8 @@
 \usepackage[linesnumbered,ruled]{algorithm2e}
 \usepackage{tikz}
 \def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+\usepackage{amsmath}
+\usepackage{tcolorbox}
 
 % for alternative page numbering use the following package
 % and see documentation for commands
@@ -26,15 +28,16 @@
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Title of project placed here}
+\title{Deep Learning Asset Location \& Mapping with the Turtlebot}
 \author{Michael Georgiev}
-\date{Date of submission placed here}
+\date{8th September 2017}
 \maketitle
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-abstract goes here
+
+The objective of this project has been to create a system that uses the Turtlebot to autonomously map an unknown environment. While the map is being made, objects are detected and subsequently classified with their location noted in the map. The system is capable of mapping small to medium rooms with a variety of objects contained inside. It is also able to distinguish objects which are more important than others. Through experiments and evaluation the system is deemed to have successfully fufilled its objective while the modular design allows future projects to be build upon it.
 \end{abstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -47,7 +50,7 @@ abstract goes here
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Acknowledgements}
 
-Yo! If you are reading this... I love you $<3$ You will be my acknowledgement.
+Thanks to Dr. Paul Siebert and Mary Nemeth.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \tableofcontents
@@ -63,11 +66,11 @@ A system was developed to allow a Turtlebot to autonomously map an unknown envir
 
 Mobile robots such as the Turtlebot are becoming increasingly more affordable and in turn accessible. Developers and researchers are now able to create robotic software and easily test it on actual real-world robots instead of in simulation or in restricted labratories. At the same time commercial applications of mobile robots are beginning to become more advanced in scope and application. The self-driving car, for example is being developed by Google, Tesla and others, with the 2015 Tesla Model S featuring a semi-autonomous autopilot system that can be driven on limited access highways in some US states.\cite{tesla}
 
-However, autonomous mobile robots have been performing complex tasks particularly since the 1990s when solutions to the simultaneous localization and mapping (SLAM) problem were developed \cite{}. This allowed robots to create maps of unknown environments while localising themselves within them. This can be seen in the successful use of Unmanned aerial vehicles (UAVs) in combat arenas around the world but also for applications such as mine exploration or bomb disposal where rugged mobile robots create SLAM maps of mine shafts and caves which are too unsafe for humans to access. \cite{mining}
+However, autonomous mobile robots have been performing complex tasks particularly since the 1990s when solutions to the simultaneous localization and mapping (SLAM) problem were developed \cite{Hugh2006}. This allowed robots to create maps of unknown environments while localising themselves within them. This can be seen in the successful use of Unmanned aerial vehicles (UAVs) in combat arenas around the world but also for applications such as mine exploration or bomb disposal where rugged mobile robots create SLAM maps of mine shafts and caves which are too unsafe for humans to access. \cite{mining}
 
 The recent advances made in graphics processing units (GPUs) has increased the speed and complexity of Deep Learning models. This has resulted in increasingly powerful applications from speech recognition to recommender systems become ubiquitous. Robotic systems are now able to utilise highly descriptive image recognition services which are improving their ability to interact with humans and their surroundings.  
 
-Much of the development for the Turtlebot has been on focused and isolated components which have not been combined into useful applications and tested in real-world situation. A Turtlebot that can map environments and recognise objects can used as a basis for more advanced projects such as creating an expanding database of 3D objects and structures in interiors or even be used for navigating hazardous disaster environments to locate survivors.
+Much of the development for the Turtlebot has been on focused and isolated components which have not been combined into useful applications and tested in real-world situations. A Turtlebot that can map environments and recognise objects can be used as a basis for more advanced projects such as creating an expanding database of 3D objects and structures in interiors or even be used for navigating hazardous disaster environments to locate survivors.
 
 \section{Objective}
 
@@ -75,15 +78,19 @@ The objective of this project is to build a prototypical system which combines p
 
 \section{System Overview} 
 
-DIAGRAM 
+\begin{figure}[h]
+  \caption{High-Level System Process Diagram. Describing the Turtlebots actions in an environment.}
+  \centering
+  \includegraphics[width=0.4\textwidth]{images/sys1.png}
+  \label{fig:System Diagram}
+\end{figure} 
 
-A high level overview of the project is given in Figure. 
-The Turtlebot autonomously explores an unknown environment. While this happens  a 2D and 3D map is created and objects detected in the environment are located in the map. These objects are identified using a classifier. 
+The Turtlebot autonomously explores an unknown environment. While this happens  a 2D and 3D map is created and objects detected in the environment are located in this map. These objects are identified using a classifier. 
 The project was implemented successfully.
 
 \section{Outline} 
 
-This dissertation explains the process undertaken to create a system to solve the project objectives. A background survey was undertaked to investigate what is required to develop for robots as well as to gain an understanding of integral areas of the project such as SLAM and object detection. This is followed by an explanation of the system design while considering requirements and different approaches. A detailed report of how the design was implemented follows and evaluation chapter considers whether this implementation was successful by discussing a series of tests taken. Finally, a conclusion examines potential future work for the project and any exisiting limitations.
+This dissertation explains the process undertaken to create a system to solve the project objectives. A background survey was undertaken to investigate what is required to develop for robots as well as to gain an understanding of integral areas of the project such as SLAM and object detection. This is followed by an explanation of the system design while considering requirements and different approaches. A detailed report of how the design was implemented follows and an evaluation chapter considers whether this implementation was successful by discussing a series of tests taken. Finally, a conclusion examines potential future work for the project and any exisiting limitations.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -95,30 +102,30 @@ It will consider the processes of object detection and recognition by first cons
 \section{Mobile Robots}
 
 
-Mobile robots are robots that are not fixed to one location and are capable of moving around their environments. Movement is achieved generally through legs, wheels or tracks but aerial and nautical robots may use propellors. The robot can be controlled through manual-tele operation involving a human driver, line-following which follow visual cues such as painted lines to navigate or autonomously. These robots have many applications in areas such as the military, agriculture, rescue, transport and domestic use and include Unmanned Aerial Vehicles (UAVs or more commonly known as drones)and self-driving cars.
+Mobile robots are robots that are not fixed to one location and are capable of moving around their environments. Movement is achieved generally through legs, wheels or tracks but aerial and nautical robots may use propellors. The robot can be controlled through manual tele-operation involving a human driver, line-following which follow visual cues such as painted lines to navigate or autonomously. These robots have many applications in areas such as the military, agriculture, rescue, transport and domestic use and include Unmanned Aerial Vehicles (UAVs or more commonly known as drones)and self-driving cars.
 
 \subsection{Turtlebot 2}
 
-The Turtlebot 2 is a part of a series of low cost, open-source mobile robots first developed at Willow Garage by Melonee Wise and Tully Foote in 2010. These robots are intended for educational and research purposes and provide an 'low-barrier-of-entry' platform for development while suitable hardware for SLAM and navigation\cite{turtlebot}. The construction of this robot is very flexible featuring a modular support structure that encourages adding additional hardware but the core of the Turtlebot consists of a Kobuki base, a computer running ROS and some form of camera particularly RGB-D or stereo cameras such as the Xbox Kinect or Zed Camera.
+The Turtlebot 2 is a part of a series of low cost, open-source mobile robots first developed at Willow Garage by Melonee Wise and Tully Foote in 2010. These robots are intended for educational and research purposes and provide a 'low-barrier-of-entry' platform for development with suitable hardware for SLAM and navigation\cite{turtlebot}. The construction of this robot is very flexible featuring a modular support structure that encourages adding additional hardware but the core of the Turtlebot consists of a Kobuki base, a computer running ROS and some form of camera particularly RGB-D or stereo cameras such as the Xbox Kinect or Zed Camera.
 
 \begin{figure}[h]
   \caption{The Turtlebot used for the project. Featuring a Zed Camera and Lenovo Ideapad Y700.}
   \centering
-  \includegraphics[width=0.5\textwidth]{images/turtlebot.JPG}
+  \includegraphics[width=0.4\textwidth]{images/turtlebot.JPG}
   \label{fig:Turtlebot}
 \end{figure}
  
 The Kobuki base contains sensors and actuators as well as a power supply and vehicular functions. This provides a centralised unit of hardware that can be accessed via the Robot Operating System (ROS). This means that hardware processes are sufficiently abstracted as to be approachable for software developers and other high-level users without an engineering or robotics background. The base has cliff, wheel drop and bumper sensors as well as a gyroscope and highly accurate odometry. 
 
-As it requires a computer running ROS to communicate with, a laptop can simply be attached to the top of the base connected by a USB cable. However, in some cases it may be more convienent to attach a small netbook or Raspberry Pi to the base and then use a seperate computer to remotely communicate with the host machine. The Turtlebot has many bespoke packages for use within ROS, these include standard applications such as teleoperation or navigation and more specialised packages such as frontier exploration. 
+As it requires a computer running ROS to communicate with, a laptop can simply be attached to the top of the base connected by a USB cable. However, in some cases it may be more convienent to attach a small netbook or Raspberry Pi to the base and then use a separate computer to remotely communicate with the host machine. The Turtlebot has many bespoke packages for use within ROS, these include standard applications such as tele-operation or navigation and more specialised packages such as frontier exploration. 
 
 
 \subsection{Cameras}
 For nearly all use cases, the Turtlebot requires a camera. While this can be something as simple as a webcam a greater number of applications can be created for it with some form of depth or range measurement received from RGB-D and stereo cameras. Both the discussed cameras are commonly used in ROS and for the Turtlebot.
 
-The Kinect is a very affordable RGB-D camera developed for use on machines running Microsoft Windows, though open-source drivers exist for other operating systems. It's affordability has meant that it is frequently used by other developers whose open-source software is readily accessible. As an active camera the Kinect  utilises a time-of-flight sensor to estimate the distance of points its field of view. The Zed Camera is a stereo camera with a very user-friendly SDK and wide driver support. 
+The Kinect is a very affordable RGB-D camera developed for use on machines running Microsoft Windows, though open-source drivers exist for other operating systems. It's affordability has meant that it is frequently used by other developers whose open-source software is readily accessible. As an active camera the Kinect  utilises a time-of-flight sensor to estimate the distance of points in its field of view. The Zed Camera is a stereo camera with a very user-friendly SDK and wide driver support. 
 \begin{table}[ht]
-\caption{Comparison of the Zed Camera and Xbox Kinect v2}
+\caption{Comparison of the Zed Camera and Xbox Kinect v2.}
 \centering 
 \begin{tabular}{c | c | c  }
 \hline
@@ -136,9 +143,9 @@ The Kinect is a very affordable RGB-D camera developed for use on machines runni
 
 \section{Robot Operating System (ROS)}
 
-ROS is a meta-operating system which provides a collection of tools and conventions to aid the writing of robot software. This includes an abstraction of hardware and communications as well as many tools for tasks such as message passing and package management.
+ROS is a meta-operating system which provides a collection of tools and conventions to aid the writing of robot software. This includes an abstraction of hardware and communications as well as many tools for tasks such as message passing and package management\cite{ros}.
 
-ROS features open-source licenses and a large growing collection of packages which contribute to a vibrant ecosystem of developers and researchers working on applications. Some of these packages provide frameworks and algorithms for areas such SLAM and kinematics as well as useful visual and modelling tools. These include:
+ROS features open-source licenses and a large growing collection of packages which contribute to a vibrant ecosystem of developers and researchers working on applications. Some of these packages provide frameworks and algorithms for areas such as SLAM and kinematics as well as useful visual and modelling tools. These include:
 
 \begin{itemize}
   \item \textbf{RViz} - a visualisation tool which provides 3D visualisations of sensor data and robot states, such as cameras, lasers and joint states.
@@ -166,8 +173,6 @@ ROS consists of some key components within the communications infrastructure.
   \label{fig:ROS diagram}
 \end{figure}
 
-* DIAGRAM OF DESCRIBED SYSTEM
-
 For example a simple robot vehicle system can consist of three nodes. The first node controls the robot's ultrasonic range finder and is publishing a stream of range messages taken from the sensor along the \texttt{sensor/sonar} topic.
 
 The second node controls the robot's movement hardware and is publishing the robot's orientation on the \texttt{geometry\char`_msgs/pose} topic. It also contains an actionlib server which responses to requests to change the robot's positioning. 
@@ -180,7 +185,7 @@ The third node controls the robot's movement and is subscribed to the \texttt{se
 
 SLAM is the problem of simultaneously localising (finding the pose and orientation) of a camera within it's surroundings at the same time as mapping the structure of the environment. This requires a robot or camera with the ability to produce odometry readings as well as a camera with a range measurement device.
 
-SLAM forms the basis of navigation in most mobile robots, meaning unknown environments can be explored and mapped without the need for technology such as GPS which can be not precise. It has applications in a range of manned and autonomous robots. This includes UAVs, underwater robots and domestic robots such automatic lawnmowers. 
+SLAM forms the basis of navigation in most mobile robots, meaning unknown environments can be explored and mapped without the need for imprecise technology such as GPS. It has applications in a range of manned and autonomous robots. This includes UAVs, underwater robots and domestic robots such automatic lawnmowers. 
 
 SLAM is also a key component in the development of self-driving cars These cars are driven along routes while performing SLAM capturing location, feature and obstacle data. Once the map is completed it is processed and the cars are driven autonomously along these routes updating the map as necessary \cite{cars}.
 
@@ -195,30 +200,42 @@ SLAM is also a key component in the development of self-driving cars These cars 
 
 This is considered to be a solved problem in Computer Science and their are many different approaches for finding a solution \cite{Hugh2006}. But at a high level SLAM is solved by using the environment to update the pose of the robot. Using odometry as the sole measurement of localisation has an element of uncertainity due to extraneous factors such as wheels slipping on different environments meaning that a stated distance given by an odometry reading may be over or under estimated. 
 
-Therefore laser scans or other forms of depth readings are used to correct the robot's position by extracting features from the surrounding environment. These are called \textit{landmarks} and can be extracted by various methods such as Random Sampling Consensus (RANSAC) and provide a growing map of the enviroment. Recognising previously visited landmarks is process known as loop closure detection where matches are found between new observations  and regions of the map determined by the uncertainty associated  with the robot’s position\cite{labbe13appearance}.
+Therefore laser scans or other forms of depth readings are used to correct the robot's position by extracting features from the surrounding environment. These are called \textit{landmarks} and can be extracted by various methods such as Random Sampling Consensus (RANSAC) and provide a growing map of the environment. Recognising previously visited landmarks is process known as loop closure detection where matches are found between new observations  and regions of the map determined by the uncertainty associated  with the robot’s position\cite{labbe13appearance}.
 
-Most SLAM solutions are probalistic and for example, can use a Kalman to track the uncertanity of the robot within the map using erroneous range observations and robot controls such as odometry over time. Formally:
+Most SLAM solutions are probabilistic and for example, can use a Kalman Filter to track the uncertainity of the robot within the map using erroneous range observations and robot controls such as odometry over time.
 
-\[ \textit{P}\left(x, m | z_{1:t}, u_{1:t}\right) \]
+\begin{tcolorbox}
 
-Where:
-
-Given:
-
-Robot controls $ u_{1:t} = \lbrace u_{1}, u_{2}, u_{3} ... u_{t} \rbrace $
-
-Observations $ z_{1:t} = \lbrace z_{1}, z_{2}, z_{3} ... z_{t} \rbrace $
-
-Wanted:
-
-Map of the Environment $ m $
-
-Path of the robot $ x_{0:t} = \lbrace x_{1}, x_{2}, x_{3} ... x_{t} \rbrace $
-
-(Starts at 0 to fix a coordinate frame)
+Defined formally as:
+\begin{align}
+\textit{P}\left(x, m | z_{1:t}, u_{1:t}\right)
+\end{align}
+Where given variables are:
 
 
-SLAM has been considered a 'chicken and egg' problem \cite{Hugh1988} because these variables cannot be fully decoupled as can be observed in Figure []???. For example a map is required for localising landmarks  which requires pose estimates.
+Robot controls
+\begin{align}
+u_{1:t} = \lbrace u_{1}, u_{2}, u_{3} ... u_{t} \rbrace 
+\end{align}
+Observations
+\begin{align}
+z_{1:t} = \lbrace z_{1}, z_{2}, z_{3} ... z_{t} \rbrace
+\end{align}
+Where unknown variables are:
+
+
+Map of the Environment
+\begin{align}
+m
+\end{align}
+Path of the robot 
+\begin{align}
+x_{0:t} = \lbrace x_{1}, x_{2}, x_{3} ... x_{t} \rbrace
+\end{align}
+
+\end{tcolorbox}
+
+SLAM has been considered a 'chicken and egg' problem \cite{Hugh1988} because these variables cannot be fully decoupled as can be observed in Figure 2.4. For example a map is required for localising landmarks  which requires pose estimates.
 
 \begin{figure}[h]
   \caption{Graph illustrating the dependencies between SLAM variables.}
@@ -230,7 +247,7 @@ SLAM has been considered a 'chicken and egg' problem \cite{Hugh1988} because the
 
 \subsection{RTABMap}
 
-ROS features many different applications of SLAM including a popular wrapper for OpenSlam's Gmapping which produces a 2D occupational grid map.\cite{gmapping} Another approach is RTABmap (Real-Time Appearance-Based Mapping) which produces a 3D point cloud map as well as 2D occupancy grid map. It is a RGB-D Graph-Based approach based on an incremental appearance-based loop closure detector. 
+ROS features many different applications of SLAM including a popular wrapper for OpenSlam's GMapping which produces a 2D occupational grid map.\cite{gmapping} Another approach is RTABMap (Real-Time Appearance-Based Mapping) which produces a 3D point cloud map as well as a 2D occupancy grid map. It is a RGB-D Graph-Based approach based on an incremental appearance-based loop closure detector. 
 
 \begin{figure}[h]
   \caption{Graph  representation  of  locations.  Vertical  arrows  are  loop  closure
@@ -251,25 +268,25 @@ In most probablistic SLAM approaches loop closure detection compares newly found
   \label{fig:RTABMap Memory diagram}
 \end{figure}
 
-RTAB-Map uses an efficient memory management technique to minimise this problem by keeping the most frequent and recently observed landmarks in the robot's Working Memory (WM) and transfers the others into a Long-Term Memory(LTM). \cite{labbe13appearance} Locations in LTM are not used for loop closure detection and thus a weighting system using a graph of landmarks is used. When  landmarks need to be transfered from  WM to LTM the landmark with the lowest weight is selected. 
+RTAB-Map uses an efficient memory management technique to minimise this problem by keeping the most frequent and recently observed landmarks in the robot's Working Memory (WM) and transfers the others into a Long-Term Memory (LTM). \cite{labbe13appearance} Locations in LTM are not used for loop closure detection and thus a weighting system using a graph of landmarks is used. When  landmarks need to be transfered from  WM to LTM the landmark with the lowest weight is selected. 
 
 
 \section{Object Detection and Classification}
 
 \subsection{Introduction}
-Object detection is the task of finding the potential real-world objects within images or videos while classification involves giving these objects the correct label. Alongside robotics, such technology has applications in areas such as surveillance, medical image analysis and human computer interaction. Modelling a intelligent agent that interprets objects in scenes can be modelled on natural visual systems as many organism's vision systems have much less resolution, sensitivity and field of vision than a modern camera yet are able to perform incredibly complex tasks successfully. 
+Object detection is the task of finding the potential real-world objects within images or videos while classification involves giving these objects the correct label. Alongside robotics, such technology has applications in areas such as surveillance, medical image analysis and human computer interaction. An intelligent agent that interprets objects in scenes can be modelled on natural visual systems as many organism's vision systems have much less resolution, sensitivity and field of vision than a modern camera yet are able to perform incredibly complex tasks successfully. 
 
 \subsection{Detection in the Natural World}
 
 For most visual systems while everything is seen for the first time our senses do not keep telling us things we already know, this is because between scenes, most important environmental information stays constant. This process is a form of sensory adaption where perception is temporarily changed when exposed to new stimuli in an attempt to normalise visual experience.\cite{Webster2015} This happens at a retinal and neural level, where information provided by past experience have a greater say on how a scene has been interpreted than immediate information provided by external organs. For example an ellipse projected into a human retina can be interpreted as a circle due to our experiences with perspective\cite{eyebrain}.
 
-Many species exhibit a form of pattern or feature detection to trigger neural responses to visual changes. In contrast to humans which detect generic images features such as shapes, many lower organisms utilise goal-based feature detection. For example arthopods such as honey bees readily distinguish features such as flowers in the environment that pertain to the goal of gathering food. Similarly a frog's eye is stimulated when a black disc moves in an arc rapidly within the receptor field indicating that a flying insect is near and triggers the frogs feeding response \cite{eyebrain} thus satisfying the goal of feeding.
+Many species exhibit a form of pattern or feature detection to trigger neural responses to visual changes. In contrast to humans which detect generic image features such as shapes, many lower organisms utilise goal-based feature detection. For example arthropods such as honey bees readily distinguish features such as flowers in the environment that pertain to the goal of gathering food. Similarly a frog's eye is stimulated when a black disc moves in an arc rapidly within the receptor field indicating that a flying insect is near and triggers the frogs feeding response \cite{eyebrain} thus satisfying the goal of feeding.
 
 This is useful to the field of Computer Science because it allows us to model intelligence agents on such processes, which are typically simple and linear in that there is only one way of achieving the goal and that task assumes the agents complete engagement.
 
 \subsection{Extracting Features}
 
-What determines if an area of a scene is worth triggering neural activity is different for different species. In image processing software attempts are made to find features which are unique, that can be easily tracked and can be easily compared. These features can be used for many different types of processing such as calculating a Histogram of Oriented Gradients (HOG) which can then used for object classifiers.
+What determines if an area of a scene is worth triggering neural activity for is different for different species. In image processing software attempts are made to find features which are unique, that can be easily tracked and can be easily compared. These features can be used for many different types of processing such as calculating a Histogram of Oriented Gradients (HOG) which can then used for object classifiers.
 
 \subsubsection{FAST Feature Detection}
 
@@ -278,7 +295,7 @@ There are many software applications of feature detection, this includes SIFT (S
 Using an appropriate threshold $T$ which is usually 12, the algorithm selects a pixel $P$ which is the centre of a circle with a circumference of 16 pixels, $n$ and the pixel's $P$ intensity is $I_{p}$. The pixel $P$ is determined to be a corner if $n$ are all brighter than $I_{p} + t$ or are all darker than $I_{p} - t$. 
 
 \begin{figure}[h]
-  \caption{Illustration of the FAST}
+  \caption{Illustration of the FAST Feature.}
   \centering
   \includegraphics[width=0.5\textwidth]{images/fast_speedtest.jpg}
   \label{fig:FAST diagram}
@@ -288,10 +305,10 @@ If a threshold $T$ of 12 or greater is used a high speed test is performed to re
 
 \subsection{Object Classification with Deep Learning}
 
-Determining what an object is is from within an image generally requires a form of  classifier which utilises a training set of identified images and a validation set. One such approach is Deep Learning which is based on the way the human brain processes information and learns. Deep Learning is a form of machine learning that involves feeding data through neural networks composed of many layers. This allows data to be processed in a hierarchical way where each layer recognizes higher or more abstract features than the previous layer.
+Determining what an object is from within an image generally requires a form of  classifier which utilises a training set of identified images and a validation set. One such approach is Deep Learning which is based on the way the human brain processes information and learns. Deep Learning is a form of machine learning that involves feeding data through neural networks composed of many layers. This allows data to be processed in a hierarchical way where each layer recognizes higher or more abstract features than the previous layer.
 
 \begin{figure}[h]
-  \caption{Need to add******}
+  \caption{Hierarchical layers of a deep neural network.}
   \centering
   \includegraphics[width=0.5\textwidth]{images/layers.png}
   \label{fig:Deep Net Layers diagram}
@@ -304,13 +321,13 @@ Convolutional Neural Networks (CNN) are a type of deep neural network which sinc
 
 \begin{itemize}
 \item It is rugged to distortions such as different lighting and occlusion.
-\item Training can be spread across several GPU's resulting in very deep networks
-\item It features fewer parameters than standard neural networks meaning training time is substantially reduced
+\item Training can be spread across several GPU's resulting in very deep networks.
+\item It features fewer parameters than standard neural networks meaning training time is substantially reduced.
 \end{itemize}
 
 A CNN uses many identical copies of the same neuron, meaning the network can have a large amount of neurons expressing computationally large models while keeping the parameters the neurons have to learn very small. \cite{NIPS2012_4824}
   
-An approach called \textit{symmetry} is used to look for properties in the data where at each segment, properties. Therefore a group of neurons, $A$ can be introduced to a neural network that computes certain features such as the presence of an edge and then the output of this layer is fed into a fully-connected layer, $F$. ****Not convincing
+An approach called \textit{symmetry} is used to look for properties in the data at each segment. Therefore a group of neurons, $A$ can be introduced to a neural network that computes certain features such as the presence of an edge and then the output of this layer is fed into a fully-connected layer, $F$.
   
 \begin{figure}[h]
   \caption{The convolutional layer is represented by the group of neurons $A$.}
@@ -319,20 +336,20 @@ An approach called \textit{symmetry} is used to look for properties in the data 
   \label{fig:Basic CNN diagram}
 \end{figure}
 
-These convolutional layers are composable, thus you can feed the output into the input of another layer detecting more abstract features. A max-pooling layer is often used which takes the maximum features over segments of a previous layer, this allows further convultional layers to work on larger sections of the data, this works because it is not wholly useful to know the exact pixel position of an edge but it is enough to know its location within a few pixels.
+These convolutional layers are composable, thus you can feed the output into the input of another layer detecting more abstract features. A max-pooling layer is often used which takes the maximum features over segments of a previous layer, this allows further convolutional layers to work on larger sections of the data, this works because it is not wholly useful to know the exact pixel position of an edge but it is enough to know its location within a few pixels.
  
 \begin{figure}[h]
-  \caption{Featuring a max-pooling layer}
+  \caption{Featuring a max-pooling layer.}
   \centering
   \includegraphics[width=0.5\textwidth]{images/conv_max.png}
   \label{fig:Basic CNN with Max-pooling diagram}
 \end{figure}
 
-At every convolution an element-wise operation called Rectified Linear Unit (RelU)is performed that replaces negative pixel values with zeros. This introduces non-linearity into the network because most real world data is linear.
+At every convolution an element-wise operation called Rectified Linear Unit (ReLU) is performed that replaces negative pixel values with zeros. This introduces non-linearity into the network because most real world data is linear.
 
 
 \subsubsection{MobileNet with TensorFlow}
-TensorFlow is an open source software library produced by Google Brain for machine learning. It is frequently used due to the fact that it identifies and uses GPUs and multiple cores by default allocating 100\% of GPU RAM for each process, this results in a very high performance. In TensorFlow, computations are represented as a graph, nodes are representations of operations and edges are multi-dimensional arrays called tensors (represented as numpy arrays in Python). This graph occurs within a session and is executed on the CPU or GPU. 
+TensorFlow is an open source software library produced by Google Brain for machine learning\cite{tensor}. It is frequently used due to the fact that it identifies and uses GPUs and multiple cores by default allocating 100\% of GPU RAM for each process, this results in a very high performance. In TensorFlow, computations are represented as a graph, nodes are representations of operations and edges are multi-dimensional arrays called tensors (represented as numpy arrays in Python). This graph occurs within a session and is executed on the CPU or GPU. 
   
 MobileNet is a is a deep convolutional neural network for image recognition found in TensorFlow\cite{HowardZCKWWAA17}. The model has been trained on the 2012 ImageNet dataset and is highly optimised for efficiency and size at the expense of accuracy. However the error rate of not providing a correct classification within the top five results is only 10.5\% which for most applications is adequate. Like most pre-trained models it can be retrained to solve specific problems. This network has been used for real-time classifications on memory scarce devices and is particularly applicable to robotics.
   
@@ -342,10 +359,10 @@ The Google Vision API is a cloud implementation of a deep convolutional neural n
 
 \subsection{Regions with Convolutional Neural Networks (R-CNN)}
 
-Detection systems utilise classifiers to evaluate potential objects. Yet there is no standard way of localising objects within an image which is often in robotics for example to estimate the distance of such object. One such approach is called Regions with Convolutional Neural Networks (R-CNN) and is considerable more efficient than previous approaches and at the time of it's release, R-CNN had the best detection performance on the PASCAL VOC 2012 image dataset. In the paper "Rich Feature Hierarchies For Accurate Object Detection and Semantic Segmentation"\cite{Girshick2014} Girshick et al. suggest a method which involves taking an image and identifying objects using bounding boxes and then performing a classification on these areas to create a label for each object. 
+Detection systems utilise classifiers to evaluate potential objects. Yet there is no standard way of localising objects within an image which is often required in robotics for example to estimate the distance of such object. One such approach is called Regions with Convolutional Neural Networks (R-CNN) and is considerable more efficient than previous approaches and at the time of it's release, R-CNN had the best detection performance on the PASCAL VOC 2012 image dataset. In the paper "Rich Feature Hierarchies For Accurate Object Detection and Semantic Segmentation"\cite{Girshick2014} Girshick et al. suggest a method which involves taking an image and identifying objects using bounding boxes and then performing a classification on these areas to create a label for each object. 
 
 \begin{figure}[h]
-  \caption{Illustration of the stages found in R-CNN}
+  \caption{Illustration of the stages found in R-CNN.}
   \centering
   \includegraphics[width=1.0\textwidth]{images/RCNN.png}
   \label{fig:RCNN Diagram}
@@ -358,7 +375,7 @@ Roughly two thousand bounding boxes, or region proposals are created using the p
 
 To achieve the objective of the project it was first nessessary to understand the hardware of the Turtlebot and how to communicate with it which required knowledge of ROS. The Turtlebot requires use of cameras and both the Kinect and Zed Camera have been considered, however the Kinect features the largest amount of documentation and other developers and therefore was chosen to be the default camera for this project. 
 
-Many SLAM packages exist however only one has been identified, RTABMap to produce 3D maps which was required to fufill the project objective. Object detection was investigated within the context of the natural world. This allowed a greater understanding of the purpose and implementation of detection systems. How to achieve these kinds of systems with computer vision was explored and two different implementations of image classifiers were identified and discussed as well as a very successful model, R-CNN. Using some of these examples of software and models helped inform the development of the object recognition software. The next chapter will discuss the requirements and system design of the project.
+Many SLAM packages exist however only RTABMap has been identified to produce 3D maps which was required to fufill the project objective. Object detection was investigated within the context of the natural world. This allowed a greater understanding of the purpose and implementation of detection systems. How to achieve these kinds of systems with computer vision was explored and two different implementations of image classifiers were identified and discussed as well as a very successful model, R-CNN. Using some of these examples of software and models helped inform the development of the object recognition software. The next chapter will discuss the requirements and system design of the project.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{System Design}
@@ -370,64 +387,75 @@ This chapter first examines and prioritises the different requirements of the pr
 The objective of this project is broad enough that it can be interpreted in many different ways. Therefore at the beginning stage of the project key system requirements were developed which help create an overaching system design and well as create a focused implementation stage. These are divided into functional and non-functional requirements. A functional requirement specifies a behaviour of the system, while a non-functional requirement describes a constraint of how the system must be developed. The defined requirements are prioritised in a MoSCoW table which states whether the requirement is Must have, Should have, Could have or Won’t have
 
 \subsection{Functional Requirements}
-\begin{itemize}
-\item Autonomously explore an unknown environment
-\item Perform SLAM mapping
-\item Perform autonomous SLAM mapping of an unknown environment
-\item Locate areas of a map which may contain potential objects
-\item Locate and map predefined objects within the environment
-\item Locate, classify and map undefined objects within the environment
-\item Display discovered objects in the map
-\item Display a 3D map of the environment
-\item Visually distinguish between predefined and undefined objects
-\item Allow localisation of previously mapped environment
-\item Display discovered objects from within a GUI
-\item Perform calibration for different environments
-\item Actively create a 3D point cloud of detected objects
-\item Create a database of features for detected objects
-\item Navigate to object within localised map 
-\item Save a map and detected object locations
-\item Create a contour map of object locations
-\end{itemize}
- 
-\subsection{Non-Functional Requirements}
-\begin{itemize}
-\item Turtlebot maps a sufficiently large room with in real-time
-\item Object detection and recognition runs concurrently to mapping
-\item Turtlebot maps different room environments (e.g. different floor and wall types)
-\item Produce sufficiently accurate object classification
-\end{itemize}
 
-\subsubsection{Platform Requirements}
-\begin{itemize}
-\item Use ROS with Ubuntu v16.04
-\item Use a Kinect v2 RGB-D camera
-\item Use a ZED stereo camera
-\item Use a Intel Realsense ZR300 camera
-\item Application be able to be simulated in Gazebo
-\end{itemize}
+
+
+\begin{tabular}{l}
+\hline
+ \rowcolor{gray!50}Requirement\\
+ \hline
+Autonomously explore an unknown environment \\
+Perform SLAM mapping\\
+Perform autonomous SLAM mapping of an unknown environment\\
+Locate areas of a map which may contain potential objects\\
+Locate and map predefined objects within the environment\\
+Locate, classify and map undefined objects within the environment\\
+Display discovered objects in the map\\
+Display a 3D map of the environment\\
+Visually distinguish between predefined and undefined objects\\
+Allow localisation of previously mapped environment\\
+Display discovered objects from within a GUI\\
+Perform calibration for different environments\\
+Actively create a 3D point cloud of detected objects\\
+Create a database of features for detected objects\\
+Navigate to object within localised map \\
+Save a map and detected object locations\\
+Create a contour map of object locations\\			  
+\bottomrule
+\hline
+\end{tabular}
+
+\subsection{Functional Requirements}
+
+\begin{tabular}{l}
+\hline
+ \rowcolor{gray!50}Requirement\\
+ \hline
+Turtlebot maps a sufficiently large room with in real-time\\
+Object detection and recognition runs concurrently to mapping\\
+Turtlebot maps different room environments (e.g. different floor and wall types)\\
+Produce sufficiently accurate object classification	\\
+Use ROS with Ubuntu v16.04\\
+Use a Kinect v2 RGB-D camera\\
+Use a ZED stereo camera\\
+Application be able to be simulated in Gazebo\\ 
+\bottomrule
+\hline
+\end{tabular}
+
+
 
  \subsection{MOSCOW TABLE}
 
 \begin{tabular}{*5l}    \toprule
 \emph{Prority} & \emph{Requirement} & \emph{Version} \\\midrule
 \rowcolor{green!50} Must have & Perform SLAM mapping & 1\\
-\rowcolor{green!50} & Autonomously explore an unknown environment & Functional\\
-\rowcolor{green!50} & Perform autonomous SLAM mapping of an unknown environment & Functional\\
-\rowcolor{green!50} & Locate areas of a map which may contain potential objects & Functional\\
-\rowcolor{green!50} & Locate and map predefined objects within the environment & Functional\\
-\rowcolor{green!50} & Display a 3D map of the environment & Functional\\
-\rowcolor{green!50} & Perform SLAM mapping & Functional\\
-\rowcolor{yellow!50} Should have & Locate, classify and map undefined objects within the environment & Functional\\
-\rowcolor{yellow!50} & Visually distinguish between predefined and undefined objects & Functional\\
-\rowcolor{yellow!50} & Display discovered objects from within a GUI & Functional\\
-\rowcolor{yellow!50} & Allow localisation of previously mapped environment  & Functional\\
-\rowcolor{orange!50} Could have & Perform calibration for different environments  & Functional\\
-\rowcolor{orange!50} & Navigate to object within localised map  & Functional\\
-\rowcolor{orange!50} & Save a map and detected object locations  & Functional\\
-\rowcolor{red!50} Would like & Create a contour map of object locations & Functional\\
-\rowcolor{red!50} & Create a database of features for detected objects & Functional\\
-\rowcolor{red!50} & Actively create a 3D point cloud of detected objects & Functional\\
+\rowcolor{green!50} & Autonomously explore an unknown environment & 1\\
+\rowcolor{green!50} & Perform autonomous SLAM mapping of an unknown environment & 1\\
+\rowcolor{green!50} & Locate areas of a map which may contain potential objects & 1\\
+\rowcolor{green!50} & Locate and map predefined objects within the environment & 1\\
+\rowcolor{green!50} & Display a 3D map of the environment & 1\\
+\rowcolor{green!50} & Perform SLAM mapping & 1\\
+\rowcolor{yellow!50} Should have & Locate, classify and map undefined objects within the environment & 1\\
+\rowcolor{yellow!50} & Visually distinguish between predefined and undefined objects & 1\\
+\rowcolor{yellow!50} & Display discovered objects from within a GUI & 1\\
+\rowcolor{yellow!50} & Allow localisation of previously mapped environment  & \\
+\rowcolor{orange!50} Could have & Perform calibration for different environments  & 1\\
+\rowcolor{orange!50} & Navigate to object within localised map  & \\
+\rowcolor{orange!50} & Save a map and detected object locations  & 1\\
+\rowcolor{red!50} Would like & Create a contour map of object locations & \\
+\rowcolor{red!50} & Create a database of features for detected objects & \\
+\rowcolor{red!50} & Actively create a 3D point cloud of detected objects & \\
 
 \bottomrule
  \hline
@@ -441,7 +469,7 @@ The project will consist of four main processes, SLAM mapping, exploration, obje
 \subsection{Alternative Approaches}
 
 \begin{enumerate}
-\item Utilise prebuilt software for all components of the system. The project would stitch them together while providing a facade for user interaction. This approach would require using a general purpose object recognition system which would not easily provide the localisation of objects in a 3D map without editing the source code. This would task would involve decomposing very large and complex systems which is unnessessary. Similarly, stitching together components means the project will be highly coupled to external software which may affect futureproofing and futher reuse.
+\item Utilise prebuilt software for all components of the system. The project would stitch them together while providing a facade for user interaction. This approach would require using a general purpose object recognition system which would not easily provide the localisation of objects in a 3D map without editing the source code. This task would involve decomposing very large and complex systems which is unnessessary. Similarly, stitching together components means the project will be highly coupled to external software which may affect futureproofing and further reuse.
 \item Create a bespoke object detection package which by default does not need a map, but has functionality to locate objects within a map. This would also require incorporating external packages for SLAM etc. into the project. This approach would produce a highly reusable generic object detection service that could be used with just a RGB-D or Stereo camera. However, this is not required to achieve the project objectives and would require substantial research and time invested into developing a process of maintaining  persistance when tracking objects in a 2D image.
 \item Create a package from scratch which would solve simple SLAM while providing exploration and object detection. This approach  would require a considerable amount of time and an advanced background in mathematics.
 \end{enumerate}
@@ -470,28 +498,30 @@ Formulating requirements provides a clear understanding of the scope of the proj
 
 This chapter describes how the chosen system design was implemented. This is  achieved by dividing the system into three sections; mapping, exploration and object detection and recognition. Mapping and exploration both required the use of external packages but these were still required to be interfaced with hardware and each other. The object section however, is bespoke and its development process is described in considerable detail.  
 
-Figure [] illustrates a lower level design of the completed system...
-
 \section{Mapping}
 
 The RTABMap software was used for mapping environments with the Kinect and Zed Camera. RTABMap requires the use of odometry, RGB image, RGB camera information, depth image and a laser scan topics. Simulated visual odometry is usually provided by the RTABMap itself however for this project the Turtlebot's odometry is used which is much more accurate. The other topics are all published by camera nodes. However, each camera uses different topic names for the same thing so different remappings are required for each. The scan topic needs to created by a different node, depthimage\_to\_laserscan this takes a depth image and generates a 2D laser scan. 
 
-All of these nodes are combined in launch files with default arguments provided which are specific for use with the Turtlebot, for example a minimum distance is set which accounts for its manoeuvrability. This, however, allows RTABMap to be easily customized. Upon initiating the launch files RTABMaps GUI is launch as well, this provides visual notifications of loop closures which is very useful for debugging. An RViz file has also been created which allows the map and pointcloud RTABMap creates to be visualized.  
+All of these nodes are combined in launch files with default arguments provided which are specific for use with the Turtlebot, for example a minimum distance is set which accounts for its manoeuvrability. This, however, allows RTABMap to be easily customized. Upon initiating the launch files the RTABMap GUI is launched as well, this provides visual notifications of loop closures which is very useful for debugging. An RViz file has also been created which allows the map and pointcloud RTABMap creates to be visualized.  
 
-FIGURE, rtabmap 
+\begin{figure}
+   \caption{RTABMap Visualisation Software}
+   \centering
+   \includegraphics[width=0.8\textwidth]{images/rtab.png}
+\end{figure} 
 
 \section{Frontier Exploration}
 
-Different built in generic frontier exploration packages in ROS were tested including frontier\_exploration. However, in every case they would not work with the Turtlebot. An open source package hosted on Github was instead used. \cite{} This package was built for usage with the Turtlebot and only required a map topic which RTABMap provides.
+Different built in generic frontier exploration packages in ROS were tested including frontier\_exploration. However, in every case they would not work with the Turtlebot. An open source package hosted on Github was instead used. \cite{explore} This package was built for usage with the Turtlebot and only required a map topic which RTABMap provides.
 
 It is based on the detection of frontiers within a map. A frontier is defined as is an area which is known to be neither an occupied or open area. The map topic in ROS uses the map message which consists of a 2D grid of either open, occupied or empty pixels. This is used to build an algorithm where unexplored zones are detected and ranked based on their size. The largest frontier is chosen and a path is found using an A* search. Once at the location the Turtlebot is spun in place to discover more of the map.
 
-The package was slightly edited to slightly slow down the speed the robot explored at. It was noticed during tests that a fast moving camera meant less features were detected by RTABMap due to a blurred image resulting in frequent losses of odometry.
+The package was slightly edited to slow down the speed the robot explored at. It was noticed during tests that a fast moving camera meant less features were detected by RTABMap due to a blurred image resulting in frequent losses of odometry.
 
 \section{Object Detection and Recognition}
 The purpose of the object detection and recognition package is to be able to locate potential objects within a scene, classify them and note their location within the map being built using SLAM.
 
-This package was determined to be written from scratch as it required bespoke functionality however certain other software was consulted such as Find Object \cite{} and Bing\cite{}. Why? Because the detection would primarily be carried out by a mobile robot certain aspects were modelled on lower organisms visual systems. Both of these pieces of research helped form the completed package.
+This package was determined to be written from scratch as it required bespoke functionality however certain other software was consulted such as Find Object \cite{find}.Because the detection would primarily be carried out by a mobile robot certain aspects were modelled on lower organisms visual systems. Both of these pieces of research helped form the completed package.
 
 This package was written in Python 2.7 primarily to make use of the ROS and OpenCV bindings which are required. The ROS bindings (Rospy) permits the interfacing of ROS components in Python. It allows nodes to be implemented very quickly at the expense of runtime speed, but this tradeoff was considered acceptable as this project is prototypical and can be ported to the faster C++ API in the future if required. OpenCV is a library of computer vision functions such as displaying, processing and machine learning.
 
@@ -502,7 +532,7 @@ Similar detection software was consulted and in all cases some form of blob dete
 
 \subsubsection{0. Initial Exploratory Blob Detection}
 
-Initially a naive method was concieved that took SIFT or FAST features as regions of interest within an image and the created a blob around clusters of these features. This method used a handwritten blob creator algorithm that determined blobs based on a closeness value in pixels to the current blob's edge.
+Initially a naive method was conceived that took SIFT or FAST features as regions of interest within an image and then created a blob around clusters of these features. This method used a blob creator algorithm that determined blobs based on a closeness value in pixels to the current blob's edge.
 
  \begin{algorithm}
     \SetKwInOut{Input}{Input}
@@ -538,31 +568,45 @@ The environment that will be encountered when the project is run is unknown but 
 
 Considering this, an assumption was made that potential objects will be in the foreground of an scene. This means that objects can be distinguishable even when there is a high degree of variance in the overall scene. 
 
-To achieve this the grey-scale of the image was thresholded using Otsu's method which creates a histogram of intensity and then chooses an  threshold value to split the image into two classes. This method was chosen because it is very fast and assumes that an image has two kinds of pixel, foreground and background\cite{otsu}. Objects in the foreground are considered to be sparce compared to the background and therefore the class with the lesser number of pixels is determined to be the foreground. In, FIGURE this process correctly distinguishes the high contrast guitar in the foreground. However, the white walls distort this and constitute a great deal of the image (although there are still slightly less white pixels than black here) this could lead to the foreground being incorrectly determined.
+To achieve this the grey-scale of the image was thresholded using Otsu's method which creates a histogram of intensity and then chooses an  threshold value to split the image into two classes. This method was chosen because it is very fast and assumes that an image has two kinds of pixel, foreground and background\cite{otsu}. Objects in the foreground are considered to be sparce compared to the background and therefore the class with the lesser number of pixels is determined to be the foreground. In, Figure 4.3 this process correctly distinguishes the high contrast guitar in the foreground. However, the white walls distort this and constitute a great deal of the image (although there are still slightly less white pixels than black here) this could lead to the foreground being incorrectly determined.
 
 \begin{figure}
-   \caption{High-Level System Architecture. Consisting of the four main active processes of the project, as well as the passive hardware components (Turtlebot and camera).}
-   \centering
-   \includegraphics[width=0.475\textwidth]{images/basic.png}
-   \hfill
-   \includegraphics[width=0.475\textwidth]{images/otsu.png}
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{images/basic.png} % first figure itself
+        \caption{RGB Image}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{images/otsu.png} % second figure itself
+        \caption{After thresholding with Otsu's method}
+    \end{minipage}
 \end{figure}
+
 
 \subsubsection{1.5. Calibration Tool}
 
-In some cases large expanses of the same material with the same colour such as carpet or walls can be overrepresented in the mask thus inversing the foreground and the background incorrectly. To mitigate the chance of this happening a calibration tools was written. While running this program the camera can be pointed at a region of the environment that will be subtracted from subsequent image processing. This tool extracts the mean hue, saturation and luminance (HSV) values of the region which is used to subtract other areas which feature a HSV within a certain range of the mean. HSV is used as opposed to RGB or BGR image spaces because it seperates colour from luminance (intesity), this means that changes in lighting such as shadows or sunlight do not affect the detection of similar regions thus produces more accurate masks. SEE APPENDIX
+In some cases large expanses of the same material with the same colour such as carpet or walls can be overrepresented in the mask thus inversing the foreground and the background incorrectly. To mitigate the chance of this happening a calibration tools was written. While running this program the camera can be pointed at a region of the environment that will be subtracted from subsequent image processing. This tool extracts the mean hue, saturation and luminance (HSV) values of the region which is used to subtract other areas which feature a HSV within a certain range of the mean. HSV is used as opposed to RGB or BGR image spaces because it seperates colour from luminance (intesity), this means that changes in lighting such as shadows or sunlight do not affect the detection of similar regions thus produces more accurate masks. 
 
 
 \subsubsection{2. Combining with a Depth Mask}
 
-To properly seperate the foreground the Otsu method is combined with the a depth mask taken from the Kinect or Zed Camera's range finding where a depth threshold is pre-determined. This allows only locations within a certain range to be located therefore considerably improving the the clarity of the foreground. (However it is important to note the books FIGURE are just at the edge of the Kinect sensor's range and not fully rendered.) A morphological operation removeSmallObjects found in the Scikit-Image library is used to perform erosion and dilation based on a specified kernal size, this has the effect of removing small regions of spurious pixels and somewhat provides blobs with well defined edges.
+To properly seperate the foreground the Otsu method is combined with the a depth mask taken from the Kinect or Zed Camera's range finding where a depth threshold is pre-determined. This allows only locations within a certain range to be located therefore considerably improving the the clarity of the foreground. (However it is important to note the books in Figure 4.5 are just at the edge of the Kinect sensor's range and not fully rendered.) A morphological operation removeSmallObjects found in the Scikit-Image library is used to perform erosion and dilation based on a specified kernal size, this has the effect of removing small regions of spurious pixels and somewhat provides blobs with well defined edges.
+
 
 \begin{figure}
-   \caption{High-Level System Architecture. Consisting of the four main active processes of the project, as well as the passive hardware components (Turtlebot and camera).}
-   \centering
-   \includegraphics[width=0.475\textwidth]{images/depth.png}
-   \hfill
-   \includegraphics[width=0.475\textwidth]{images/combined.png}
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{images/depth.png} % first figure itself
+        \caption{Depth image at 1.5m}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{images/combined.png} % second figure itself
+        \caption{Combined depth and Otsu mask}
+    \end{minipage}
 \end{figure}
 
 \subsubsection{3. Clustering}
@@ -571,50 +615,51 @@ With the blobs sufficiently seperate from the background they can be clustered w
 
 This is similar to how R-CNN finds bounding boxes however in R-CNN the number of clusters is a known variable, usually 2000 and the Selection Search algorithm is used to find this many clusters. In this project the number of potential objects in a scene is unknown and therefore the number of clusters is also unknown, this limits the number of algorithms that can be used.
 
-A clustering algorithm, Density-based spatial clustering of applications with noise (DBSCAN)\cite{} is applicable to this problem as it works with an unknown cluster number and an implementation is provided in in the Scikit-learn package. This has a best case complexity of $O(n log n)$ which is considerably faster the inital clustering algorithm ALGORITHM 1 which has a best case of $O(n^{2})$
+A clustering algorithm, Density-based spatial clustering of applications with noise (DBSCAN)\cite{dbscan} is applicable to this problem as it works with an unknown cluster number and an implementation is provided in in the Scikit-learn package. This has a best case complexity of $O(n log n)$ which is considerably faster the inital clustering algorithm ALGORITHM 1 which has a best case of $O(n^{2})$
 
 
-DBSCAN has two parameters: $\varepsilon (epsilon)$ which defines the radius around a data point $p$ and a minimum number of points that consist of a cluster $minPoints$
+DBSCAN has two parameters: $\varepsilon (epsilon)$ which defines the radius around a data point $p$ and a minimum number of points that consist of a cluster $minPoints$. The algorithm can be abstractly described as thus:
 
-The algorithm can be abstractly described as thus:
-
-    Find $\varepsilon$ neighbours of $p_{n}$ and identify the core points
+ \begin{algorithm}
     
-    Find connected components of core points
+    Find $\varepsilon$ neighbours of $p_{n}$ and identify the core points\;
+    Find connected components of core points\;
+    Assign border points or otherwise outliers\;
+    Where $N$ is a neighbourhood\;
+    Core points are  $N_{\varepsilon} >= minPoints $\;
+    Border points are $N_{\varepsilon} < minPoints $ but still reachable from a Core point\;
+    Outliers are neither core or border points\;
     
-    Assign border points or otherwise outliers
-  
-Where $N$ is a neighbourhood:
- 
-Core points are  $N_{\varepsilon} >= minPoints $
-
-Border points are $N_{\varepsilon} < minPoints $ but still reachable from a Core point
-
-Outliers are neither core or border points
-
+    \caption{High-level DBSCAN  }
+\end{algorithm}
 
 Clusters are thus created from the core and border points while outliers in can be discounted.
 
-The algorithm was initially tested with (x,y and the colour image) features however this resulted in a very slow runtime. Offseting this by reducing the step size and desampling the image gave poor overfitted clusters. Therefore (x, y, depth and grey-scale image) was used which produces satisfactory clusters.
+The algorithm was initially tested with $(x,y and the colour image)$ features however this resulted in a very slow runtime. Offseting this by reducing the step size and desampling the image gave poor overfitted clusters. Therefore $(x, y, depth and grey-scale image)$ was used which produces satisfactory clusters.
 
  
 Using a low $\varepsilon$  value results in many clusters similar to the results found in R-CNN's Selection Search, however, R-CNN classifies every bounding box created from the the cluster. This is not feasible for this project which must be implemented in real-time. Therefore a larger $\varepsilon$ is used which produces larger clusters that fit the blobs closer to their real world images.
 
+
 \begin{figure}
-   \caption{High-Level System Architecture. Consisting of the four main active processes of the project, as well as the passive hardware components (Turtlebot and camera).}
-   \centering
-   \includegraphics[width=0.475\textwidth]{images/many.png}
-   \hfill
-   \includegraphics[width=0.475\textwidth]{images/clusters.png}
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{images/many.png} % first figure itself
+        \caption{Clusters shown using a low value for $\varepsilon$}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{images/clusters.png} % second figure itself
+        \caption{Clusters shown using a higher value for $\varepsilon$}
+    \end{minipage}
 \end{figure}
-
-
 
 \subsubsection{4. Creating Bounding Boxes}
 
-Given the (x, y) points of each cluster a bounding box determined giving a region of interest. This area can then be classified with the assumption that at least part of an object is within the area. Unfortunately, as can be seen in Figure ... some blobs detected are not that interesting notably the area of the door in the right side of the image. This area has very few edges or corners meaning very few noteworthy features. Therefore a minimum threshold of features can be used to determine whether a region of interest is actually interesting thus removing the part of the door. Features will have to be extracted every frame and thus FAST feature detection is used primarily because it is more speed efficient than SIFT.
+Given the $(x, y)$ points of each cluster a bounding box determined giving a region of interest. This area can then be classified with the assumption that at least part of an object is within the area. Unfortunately, as can be seen in Figure 4.7 some blobs detected are not that interesting notably the area of the door in the right side of the image. This area has very few edges or corners meaning very few noteworthy features. Therefore a minimum threshold of features can be used to determine whether a region of interest is actually interesting thus removing the part of the door. Features will have to be extracted every frame and thus FAST feature detection is used primarily because it is more speed efficient than SIFT.
 
-These objects contained in the bounding boxes exist in a 3D plane meaning that the width and height of each box is arbitary and variable according to the scale and angle of which the object is represented as in 2D. Instead a simplistic of method surrounding the object in a circle is used. The center point of this circle is calculated as the mean point of the previously extracted features for the bounding box, this ensures that the central pixel (u,v) is very likely to be part of the object and not located in the background. The radius of the circle is calculated from the width and height of the bounding box providing a wide location in which the object can be contained.
+These objects contained in the bounding boxes exist in a 3D plane meaning that the width and height of each box is arbitary and variable according to the scale and angle of which the object is represented as in 2D. Instead a simplistic of method surrounding the object in a circle is used. The center point of this circle is calculated as the mean point of the previously extracted features for the bounding box, this ensures that the central pixel $(u,v)$ is very likely to be part of the object and not located in the background. The radius of the circle is calculated from the width and height of the bounding box providing a wide location in which the object can be contained.
 
 \begin{figure}
    \caption{FAST features for the stack of books. Note the features are extracted from a RGB image combined with the detected object mask.}
@@ -628,21 +673,21 @@ In future iterations of the project the features (possibly using highly discrimi
 
 \subsection{Classification}
 
-The next step after having detected salient regions within an image is to classify them. Image classification is typically achieved using a CNN which is available in cloud based APIs such as Google Vision, IBM... and also in able to be trained and used locally using Tensorflow. However initially an alternative Haar Feature-based Cascade Classifier was considered before examining a robotic visual memory model was and more successful CNN based classifiers used.
+The next step after having detected salient regions within an image is to classify them. Image classification is typically achieved using a CNN which is available in cloud based APIs such as Google Vision and also in able to be trained and used locally using Tensorflow. However initially an alternative Haar Feature-based Cascade Classifier was considered before examining a robotic visual memory model was and more successful CNN based classifiers used.
 
 \subsubsection{Haar Cascade}
 
-A Haar Cascade is based on Viola-Jones face detection and has the advantages of being very fast and suitable for real-time applications\cite{viola} as well as having a framework built into OpenCV. The model is trained with positive images of the desired object in different environments at different scales and sizes and with negative images of anything other than the positive image. Creating the positives first required extracting the object so that the background is transparent. This process required different methods for different objects but was tested with a Coca-Cola can. APPENDIX. OpenCV contains a script to take these transparencies and impose them at different perspectives and scales within negative background images which were taken from ImageNet\cite{}. The training stage was also handled by OpenCV and was trained to 10 Adaboost stages. This process took an unbelievably long time and had to be aborted after 9 stages having taken more than 16 hours despite using the maximum amount of memory. The classifier could still be tested after the completed stages and while it did detect the Coca-Cola Can with no occurence of false positives, the training process is too long particularly if a selection of objects need to be detected.    
+A Haar Cascade is based on Viola-Jones face detection and has the advantages of being very fast and suitable for real-time applications\cite{viola} as well as having a framework built into OpenCV. The model is trained with positive images of the desired object in different environments at different scales and sizes and with negative images of anything other than the positive image. Creating the positives first required extracting the object so that the background is transparent. This process required different methods for different objects but was tested with a Coca-Cola can. OpenCV contains a script to take these transparencies and impose them at different perspectives and scales within negative background images which were taken from ImageNet\cite{imagenet}. The training stage was also handled by OpenCV and was trained to 10 Adaboost stages. This process took an unbelievably long time and had to be aborted after 9 stages having taken more than 16 hours despite using the maximum amount of memory. The classifier could still be tested after the completed stages and while it did detect the Coca-Cola Can with no occurence of false positives, the training process is too long particularly if a selection of objects need to be detected.    
 
 \subsubsection{Robot Visual Memory Model}
 
-Instead a model was developed inspired by natural visual memory systems, that which allowed a simple hierarchy of objects to be built from exploring an environment. This limited the need to recognise a large amount of objects while also recognising that not all regions of interest are actually important objects within the room. Frogs neural responses are triggered by goal based features where features are remembered more readily if they constitute part of or all of a goal. For example the goal of feeding is associated with black ellipsical objects indicating flies, while being carnivorous a seed pod shaped object would less likely be remembered.
+Instead a model was developed inspired by natural visual memory systems, that  allowed a simple hierarchy of objects to be built from exploring an environment. This limited the need to recognise a large amount of objects while also recognising that not all regions of interest are actually important objects within the room. A frogs neural responses are triggered by goal based features where features are remembered more readily if they constitute part of or all of a goal. For example the goal of feeding is associated with black ellipsical objects indicating flies, while being carnivorous a seed pod shaped object would less likely be remembered.
 
-This model is invoked after a salient object has been detected. Once an object is classified it is determined to either exist in the robot's long term or short term memory. The long term memory constitute of objects which have been defined. These are objects which are necessary for a goal, where the first step of achieving this goal is correctly identifing these objects. This means the objects are distinct and important such as a computer, coffee maker or in the case of Figure, a guitar. When the Turtlebot explores a room the first question asked when a region of interest has been detected is "Is this one of the goal-based objects?" If the result is affirmative then the object is remembered within it's environment perpetually in long term memory. 
+This model is invoked after a salient object has been detected. Once an object is classified it is determined to either exist in the robot's long term (LTM) or short term memory (STM). The long term memory constitute of objects which have been defined. These are objects which are necessary for a goal, where the first step of achieving this goal is correctly identifing these objects. This means the objects are distinct and important such as a computer, coffee maker or a guitar. When the Turtlebot explores a room the first question asked when a region of interest has been detected is "Is this one of the goal-based objects?" If the result is affirmative then the object is remembered within it's environment perpetually in long term memory. 
 
 On the otherhand if the object is not pre-defined it is stored in short term memory where it will be forgotten after time. When a mapping and exploration session is finished and all objects have been classified, objects which currently exist in STM are forgotton while objects in LTM are associated and assumed to exist with the completed map.
 
-Because the project intends to map whole rooms, the manner in which STM is dumped after completion is comparable to the concept of event boundaries or the "Doorway effect". \cite{} This phenomena occurs when human's leave rooms they have a tendancy to forget what they were previously doing. This exists because spatial changes such as entering a bathroom often correspond with physical and mental changes such as needing to use the bathroom and thus can readjusting our hierarchy of memories.
+Because the project intends to map whole rooms, the manner in which STM is dumped after completion is comparable to the concept of event boundaries or the "Doorway effect" \cite{doorway}. This phenomena occurs when human's leave rooms they have a tendancy to forget what they were previously doing. This exists because spatial changes such as entering a bathroom often correspond with physical and mental changes such as needing to use the bathroom and thus can readjusting our hierarchy of memories.
 
 \subsubsection{Implementing the Memory Model}
 
@@ -650,38 +695,73 @@ Two different kinds of CNN classifiers are used to determine if an object will b
 
 The first is the TensorFlow MobileNet CNN which is trained with a selection of objects that if found will be stored in LTM. MobileNet was chosen over other types of image classifiers because it can operate in real-time with performance testing indicating that it takes between 0.1 and 0.3 seconds to classify from six potential objects. Using it through TensorFlow simplified the training process which only took roughly 30 minutes. The training sets were chosen by bulk from Google Images. This allowed regions of interest to be scored from the defined objects, if the score was less than a confidence level (such as 0.9) then the object is considered to be important and is not stored in LTM.
 
-The second classifier is the Google Vision API. A cloud based classifier was chosen over training one from scratch as training one to contain all the types of objects in office based environments would take too long. Similarly using a pre-trained classifier locally such as Inception \cite{} would potentially schew the classifications with irrelevant labels such as animals or landscapes. An image is send to the API and the response contains the most confident single label and score of the object. This compares to the IBM classifier which returns all labels with all the scores resulting in situations where an object can be labeled a car and a tomato and both have a score of 0.9 which is not as useful for the purposes of this project. 
+The second classifier is the Google Vision API. A cloud based classifier was chosen over training one from scratch as training one to contain all the types of objects in office based environments would take too long. Similarly using a pre-trained classifier locally such as Inception \cite{inception} would potentially schew the classifications with irrelevant labels such as animals or landscapes. An image is send to the API and the response contains the most confident single label and score of the object. This compares to the IBM Watson classifier \cite{ibm} which returns all labels with all the scores resulting in situations where an object can be labelled a car and a tomato and both have a score of 0.9 which is not as useful for the purposes of this project. 
 
-Illustration of the scoring
-
-Another advantage of the Google Vision API was discovered through sustained use in that the labels it provides are very vague. For example a chair is labeled as furniture and bottles are labelled as products. As this classifier is determining short term memories it is enough for the robot to know what an area of an environment vaguely is as it is not concerned with the goal of finding important objects. Unfortunately the Google Vision API is slow, with classifications taking from 0.3 to 1 second depending on internet connectivity and speed. However, a buffer of request is formed while also noting the location where the object is found meaning the robot can operate in real-time and correctly classify objects at locations in the map being built.
+Another advantage of the Google Vision API was discovered through sustained use in that the labels it provides are very vague. For example a chair is labelled as furniture and bottles are labelled as products. As this classifier is determining short term memories it is enough for the robot to know what an area of an environment vaguely is as it is not concerned with the goal of finding important objects. Unfortunately the Google Vision API is slow, with classifications taking from 0.3 to 1 second depending on internet connectivity and speed. However, a buffer of requests is formed while also noting the location where the object is found meaning the robot can operate in real-time and correctly classify objects at locations in the map being built.
 
 
 
 \subsubsection{Adding Object Persistance}
 
-Objects need to be detected in 3D and previously classified objects need to persist meaning that the same object is identified between frames.
+Objects need to be detected in 3D and previously classified objects need to persist meaning that the same object is identified between frames. This is achieved through the use of ROS markerArray. A marker is an $(x, y, z)$ point which exists in a coordinate frame in this case the map frame. There are two cases that need to be accounted for: 1) A new object is detected and 2) An existing object is detected.
 
 
-This is achieved through the use of ROS markerArray. A marker is an (x, y, z) point which exists in a coordinate frame in this case the map frame. There are too cases that need to be accounted for: 1) A new object is detected and 2) An existing object is detected.
+If a new object is detected and classified an approximate location of this object is calculated by finding the mean feature point of the object and finding the corresponding value from the point cloud image. This is transformed into an $(x, y, z)$ point in the map coordinate frame and is published as a marker with an associated label in ROS. 
+
+For every 2D region of interest found a test is made to see if a real-world marker exists within it's vincinity. This is calculated by assuming an object has a sector where it is highly likely this object is the sole occupant. This avoids seperate markers from being created for what is the same object. 
+
+\begin{tcolorbox}
+Considering a point $P (x, y, z)$  and a sphere with a centre $ C (x_{0}, y_{0}, z_{0}) $ and radius $r$. 
 
 
-If a new object is detected and classified an approximate location of this object is calculated by finding the mean feature point of the object and finding the corresponding value from the point cloud image. This is transformed into an (x, y, z) point in the map coordinate frame and is published as a marker with an associated label in ROS. 
+$P$ exists within $C$ if $(x-x_{0})^{2} +  (z-z_{0})^{2} + (z-z_{0})^{2} <r^2$
 
-For every 2D region of interest found a test is made to see if a real-world marker exists within it's vincinity. This is calculated by assuming an object has a sector where it is highly likely this object is the sole occupant. This avoids seperate markers from being created for what is the same object. Considering a point $P (x, y, z)$  and a sphere with a centre $ C (x_{0}, y_{0}, z_{0}) $ and radius $r$ . $P$ exists within $C$ if $(x-x_{0})^{2} +  (z-z_{0})^{2} + (z-z_{0})^{2} <r^2$
+\end{tcolorbox}
 
-The complete algorithm for the process of classification can be can be seen in Figure... This process provides a way remember locations of discovered objects in a map and to minimize costly classifications to only when new objects are discovered. 
 
-ALGORITHM
+The complete algorithm for the process of classification can be can be seen in Algorithm 3. This process provides a way remember locations of discovered objects in a map and to minimize costly classifications to only when new objects are discovered. 
 
-These markers are displayed in RViz as text at the relevant point in the map, STMs are coloured yellow while LTMs are coloured red. A simple GUI in OpenCV was created which displays the object detections within an camera frame. The object circumference is shown as well as the centre location, object label and number of FAST features found within the image.
 
-Picture of the GUI
+\begin{algorithm}
+
+    \For{$region$ \textbf{in} $regions$}
+    {
+    \If {$ region.corners > minCorners $}
+    {
+    	$existingMarker \leftarrow addNewMarker(region.meanx, region.meany)$\;
+    	\If {$not existingMarker$} 
+    	{
+    	$ label, score \leftarrow queryTensorflow(region)$\;
+    	\If {$score < 0.9$} 
+    		{
+    		$ label, score \leftarrow queryGoogleVision(region)$\;
+    		If {$score < 0.9$} 
+    		{
+    		$continue$\;
+    		}
+    		}	
+    	}	
+    }
+    }
+	
+
+    
+    \caption{Classify regions}
+\end{algorithm}
+
+
+These markers are displayed in RViz as text at the relevant point in the map, STMs are coloured yellow while LTMs are coloured red. A simple GUI in OpenCV was created which displays the object detections within an camera frame. The object circumference is shown as well as the centre location, object label and number of FAST features found within the image. LTM objects are displayed with a \textit{*} next to their label.
+
+\begin{figure}
+   \caption{The GUI displaying classified objects with their feature count. LTM objects are indicated with a *.}
+   \centering
+   \includegraphics[width=0.7\textwidth]{images/gui.png}
+   
+\end{figure}
 
 \section{Conclusion}
 
-Implementing the system design required the use of two external packages, both of which handled complex and performance optimisation. Once these parts were implemented the object detection and recognition section was implemented in Python. Considerable experiments into different low-level methods such as using a Haar Cascade were tested, while these did not work they helped inform the subsequent successful processes developed. The final implementation of the  object detection and recognition section features system which detects regions of interest, classifies them and gives persistance to the recognised objects.  
-The next chapter records experiments and testing to evaluate the successfulness of the project.
+Implementing the system design required the use of two external packages, both of which handled complex and performance optimisation. Once these parts were implemented the object detection and recognition section was implemented in Python. Considerable experiments into different low-level methods such as using a Haar Cascade were tested, while these did not work they helped inform the subsequent successful processes developed. The final implementation of the  object detection and recognition section features system which detects regions of interest, classifies them and gives persistance to the recognised objects. The next chapter records experiments and testing to evaluate the successfulness of the project.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -693,48 +773,38 @@ A testing stategy was developed which would allow the project to be tested in it
 \subsection{Experiments}
 
 Three experiments were developed to determine whether the project objective has been achieved and to what extend, due to the fact that specific hardware was required and ongoing issues with the Turtlebot the experiments were completed in one sitting at the end of the project development period. 
-
-The project objective: 
+\begin{tcolorbox}
+\textbf{The project objective:} 
 
 The Turtlebot will autonomously create a 3D map of an unknown room while creating an inventory of classified and localised objects in the map.
-
+\end{tcolorbox}
 Five qualitive measures are used determine if parts of an experiment were successful, a more quantitive assessment would require more advanced software to compare completed maps and pointclouds with precise ones and is out of the scope of the project. 
+\begin{itemize}
+\item \textbf{Adequate Performance} - The map is produced with no noticable delay in the robot's movements 
 
-- Adequate Performance - The map is produced with no noticable delay in the robot's movements 
+\item \textbf{Accuracy of a map} - The map produced is complete and the shape of the room is easily distinguishable
 
-- Accuracy of a map - The map produced is complete and the shape of the room is easily distinguishable
+\item \textbf{Accuracy of point cloud} - The point cloud does not feature any repition or gaps and objects are distinguishable.
 
-- Accuracy of point cloud - The point cloud does not feature any repition or gaps and objects are distinguishable.
+\item \textbf{Successfulness of classification} - The guitar is identified once.
 
-- Successfulness of classification - The guitar is identified once.
-
-- Successfulness of object detection - Some objects are detected and classified with vaguely relavent labels.
-
+\item \textbf{Successfulness of object detection} - Some objects are detected and classified with vaguely relavent labels.
+\end{itemize}
 \subsubsection{Experiment Setup}
 
-A small-medium enclosed room was chosen to perform testing. This allows the room to be mapped in a reasonable time due to issues pertaining to the Turtlebot battery life and temperamental connectivity between the laptop and the Kobuki and is free from human disturbances. The room was adequately lit with no natural light. 
-
-A guitar is placed in the room, this has been chosen as the goal of the robot with the MobileNet having been trained to detect guitars. It is the only significant object in the room with the rest consisting of a chair, bag, bin, wardrobe, bed and desk.
-
-An Xbox Kinect v2 was used as the Turtlebot camera sensor and was connected the Lenovo Ideapad Y700 which had the RTABMap Visualisation tool and RViz open.
-
-
-DIAGRAM
-Map of the room accurate
-
-FIGURE words
-A map features light gray for discovered with no barriers, black barriers, medium grey for undiscovered.
+A small-medium enclosed room was chosen to perform testing. This allows the room to be mapped in a reasonable time due to issues pertaining to the Turtlebot battery life and temperamental connectivity between the laptop and the Kobuki and is free from human disturbances. The room was adequately lit with no natural light. A guitar is placed in the room, this has been chosen as the goal of the robot with the MobileNet having been trained to detect guitars. It is the only significant object in the room with the rest consisting of a chair, bag, bin, wardrobe, bed and desk. An Xbox Kinect v2 was used as the Turtlebot camera sensor and was connected the Lenovo Ideapad Y700 which had the RTABMap Visualisation tool and RViz open.
 
 
 
 
+\noindent\rule{15cm}{0.8pt}
 \subsubsection{Experiment 1}
 
-Does the system autonomous map the environment?
+\textbf{Does the system autonomous map the environment?}
 
-Hypothesis: The Turtlebot will successfully explore the two sections of the room, the map produced will be relatively accurate but may miss areas out in the narrower part of the room.
+\textbf{Hypothesis:} The Turtlebot will successfully explore the two sections of the room, the map produced will be relatively accurate but may miss areas out in the narrower part of the room.
 
-Result A: 
+\textbf{Result A}: 
 
 - Adequate Performance - n/a
 
@@ -746,21 +816,20 @@ Result A:
 
 - Successfulness of object detection - n/a
 
-Process: 
+\textbf{Process:} 
 The Turtlebot was placed 60-70 cm from the wall Figure A. The Turtlebot span less than 90 degrees and RTABMap indicated that odometry had been lost and mapping would not continue. The process was terminated.
 
-Remarks: The Turtlebot was so close to the wall that the field of vision for the Kinect was entirely consumed by a white wall and no features and thus no landmarks could be extracted for SLAM to work. This indicates that the start position of the robot is very important.Unfortunately, nothing can be done to mitigate the program and thus the user must decide the start position.
+\textbf{Comments:} The Turtlebot was so close to the wall that the field of vision for the Kinect was entirely consumed by a white wall and no features and thus no landmarks could be extracted for SLAM to work. This indicates that the start position of the robot is very important.Unfortunately, nothing can be done to mitigate the program and thus the user must decide the start position.
 
 
  \begin{figure}
-   \caption{RTABMap visualisation indicating that no landmarks can be found and odometry has been lost.}
+   \caption{Experiment 1: RTABMap visualisation indicating that no landmarks can be found and odometry has been lost.}
    \centering
-   \includegraphics[width=0.475\textwidth]{images/resulta.png}
+   \includegraphics[width=0.5\textwidth]{images/resulta.png}
    \hfill
-   \includegraphics[width=0.475\textwidth]{images/otsu.png}
 \end{figure}
 
-Result B: 
+\textbf{Result B:} 
 
 - Adequate Performance - \checkmark
 
@@ -773,27 +842,35 @@ Result B:
 - Successfulness of object detection - n/a
 
 
-Process: The Turtlebot was placed in the center of the room equidistant from walls. The Turtlebot proceeded to begin explore and map the large section of the room. The narrow part of the room was visited but was not traversed the whole length. The process terminated naturally.
+\textbf{Process:} The Turtlebot was placed in the center of the room equidistant from walls. The Turtlebot proceeded to begin explore and map the large section of the room. The narrow part of the room was visited but was not traversed the whole length. The process terminated naturally.
 
-Comments: The Turtlebot produced an accurate point cloud of the image. The  map is generally accurate but with some walls slightly distorted and a shadowy region underneath a desk producing a cluster of thick barriers in this area (Black region at bottom of map).The map is missing the circumference where the Turtlebot began as the Kinect range scanner has a minimum threshold. The frontier exploration algorithm relized leased this area was still enclosed so did not explore it. However, this could be completely solved by editing the frontier exploration source code to account for non-discovered regions within an enclosed area. 
+\textbf{Comments:} The Turtlebot produced an accurate point cloud of the image. The  map is generally accurate but with some walls slightly distorted and a shadowy region underneath a desk producing a cluster of thick barriers in this area (Black region at bottom of map).The map is missing the circumference where the Turtlebot began as the Kinect range scanner has a minimum threshold. The frontier exploration algorithm relized leased this area was still enclosed so did not explore it. However, this could be completely solved by editing the frontier exploration source code to account for non-discovered regions within an enclosed area. 
+
+
 \begin{figure}
-   \caption{Red arrow indicating the start pose}
-   \centering
-   \includegraphics[width=0.475\textwidth]{images/exp1map.png}
-   \hfill
-   \includegraphics[width=0.475\textwidth]{images/ex1pc.png}
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{images/exp1map.png} % first figure itself
+        \caption{Experiment1: Red arrow indicating the start pose}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{images/ex1pc.png} % second figure itself
+        \caption{Experiment1: Completed point cloud}
+    \end{minipage}
 \end{figure}
 
-
+\noindent\rule{15cm}{0.8pt}
 \subsubsection{Experiment 2}
 
-Can objects be detected while mapping with manual teleoperation?
+\textbf{Can objects be detected while mapping with manual teleoperation?}
 
-Hypothesis: The Turtlebot will successfully map the room including the start position. The guitar will successfully be detected and classified. Other objects will be detected in the room and classification should be somewhat accurate.
+\textbf{Hypothesis:} The Turtlebot will successfully map the room including the start position. The guitar will successfully be detected and classified. Other objects will be detected in the room and classification should be somewhat accurate.
 
 
 
-Results: 
+\textbf{Results:} 
 
 - Adequate Performance - \checkmark
 
@@ -805,24 +882,25 @@ Results:
 
 - Successfulness of object detection - Acceptable
 
-Process: The Turtlebot was controlled using teleoperation to all areas of the room. The guitar was approached intially head on and then from the sides and was classified successfully and only once. Other regions of the room were classified.
+\textbf{Process:} The Turtlebot was controlled using teleoperation to all areas of the room. The guitar was approached intially head on and then from the sides and was classified successfully and only once. Other regions of the room were classified.
 
-Comments: Using teleoperation resulted in a map with more coverage than Experiment 1. However, due to non fluid angles that the Turtlebot was moving in there are some incorrect doubled barriers. The guitar is successfully located and classified. Other objects are detected but while most of these are correctly identified such as wall, others are given very vague descriptors such as blue. (Presumeably because the furniture is a blue colour). This may be because the bounding box used to enclose the object was too restrictive  thus and it can only be identified as a whole
+\textbf{Comments:} Using teleoperation resulted in a map with more coverage than Experiment 1. However, due to non fluid angles that the Turtlebot was moving in there are some incorrect doubled barriers. The guitar is successfully located and classified. Other objects are detected but while most of these are correctly identified such as wall, others are given very vague descriptors such as blue. (Presumeably because the furniture is a blue colour). This may be because the bounding box used to enclose the object was too restrictive  thus and it can only be identified as a whole
 
 
  \begin{figure}
-   \caption{Yellow = STM, RED = LTM}
+   \caption{Experiment 2: Manual map. Yellow = STM, Red = LTM}
    \centering
    \includegraphics[width=0.5\textwidth]{images/ex2.png}
 \end{figure}
 
+\noindent\rule{15cm}{0.8pt}
 \subsubsection{Experiment 3}
 
-Can objects be detected while autonomously mapping in real-time?
+\textbf{Can objects be detected while autonomously mapping in real-time?}
 
-Hypothesis: The Turtlebot will successfully map the room but not the starting location. The guitar will successfully be detected and classified. Other objects will be detected in the room and classification should be somewhat accurate.
+\textbf{Hypothesis:} The Turtlebot will successfully map the room but not the starting location. The guitar will successfully be detected and classified. Other objects will be detected in the room and classification should be somewhat accurate.
 
-Results: 
+\textbf{Results:} 
 
 - Adequate Performance - \checkmark
 
@@ -834,21 +912,12 @@ Results:
 
 - Successfulness of object detection - Good 
 
-Process: The Turtlebot was placed in the center of the room equidistant from walls. The Turtlebot proceeded to begin explore and map the large section of the room. The guitar was classified successfully and only once. Other regions of the room were classified. 
+\textbf{Process:} The Turtlebot was placed in the center of the room equidistant from walls. The Turtlebot proceeded to begin explore and map the large section of the room. The guitar was classified successfully and only once. Other regions of the room were classified. 
 
-Comments: The map suffers the same missing regions as in Experiment 1. However the point cloud is complete. The guitar is successfully located and classified. Interestingly the STM classifications are better than in Experiment 2, giving the furniture descriptor for the wardrobe and the chair. A floor was detected outside of the map.
-
-Experiment 3 was successful it produced the most accurate map and point cloud despite missing the starting location. The guitar was located and classified correctly as well many other objects in the room such as the wardrobe and chair being given a furniture descriptor. This may be because the frontier exploration package used is very conservative with movements which means objects can be detected from a distance making them distinguishable from their background. The floor was detected outside of the map which may have been caused by the pointcloud readjusted itself during the mapping process leaving the marker at it's original location.
+\textbf{Comments:} Experiment 3 was successful it produced the most accurate map and point cloud despite missing the starting location. The guitar was located and classified correctly as well many other objects in the room such as the wardrobe and chair being given a furniture descriptor. This may be because the frontier exploration package used is very conservative with movements which means objects can be detected from a distance making them distinguishable from their background. The floor was detected outside of the map which may have been caused by the pointcloud readjusted itself during the mapping process leaving the marker at it's original location.
 
  \begin{figure}
-   \caption{Red arrow indicating the start pose}
-   \centering
-   \includegraphics[width=0.475\textwidth]{images/ex3.png}
-   \hfill
-\end{figure}
-
- \begin{figure}
-   \caption{Text partially obscured by point cloud, Yellow = STM, RED = LTM}
+   \caption{Experiment 3: Text partially obscured by point cloud, Yellow = STM, Red = LTM}
    \centering
    \includegraphics[width=0.8\textwidth]{images/ex3pc.png}
    \hfill
@@ -860,23 +929,49 @@ The hypothesises stated are all proved correct and thus the project objectives h
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Conclusion}\label{conclusion}
+
 \subsection{Future work}
 
-incorporate active detection of features next time.
+During the course of development, some ideas were conceived which were outside of the scope of the project. There are also some limitations to the project. These both inform ideas to improve and add to the project.
 
-A signature map can be created from the locations of objects in the map. Indicating whether a floor is here. Similar to geological mapping
+\begin{itemize}
+\item Incorporating active detection of objects would not be a difficult task, when an object is detected by a robot it can manoeuvre itself to build up a detailed 3D image of the object. This can be saved in a database and can form the basis for a point cloud detection service.
+\item Advanced map making could be achieved by adapting the current technology stack to fit the Turtlebot with a 360\degree field of view as well as upwards facing cameras. This would create fully rendered 3D point clouds of environments. Similarly using stereo cameras would allow the turtlebot to operate in outdoor environments. 
+\end{itemize}
 
-Create database of objects
+\subsection{Reflection}
+
+The objective of the project was to make the Turtlebot autonomously create a 3D map of an unknown room using SLAM while creating an inventory of classified and localised objects found in the map. Considering the experiments from the evaluation chapter, the project can be considered a success: the project is able to perform in real-world environments without noticable latency, maps and point clouds are created with some accuracy and object detection and classification results in correct objects being located and identified.
+ 
+The project focused on quickly combining the cameras, Turtlebot and pre built software together. This task was non-trivial as much of the documentation was either out of date or misleading resulting in a considerable amount of time wasted debugging camera drivers. Similarly there were some hardware issues with the Turtlebot which only appeared near the end of the project. Developing the object detection and recognition package was a much more fufilling experience as it was essentially a green-field piece of software and therefore algorithms and designs could be developed from scratch. The developed project provides a complete navigation and mapping technology stack for the Turtlebot, providing a strong but modular foundation for any kind of future development. 
+
+
+
 
 
 \appendix % first appendix
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{First appendix}
+\chapter{Appendix}
 
-\section{Section of first appendix}
+\section{User Manual}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Second appendix}
+Dependencies:
+
+\begin{itemize}
+ \item For usage with the Xbox Kinect v2.: https://github.com/code-iai/iai\_kinect2
+ \item Frontier Exploration: https://github.com/bnurbekov/Turtlebot\_Navigation
+\end{itemize}
+
+In a new terminal for every command. (Ensure the catkin workspace has been sourced. Usually: source ~/catkin\_ws/devel/setup.bash)
+\begin{enumerate}
+
+\item roslaunch terrapin-ros kinect.launch
+\item roslaunch terrapin-ros stream.py kinect2
+\item rosrun final\_project control.py
+\item rosrun final\_project mapping.py
+\item roslaunch terrapin-ros map.rvizs
+\end{enumerate}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % it is fine to change the bibliography style if you want

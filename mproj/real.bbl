@@ -7,6 +7,11 @@ Sam Abuelsamid.
 \newblock
   https://www.forbes.com/sites/samabuelsamid/2016/07/01/first-tesla-autopilot-fatality-demonstrates-why-lidar-and-v2v-probably-will-be-necessary/7af624982d91.
 
+\bibitem{Hugh2006}
+Hugh Durrant-Whyte, Fellow, IEEE, and Tim Bailey.
+\newblock Simultaneous localisation and mapping (slam): Part i the essential
+  algorithms, 2006.
+
 \bibitem{mining}
 Mining rox: Robotics in mining.
 \newblock https://miningrox.informatik.tu-freiberg.de/en/.
@@ -16,13 +21,11 @@ What is turtlebot?
 \newblock http://www.turtlebot.com/about/.
 \newblock Accessed: 2017-09-5.
 
+\bibitem{ros}
+http://www.ros.org/.
+
 \bibitem{cars}
 https://blog.acolyer.org/2015/11/05/simultaneous-localization-and-mapping-part-i-history-of-the-slam-problem/.
-
-\bibitem{Hugh2006}
-Hugh Durrant-Whyte, Fellow, IEEE, and Tim Bailey.
-\newblock Simultaneous localisation and mapping (slam): Part i the essential
-  algorithms, 2006.
 
 \bibitem{labbe13appearance}
 M.~Labbe and F.~Michaud.
@@ -80,6 +83,9 @@ Alex Krizhevsky, Ilya Sutskever, and Geoffrey~E Hinton.
   editors, {\em Advances in Neural Information Processing Systems 25}, pages
   1097--1105. Curran Associates, Inc., 2012.
 
+\bibitem{tensor}
+https://www.tensorflow.org/.
+
 \bibitem{HowardZCKWWAA17}
 Andrew~G. Howard, Menglong Zhu, Bo~Chen, Dmitry Kalenichenko, Weijun Wang,
   Tobias Weyand, Marco Andreetto, and Hartwig Adam.
@@ -103,6 +109,12 @@ P.~F. Felzenszwalb, R.~B. Girshick, and D.~McAllester.
 \newblock Discriminatively trained deformable part models, release 4.
 \newblock http://people.cs.uchicago.edu/~pff/latent-release4/.
 
+\bibitem{explore}
+https://github.com/bnurbekov/.
+
+\bibitem{find}
+https://introlab.github.io/find-object//.
+
 \bibitem{HosangBS14}
 Jan~Hendrik Hosang, Rodrigo Benenson, and Bernt Schiele.
 \newblock How good are detection proposals, really?
@@ -113,9 +125,30 @@ Otsu's method.
 \newblock https://en.wikipedia.org/wiki/Otsu%27s_method.
 \newblock Accessed: 2017-09-5.
 
+\bibitem{dbscan}
+Martin Ester, Hans-Peter Kriegel, Jörg Sander, and Xiaowei Xu.
+\newblock A density-based algorithm for discovering clusters in large spatial
+  databases with noise.
+\newblock pages 226--231. AAAI Press, 1996.
+
 \bibitem{viola}
 Paul Viola and Michael Jones.
 \newblock Rapid object detection using a boosted cascade of simple features.
 \newblock pages 511--518, 2001.
+
+\bibitem{imagenet}
+http://www.image-net.org/.
+
+\bibitem{doorway}
+Gabriel~A. Radvansky, Sabine~A. Krawietz, , and Andrea~K. Tamplin.
+\newblock Walking through doorways causes forgetting: Further explorations.
+\newblock {\em THE QUARTERLY JOURNAL OF EXPERIMENTAL PSYCHOLOGY}, 64 (8),
+  1632–1645, 2011.
+
+\bibitem{inception}
+https://github.com/tensorflow/models/tree/master/inception.
+
+\bibitem{ibm}
+http://www.image-net.org/.
 
 \end{thebibliography}
