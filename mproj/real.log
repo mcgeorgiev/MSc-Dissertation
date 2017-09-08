@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  8 SEP 2017 01:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  8 SEP 2017 06:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -666,292 +666,311 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 36.
  [1] [1] [2] (./real.toc [3
 
-] [4])
+])
 \tf@toc=\write5
 \openout5 = `real.toc'.
 
- [5]
+ [4]
 Chapter 1.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <20.74> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
-[6
+[5
 
-]
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 89.
- [7]
+] [6]
 Chapter 2.
-<images/turtlebot.JPG, id=42, 773.89125pt x 1114.1625pt>
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 100.
+<images/turtlebot.JPG, id=39, 773.89125pt x 1114.1625pt>
 File: images/turtlebot.JPG Graphic file (type jpg)
 
 <use images/turtlebot.JPG>
-Package pdftex.def Info: images/turtlebot.JPG used on input line 115.
+Package pdftex.def Info: images/turtlebot.JPG used on input line 107.
 (pdftex.def)             Requested size: 216.135pt x 311.16434pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[8
+[7
 
-] [9 <./images/turtlebot.JPG>]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 153.
+] [8 <./images/turtlebot.JPG>]
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 144.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 153.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 144.
 
-Overfull \hbox (0.78745pt too wide) in paragraph at lines 168--169
+Overfull \hbox (0.78745pt too wide) in paragraph at lines 159--160
 []\OT1/ptm/b/n/10.95 Services \OT1/ptm/m/n/10.95 forgo the many-to-many paradig
 m and pro-vide a re-quest/reply in-ter-ac-tion via servers
  []
 
-[10] <images/ROS_basic_concepts.png, id=54, 229.85875pt x 116.435pt>
+[9] <images/ROS_basic_concepts.png, id=51, 229.85875pt x 116.435pt>
 File: images/ROS_basic_concepts.png Graphic file (type png)
 
 <use images/ROS_basic_concepts.png>
-Package pdftex.def Info: images/ROS_basic_concepts.png used on input line 174.
+Package pdftex.def Info: images/ROS_basic_concepts.png used on input line 165.
 (pdftex.def)             Requested size: 216.135pt x 109.48976pt.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 180.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 171.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-<images/slam_problem.png, id=55, 657.45625pt x 555.07375pt>
+<images/slam_problem.png, id=52, 657.45625pt x 555.07375pt>
 File: images/slam_problem.png Graphic file (type png)
 
 <use images/slam_problem.png>
-Package pdftex.def Info: images/slam_problem.png used on input line 198.
+Package pdftex.def Info: images/slam_problem.png used on input line 191.
 (pdftex.def)             Requested size: 216.135pt x 182.47191pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-Overfull \hbox (18.26198pt too wide) in paragraph at lines 201--202
-[]\OT1/ptm/m/n/10.95 https://blog.acolyer.org/2015/11/05/simultaneous-localizat
-ion-and-mapping-part-i-history-of-the-slam-
- []
-
-[11 <./images/ROS_basic_concepts.png>]
+[10 <./images/ROS_basic_concepts.png>]
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
- [12 <./images/slam_problem.png>]
-<images/slam_graph.png, id=67, 667.49374pt x 409.53pt>
+ [11 <./images/slam_problem.png>]
+<images/slam_graph.png, id=64, 667.49374pt x 409.53pt>
 File: images/slam_graph.png Graphic file (type png)
 
 <use images/slam_graph.png>
-Package pdftex.def Info: images/slam_graph.png used on input line 233.
+Package pdftex.def Info: images/slam_graph.png used on input line 226.
 (pdftex.def)             Requested size: 216.135pt x 132.602pt.
 
-<images/graph.png, id=68, 400.49625pt x 175.65625pt>
+<images/graph.png, id=65, 400.49625pt x 175.65625pt>
 File: images/graph.png Graphic file (type png)
  <use images/graph.png>
-Package pdftex.def Info: images/graph.png used on input line 248.
+Package pdftex.def Info: images/graph.png used on input line 241.
 (pdftex.def)             Requested size: 216.135pt x 94.79666pt.
 
-<images/memory.png, id=69, 639.38875pt x 401.5pt>
+<images/memory.png, id=66, 639.38875pt x 401.5pt>
 File: images/memory.png Graphic file (type png)
  <use images/memory.png>
-Package pdftex.def Info: images/memory.png used on input line 257.
+Package pdftex.def Info: images/memory.png used on input line 250.
 (pdftex.def)             Requested size: 216.135pt x 135.71788pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[13 <./images/slam_graph.png> <./images/graph.png>] [14 <./images/memory.png>]
-<images/fast_speedtest.jpg, id=76, 444.66125pt x 216.81pt>
+[12 <./images/slam_graph.png> <./images/graph.png>] [13 <./images/memory.png>]
+<images/fast_speedtest.jpg, id=73, 444.66125pt x 216.81pt>
 File: images/fast_speedtest.jpg Graphic file (type jpg)
 
 <use images/fast_speedtest.jpg>
-Package pdftex.def Info: images/fast_speedtest.jpg used on input line 296.
+Package pdftex.def Info: images/fast_speedtest.jpg used on input line 283.
 (pdftex.def)             Requested size: 216.135pt x 105.3843pt.
- [15 <./images/fast_speedtest.jpg>]
-<images/layers.png, id=80, 121.45375pt x 127.97812pt>
+
+<images/layers.png, id=74, 121.45375pt x 127.97812pt>
 File: images/layers.png Graphic file (type png)
  <use images/layers.png>
-Package pdftex.def Info: images/layers.png used on input line 309.
+Package pdftex.def Info: images/layers.png used on input line 296.
 (pdftex.def)             Requested size: 216.135pt x 227.74564pt.
 
-<images/conv.png, id=81, 928.46875pt x 605.26125pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[14 <./images/fast_speedtest.jpg>]
+<images/conv.png, id=78, 928.46875pt x 605.26125pt>
 File: images/conv.png Graphic file (type png)
  <use images/conv.png>
-Package pdftex.def Info: images/conv.png used on input line 331.
+Package pdftex.def Info: images/conv.png used on input line 318.
 (pdftex.def)             Requested size: 216.135pt x 140.89725pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[16 <./images/layers.png>] <images/conv_max.png, id=85, 952.55875pt x 722.7pt>
+<images/conv_max.png, id=79, 952.55875pt x 722.7pt>
 File: images/conv_max.png Graphic file (type png)
-
-<use images/conv_max.png>
-Package pdftex.def Info: images/conv_max.png used on input line 340.
+ <use images/conv_max.png>
+Package pdftex.def Info: images/conv_max.png used on input line 327.
 (pdftex.def)             Requested size: 216.135pt x 163.97891pt.
 
-Overfull \hbox (2.86772pt too wide) in paragraph at lines 351--352
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[15 <./images/layers.png>]
+Overfull \hbox (8.34271pt too wide) in paragraph at lines 337--338
 []\OT1/ptm/m/n/10.95 MobileNet is a is a deep con-vo-lu-tional neu-ral net-work
  for im-age recog-ni-tion found in TensorFlow[[]].
  []
 
-[17 <./images/conv.png> <./images/conv_max.png>]
-<images/RCNN.png, id=90, 1190.4475pt x 409.53pt>
+[16 <./images/conv.png> <./images/conv_max.png>]
+<images/RCNN.png, id=86, 1190.4475pt x 409.53pt>
 File: images/RCNN.png Graphic file (type png)
  <use images/RCNN.png>
-Package pdftex.def Info: images/RCNN.png used on input line 364.
+Package pdftex.def Info: images/RCNN.png used on input line 350.
 (pdftex.def)             Requested size: 432.26999pt x 148.70546pt.
- [18 <./images/RCNN.png (PNG copy)>] [19]
+ [17 <./images/RCNN.png (PNG copy)>] [18]
 Chapter 3.
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
-[20
+[19
 
-] [21] [22] <images/system-diagram.png, id=106, 382.42876pt x 452.69125pt>
+] [20] [21] <images/system-diagram.png, id=103, 382.42876pt x 452.69125pt>
 File: images/system-diagram.png Graphic file (type png)
 
 <use images/system-diagram.png>
-Package pdftex.def Info: images/system-diagram.png used on input line 470.
+Package pdftex.def Info: images/system-diagram.png used on input line 457.
 (pdftex.def)             Requested size: 216.135pt x 255.84702pt.
- [23 <./images/system-diagram.png>] [24]
+ [22 <./images/system-diagram.png>] [23]
 Chapter 4.
-[25
 
-]
+Overfull \hbox (22.64201pt too wide) in paragraph at lines 485--486
+\OT1/ptm/m/n/10.95 Different built in generic fron-tier ex-plo-ration pack-ages
+ in ROS were tested in-clud-ing fron-tier[]exploration.
+ []
 
-LaTeX Warning: Citation `HosangBS14' on page 26 undefined on input line 517.
+[24
 
+] [25]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 527.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 511.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 540.
-[26] <images/basic.png, id=123, 963.6pt x 545.03625pt>
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 524.
+ <images/basic.png, id=119, 963.6pt x 545.03625pt>
 File: images/basic.png Graphic file (type png)
- <use images/basic.png>
-Package pdftex.def Info: images/basic.png used on input line 562.
+
+<use images/basic.png>
+Package pdftex.def Info: images/basic.png used on input line 546.
 (pdftex.def)             Requested size: 205.33087pt x 116.13261pt.
-
-<images/otsu.png, id=124, 962.59625pt x 542.025pt>
+ <images/otsu.png, id=120, 962.59625pt x 542.025pt>
 File: images/otsu.png Graphic file (type png)
- <use images/otsu.png>
-Package pdftex.def Info: images/otsu.png used on input line 564.
-(pdftex.def)             Requested size: 205.33087pt x 115.61505pt.
 
-[27 <./images/basic.png (PNG copy)> <./images/otsu.png (PNG copy)>]
-<images/depth.png, id=128, 960.58875pt x 541.02126pt>
+<use images/otsu.png>
+Package pdftex.def Info: images/otsu.png used on input line 548.
+(pdftex.def)             Requested size: 205.33087pt x 115.61505pt.
+ [26]
+<images/depth.png, id=125, 960.58875pt x 541.02126pt>
 File: images/depth.png Graphic file (type png)
  <use images/depth.png>
-Package pdftex.def Info: images/depth.png used on input line 579.
+Package pdftex.def Info: images/depth.png used on input line 563.
 (pdftex.def)             Requested size: 205.33087pt x 115.64037pt.
 
-<images/combined.png, id=129, 962.59625pt x 545.03625pt>
+<images/combined.png, id=126, 962.59625pt x 545.03625pt>
 File: images/combined.png Graphic file (type png)
 
 <use images/combined.png>
-Package pdftex.def Info: images/combined.png used on input line 581.
+Package pdftex.def Info: images/combined.png used on input line 565.
 (pdftex.def)             Requested size: 205.33087pt x 116.25737pt.
- [28 <./images/depth.png (PNG copy)> <./images/combined.png (PNG copy)>] <image
-s/many.png, id=133, 963.6pt x 545.03625pt>
+ [27 <./images/basic.png (PNG copy)> <./images/otsu.png (PNG copy)> <./images/d
+epth.png (PNG copy)> <./images/combined.png (PNG copy)>] <images/many.png, id=1
+30, 963.6pt x 545.03625pt>
 File: images/many.png Graphic file (type png)
-
-<use images/many.png>
-Package pdftex.def Info: images/many.png used on input line 622.
+ <use images/many.png>
+Package pdftex.def Info: images/many.png used on input line 606.
 (pdftex.def)             Requested size: 205.33087pt x 116.13261pt.
- <images/clusters.png, id=134, 963.6pt x 545.03625pt>
+
+<images/clusters.png, id=131, 963.6pt x 545.03625pt>
 File: images/clusters.png Graphic file (type png)
-
-<use images/clusters.png>
-Package pdftex.def Info: images/clusters.png used on input line 624.
+ <use images/clusters.png>
+Package pdftex.def Info: images/clusters.png used on input line 608.
 (pdftex.def)             Requested size: 205.33087pt x 116.13261pt.
- [29 <./images/many.png (PNG copy)> <./images/clusters.png (PNG copy)>] <images
-/fast.png, id=139, 296.10625pt x 156.585pt>
-File: images/fast.png Graphic file (type png)
 
-<use images/fast.png>
-Package pdftex.def Info: images/fast.png used on input line 638.
+[28] <images/fast.png, id=135, 296.10625pt x 156.585pt>
+File: images/fast.png Graphic file (type png)
+ <use images/fast.png>
+Package pdftex.def Info: images/fast.png used on input line 622.
 (pdftex.def)             Requested size: 216.135pt x 114.29892pt.
 
-
-LaTeX Warning: Citation `viola' on page 30 undefined on input line 651.
-
-[30 <./images/fast.png (PNG copy)>] [31] [32] [33]
+[29 <./images/many.png (PNG copy)> <./images/clusters.png (PNG copy)> <./images
+/fast.png (PNG copy)>] [30] [31] [32]
 Chapter 5.
-[34
+[33
 
-] [35] <images/resulta.png, id=159, 1723.43875pt x 876.27374pt>
+] <images/resulta.png, id=152, 1723.43875pt x 876.27374pt>
 File: images/resulta.png Graphic file (type png)
 
 <use images/resulta.png>
-Package pdftex.def Info: images/resulta.png used on input line 775.
+Package pdftex.def Info: images/resulta.png used on input line 755.
 (pdftex.def)             Requested size: 205.33087pt x 104.39954pt.
 File: images/otsu.png Graphic file (type png)
  <use images/otsu.png>
-Package pdftex.def Info: images/otsu.png used on input line 777.
+Package pdftex.def Info: images/otsu.png used on input line 757.
 (pdftex.def)             Requested size: 205.33087pt x 115.61505pt.
-
-<images/exp1map.png, id=160, 882.29625pt x 632.3625pt>
+ [34]
+<images/exp1map.png, id=156, 882.29625pt x 632.3625pt>
 File: images/exp1map.png Graphic file (type png)
 
 <use images/exp1map.png>
-Package pdftex.def Info: images/exp1map.png used on input line 799.
+Package pdftex.def Info: images/exp1map.png used on input line 779.
 (pdftex.def)             Requested size: 205.33087pt x 147.1675pt.
- <images/ex1pc.png, id=161, 808.01875pt x 618.31pt>
+ <images/ex1pc.png, id=157, 808.01875pt x 618.31pt>
 File: images/ex1pc.png Graphic file (type png)
 
 <use images/ex1pc.png>
-Package pdftex.def Info: images/ex1pc.png used on input line 801.
+Package pdftex.def Info: images/ex1pc.png used on input line 781.
 (pdftex.def)             Requested size: 205.33087pt x 157.11504pt.
- [36 <./images/resulta.png (PNG copy)>]
-<images/ex2.png, id=165, 580.1675pt x 862.22125pt>
+ [35 <./images/resulta.png (PNG copy)> <./images/exp1map.png (PNG copy)> <./ima
+ges/ex1pc.png (PNG copy)>]
+<images/ex2.png, id=162, 580.1675pt x 862.22125pt>
 File: images/ex2.png Graphic file (type png)
  <use images/ex2.png>
-Package pdftex.def Info: images/ex2.png used on input line 833.
+Package pdftex.def Info: images/ex2.png used on input line 813.
 (pdftex.def)             Requested size: 216.135pt x 321.21399pt.
 
-[37 <./images/exp1map.png (PNG copy)> <./images/ex1pc.png (PNG copy)>] [38 <./i
-mages/ex2.png (PNG copy)>] <images/ex3.png, id=172, 522.95375pt x 439.6425pt>
+[36] [37 <./images/ex2.png (PNG copy)>]
+<images/ex3.png, id=169, 522.95375pt x 439.6425pt>
 File: images/ex3.png Graphic file (type png)
-
-<use images/ex3.png>
-Package pdftex.def Info: images/ex3.png used on input line 863.
+ <use images/ex3.png>
+Package pdftex.def Info: images/ex3.png used on input line 843.
 (pdftex.def)             Requested size: 205.33087pt x 172.62042pt.
- <images/ex3pc.png, id=173, 1031.855pt x 707.64375pt>
-File: images/ex3pc.png Graphic file (type png)
 
-<use images/ex3pc.png>
-Package pdftex.def Info: images/ex3pc.png used on input line 870.
+<images/ex3pc.png, id=170, 1031.855pt x 707.64375pt>
+File: images/ex3pc.png Graphic file (type png)
+ <use images/ex3pc.png>
+Package pdftex.def Info: images/ex3pc.png used on input line 850.
 (pdftex.def)             Requested size: 345.8173pt x 237.162pt.
- [39 <./images/ex3.png (PNG copy)>] [40 <./images/ex3pc.png (PNG copy)>]
+
+[38 <./images/ex3.png (PNG copy)>] [39 <./images/ex3pc.png (PNG copy)>]
 Chapter 6.
-[41
+[40
 
 ]
 Appendix A.
-[42
+[41
 
 ]
 Appendix B.
-(./real.bbl [43
+(./real.bbl [42
 
-] [44
+]
+Underfull \hbox (badness 10000) in paragraph at lines 4--9
+\OT1/ptm/m/n/10.95 for au-tonomous cars.  https://www.forbes.com/sites/samabuel
+samid/2016/07/01/first-
+ []
 
-]) [45] (./real.aux)
 
-LaTeX Warning: There were undefined references.
+Underfull \hbox (badness 10000) in paragraph at lines 4--9
+\OT1/ptm/m/n/10.95 tesla-autopilot-fatality-demonstrates-why-lidar-and-v2v-prob
+ably-will-be-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 20--21
+[]\OT1/ptm/m/n/10.95 https://blog.acolyer.org/2015/11/05/simultaneous-localizat
+ion-and-mapping-part-i-history-
+ []
+
+[43
+
+]) [44] (./real.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 14657 strings out of 493029
- 281576 string characters out of 6136234
- 336273 words of memory out of 5000000
- 17850 multiletter control sequences out of 15000+600000
+ 14661 strings out of 493029
+ 281613 string characters out of 6136234
+ 336293 words of memory out of 5000000
+ 17854 multiletter control sequences out of 15000+600000
  31928 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,15n,54p,1281b,458s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,15n,54p,1270b,458s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/
@@ -963,10 +982,10 @@ sfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr
 are/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/urw/times/utmri8a.pfb>
-Output written on real.pdf (47 pages, 4521796 bytes).
+Output written on real.pdf (46 pages, 4524886 bytes).
 PDF statistics:
- 236 PDF objects out of 1000 (max. 8388607)
- 147 compressed objects within 2 object streams
+ 233 PDF objects out of 1000 (max. 8388607)
+ 145 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  143 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -56,50 +56,57 @@ Yo! If you are reading this... I love you $<3$ You will be my acknowledgement.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Introduction}\label{intro}
 
-A system was developed to allow a Turtlebot to autonomously map an unknown environment using SLAM as well as create an inventory of items found using a deep neural network.
+\section{Sentence}
 
-
-\section{Motivation}
-
-Mobile robots such as the Turtlebot are becoming increasingly more affordable and in turn accessible. Developers and researchers are now able to create robotic software and easily test it on actual real-world robots instead of in simulation or in restricted labratories. At the same time commercial applications of mobile robots are beginning to become more advanced in scope and application. The self-driving car, for example is being developed by Google, Tesla and others, with the 2015 Tesla Model S featuring a semi-autonomous autopilot system that can be driven on limited access highways in some US states.\cite{tesla}
-
-However, autonomous mobile robots have been performing complex tasks particularly since the 1990s when solutions to the simultaneous localization and mapping (SLAM) problem were developed \cite{}. This allowed robots to create maps of unknown environments while localising themselves within them. This can be seen in the successful use of Unmanned aerial vehicles (UAVs) in combat arenas around the world but also for applications such as mine exploration or bomb disposal where rugged mobile robots create SLAM maps of mine shafts and caves which are too unsafe for humans to access. \cite{mining}
-
-The recent advances made in graphics processing units (GPUs) has increased the speed and complexity of Deep Learning models. This has resulted in increasingly powerful applications from speech recognition to recommender systems become ubiquitous. Robotic systems are now able to utilise highly descriptive image recognition services which are improving their ability to interact with humans and their surroundings.  
-
-Much of the development for the Turtlebot has been on focused and isolated components which have not been combined into useful applications and tested in real-world situation. A Turtlebot that can map environments and recognise objects can used as a basis for more advanced projects such as creating an expanding database of 3D objects and structures in interiors or even be used for navigating hazardous disaster environments to locate survivors.
+I completed a program which allowed a turtlebot to autonomously map an environment using SLAM as well as create an inventory of items found in the environment.
 
 \section{Objective}
 
 The objective of this project is to build a prototypical system which combines pre-built SLAM software with frontier exploration and implements a bespoke object detection and recognition service on the Turtlebot. When placed in an unknown room the Turtlebot will autonomously create a 3D map of the environment while creating an inventory of classified and localised objects in the map.
 
+\section{Motivation}
+
+Mobile robots such as the Turtlebot are becoming increasingly more affordable and accessible. Developers and researchers are now able to create robotic software and easily test it on actual real-world robots instead of in simulation or in restricted labratories.
+
+
+SLAM has it's application in rescue robots which
+http://www.aaai.org/Pressroom/Releases/release-02-0910.php
+these robots required realtime control and utilised only video streams to identify and rescue people.
+
+This compares to this which utilises rugged mobile robots to create SLAM maps of mine shafts with minimal supersvision. This can then be applied to areas which are too unsafe/ small for humans to access.
+https://miningrox.informatik.tu-freiberg.de/en/
+
+More affordable Drones can also be used to increasingly accurate create maps of property as well
+
+Object detection can be used to detect humans via heat sensors etc. Aswell as identifying bombs etc.
+
+While the Turtlebot has been increasingly used by developers and researchers to create robotic software much of this development has been in focused and isolated components and have not been combined into useful applications. Similarly much work has primarily been developed using simulated environments and not actually tested using a real Turtlebot or cameras.
+
+
 \section{System Overview} 
 
-DIAGRAM 
+\subsection{System Diagram} 
+\subsection{How I achieved it}
 
-A high level overview of the project is given in Figure. 
-The Turtlebot autonomously explores an unknown environment. While this happens  a 2D and 3D map is created and objects detected in the environment are located in the map. These objects are identified using a classifier. 
-The project was implemented successfully.
+\section{Outline of the dissertation} 
 
-\section{Outline} 
 
-This dissertation explains the process undertaken to create a system to solve the project objectives. A background survey was undertaked to investigate what is required to develop for robots as well as to gain an understanding of integral areas of the project such as SLAM and object detection. This is followed by an explanation of the system design while considering requirements and different approaches. A detailed report of how the design was implemented follows and evaluation chapter considers whether this implementation was successful by discussing a series of tests taken. Finally, a conclusion examines potential future work for the project and any exisiting limitations.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Background Survey}\label{survey}
+\chapter{Background}\label{survey}
 
 This chapter provides research into the hardware and software required to run the Turtlebot and perform autonomous SLAM mapping.
-It will consider the processes of object detection and recognition by first considering them in the context of natural visual systems and then in their application in software.
+It will consider the processes of object detection and recognition by first considered them in the context of natural visual systems and then in application in software.
 
 \section{Mobile Robots}
 
 
-Mobile robots are robots that are not fixed to one location and are capable of moving around their environments. Movement is achieved generally through legs, wheels or tracks but aerial and nautical robots may use propellors. The robot can be controlled through manual-tele operation involving a human driver, line-following which follow visual cues such as painted lines to navigate or autonomously. These robots have many applications in areas such as the military, agriculture, rescue, transport and domestic use and include Unmanned Aerial Vehicles (UAVs or more commonly known as drones)and self-driving cars.
+Mobile robots are robots that are not fixed to one location and are capable of moving around their environments. Movement is achieved generally through legs, wheels or tracks but aerial and nautical robots can use propellors. The robot can be controlled through manual-tele operation involving a human driver, line-following which follow visual cues such as painted lines to navigate or autonomously. These robots have many applications in areas such as the military, agriculture, rescue, transport and domestic use and include Unmanned Aerial Vehicles (UAVs or more commonly known as drones)and self-driving cars.
 
 \subsection{Turtlebot 2}
 
-The Turtlebot 2 is a part of a series of low cost, open-source mobile robots first developed at Willow Garage by Melonee Wise and Tully Foote in 2010. These robots are intended for educational and research purposes and provide an 'low-barrier-of-entry' platform for development while suitable hardware for SLAM and navigation\cite{turtlebot}. The construction of this robot is very flexible featuring a modular support structure that encourages adding additional hardware but the core of the Turtlebot consists of a Kobuki base, a computer running ROS and some form of camera particularly RGB-D or stereo cameras such as the Xbox Kinect or Zed Camera.
+The Turtlebot 2 is a part of a series of low cost, open-source mobile robots first developed at Willow Garage by Melonee Wise and Tully Foote in 2010. These robots are intended for educational and research purposes and provide an 'low-barrier-of-entry' platform for development while suitable hardware for SLAM and navigation\cite{turtlebot}. The construction of the robot is very flexible featuring a modular support structure that encourages adding additional hardware but the core of the Turtlebot consists of a Kobuki base, a computer running ROS and some form of camera particularly RGB-D or stereo cameras such as the Xbox Kinect or Zed Camera.
 
 \begin{figure}[h]
   \caption{The Turtlebot used for the project. Featuring a Zed Camera and Lenovo Ideapad Y700.}
@@ -110,13 +117,14 @@ The Turtlebot 2 is a part of a series of low cost, open-source mobile robots fir
  
 The Kobuki base contains sensors and actuators as well as a power supply and vehicular functions. This provides a centralised unit of hardware that can be accessed via the Robot Operating System (ROS). This means that hardware processes are sufficiently abstracted as to be approachable for software developers and other high-level users without an engineering or robotics background. The base has cliff, wheel drop and bumper sensors as well as a gyroscope and highly accurate odometry. 
 
-As it requires a computer running ROS to communicate with, a laptop can simply be attached to the top of the base connected by a USB cable. However, in some cases it may be more convienent to attach a small netbook or Raspberry Pi to the base and then use a seperate computer to remotely communicate with the host machine. The Turtlebot has many bespoke packages for use within ROS, these include standard applications such as teleoperation or navigation and more specialised packages such as frontier exploration. 
+As it requires a computer running ROS to communicate with, a laptop can simply be attached to the top of the base connected by a USB cable. However, in some cases it may be more convienent to attach a small netbook or Raspberry Pi to the base and then use a seperate computer to remotely communicate with the host machine. The Turtlebot has many bespoke packages for use within ROS, these include standard applications such as teleoperation or navigation and more specialized packages such as frontier exploration. 
 
 
 \subsection{Cameras}
-For nearly all use cases, the Turtlebot requires a camera. While this can be something as simple as a webcam a greater number of applications can be created for it with some form of depth or range measurement received from RGB-D and stereo cameras. Both the discussed cameras are commonly used in ROS and for the Turtlebot.
+For nearly all use cases, the Turtlebot requires the use of a camera. While this can be something as simple as a webcam a greater number of applications can be created for it with some form of depth or range measurement received from RGB-D and stereo cameras. Both the discussed cameras are commonly used in ROS and for the Turtlebot.
 
-The Kinect is a very affordable RGB-D camera developed for use on machines running Microsoft Windows, though open-source drivers exist for other operating systems. It's affordability has meant that it is frequently used by other developers whose open-source software is readily accessible. As an active camera the Kinect  utilises a time-of-flight sensor to estimate the distance of points its field of view. The Zed Camera is a stereo camera with a very user-friendly SDK and wide driver support. 
+The Kinect is a very affordable RGB-D camera developed for use on machines running Microsoft Windows though open-source drivers exist for other operating systems. The Kinect is an active camera which utilises a time-of-flight sensor to estimate the distance of points in the field of view. The Zed Camera is a stereo camera with a very user-friendly SDK and wide driver support. 
+
 \begin{table}[ht]
 \caption{Comparison of the Zed Camera and Xbox Kinect v2}
 \centering 
@@ -155,7 +163,7 @@ ROS consists of some key components within the communications infrastructure.
   \item \textbf{Nodes} are modular processes performing computation which can communicate with each other using topics or services. A system may consist of many nodes which perform many different tasks.
   \item \textbf{Topics} are named buses which provide a clear message passing interface between nodes. This is achieved through an anonymous publish/subscribe mechanism that allows many-to-many transport.
   \item \textbf{Messages} are a data structure which are published by nodes to topics. They support strongly typed fields such as primitives or arrays and are either predefined or user-defined.
-  \item The ROS core or \textbf{Master} provides a centralised node which locates and negotiates communications between nodes as well providing naming and registration services.
+  \item The ROS core or \textbf{Master} provides a centralized node which locates and negotiates communications between nodes as well providing naming and registration services.
   \item \textbf{Services} forgo the many-to-many paradigm and provide a request/reply interaction via servers and clients.
 \end{itemize}
 
@@ -172,7 +180,7 @@ For example a simple robot vehicle system can consist of three nodes. The first 
 
 The second node controls the robot's movement hardware and is publishing the robot's orientation on the \texttt{geometry\char`_msgs/pose} topic. It also contains an actionlib server which responses to requests to change the robot's positioning. 
 
-The third node controls the robot's movement and is subscribed to the \texttt{sensor/sonar} topic and contains a client of the actionlib server. While processing range messages, if a range is detected which indicates that the robot is very close to something else the actionlib service can be used to request an adjustment in the orientation of the robot thus ensuring the robot will avoid collisions. 
+The third node controls the robot's movement and is subscribed to the \texttt{sensor/sonar} topic and contains a client of the actionlib server. While processing the range messages, if the range indicated is very small the node can use the actionlib service to request an adjustment in the orientation of the robot thus meaning the robot will avoid collisions. 
 
 
 
@@ -180,9 +188,7 @@ The third node controls the robot's movement and is subscribed to the \texttt{se
 
 SLAM is the problem of simultaneously localising (finding the pose and orientation) of a camera within it's surroundings at the same time as mapping the structure of the environment. This requires a robot or camera with the ability to produce odometry readings as well as a camera with a range measurement device.
 
-SLAM forms the basis of navigation in most mobile robots, meaning unknown environments can be explored and mapped without the need for technology such as GPS which can be not precise. It has applications in a range of manned and autonomous robots. This includes UAVs, underwater robots and domestic robots such automatic lawnmowers. 
-
-SLAM is also a key component in the development of self-driving cars These cars are driven along routes while performing SLAM capturing location, feature and obstacle data. Once the map is completed it is processed and the cars are driven autonomously along these routes updating the map as necessary \cite{cars}.
+SLAM forms the basis of navigation in most mobile robots, meaning unknown environments can be explored and mapped without the need for technology such as GPS which is not precise. It has applications in a range of manned and autonomous robots. This includes UAVs, underwater robots and domestic robots such automatic lawnmowers. SLAM is also a key component in the development of self-driving cars These cars are driven along routes while performing SLAM capturing location, feature and obstacle data. Once the map is completed it is processed and the cars are driven autonomously along these routes updating the map as necessary.
 
 
 \begin{figure}[h]
@@ -191,11 +197,11 @@ SLAM is also a key component in the development of self-driving cars These cars 
   \includegraphics[width=0.5\textwidth]{images/slam_problem.png}
   \label{fig:SLAM Problem}
 \end{figure}
-
+https://blog.acolyer.org/2015/11/05/simultaneous-localization-and-mapping-part-i-history-of-the-slam-problem/
 
 This is considered to be a solved problem in Computer Science and their are many different approaches for finding a solution \cite{Hugh2006}. But at a high level SLAM is solved by using the environment to update the pose of the robot. Using odometry as the sole measurement of localisation has an element of uncertainity due to extraneous factors such as wheels slipping on different environments meaning that a stated distance given by an odometry reading may be over or under estimated. 
 
-Therefore laser scans or other forms of depth readings are used to correct the robot's position by extracting features from the surrounding environment. These are called \textit{landmarks} and can be extracted by various methods such as Random Sampling Consensus (RANSAC) and provide a growing map of the enviroment. Recognising previously visited landmarks is process known as loop closure detection where matches are found between new observations  and regions of the map determined by the uncertainty associated  with the robot’s position\cite{labbe13appearance}.
+Therefore laser scans or other forms of depth readings are used to correct the robot's position by extracting features from the surrounding environment. These are called landmarks and can be extracted by various methods such as Random Sampling Consensus (RANSAC) and provide a growing map of the enviroment. Recognising previously visited landmarks is process known as loop closure detection where matches are found between new observations  and regions of the map determined by the uncertainty associated  with the robot’s position\cite{labbe13appearance}.
 
 Most SLAM solutions are probalistic and for example, can use a Kalman to track the uncertanity of the robot within the map using erroneous range observations and robot controls such as odometry over time. Formally:
 
@@ -218,7 +224,7 @@ Path of the robot $ x_{0:t} = \lbrace x_{1}, x_{2}, x_{3} ... x_{t} \rbrace $
 (Starts at 0 to fix a coordinate frame)
 
 
-SLAM has been considered a 'chicken and egg' problem \cite{Hugh1988} because these variables cannot be fully decoupled as can be observed in Figure []???. For example a map is required for localising landmarks  which requires pose estimates.
+SLAM was considered an especially difficult problem to solve \cite{Hugh1988} because these variables cannot be fully decoupled as can be observed in Figure []???. For example a map is required for localising landmarks  which requires pose estimates.
 
 \begin{figure}[h]
   \caption{Graph illustrating the dependencies between SLAM variables.}
@@ -236,7 +242,7 @@ ROS features many different applications of SLAM including a popular wrapper for
   \caption{Graph  representation  of  locations.  Vertical  arrows  are  loop  closure
 links and horizontal arrows are neighbour links. Dotted links show not detected
 loop closures. Black locations are those in LTM, white ones are in WM and
-grey ones are in STM. Node 455 is the current acquired location}
+gray ones are in STM. Node 455 is the current acquired location}
   \centering
   \includegraphics[width=0.5\textwidth]{images/graph.png}
   \label{fig:RTABMap Graph diagram}
@@ -259,17 +265,23 @@ RTAB-Map uses an efficient memory management technique to minimise this problem 
 \subsection{Introduction}
 Object detection is the task of finding the potential real-world objects within images or videos while classification involves giving these objects the correct label. Alongside robotics, such technology has applications in areas such as surveillance, medical image analysis and human computer interaction. Modelling a intelligent agent that interprets objects in scenes can be modelled on natural visual systems as many organism's vision systems have much less resolution, sensitivity and field of vision than a modern camera yet are able to perform incredibly complex tasks successfully. 
 
+It is useful to think of object detection software in terms of an intelligent agent which is an autonomous entity that gathers and observers information through sensors and acts upon an environment using actuators to direct its activity to achieve goals.\cite{Norvig2003} Why???
+
+
 \subsection{Detection in the Natural World}
 
-For most visual systems while everything is seen for the first time our senses do not keep telling us things we already know, this is because between scenes, most important environmental information stays constant. This process is a form of sensory adaption where perception is temporarily changed when exposed to new stimuli in an attempt to normalise visual experience.\cite{Webster2015} This happens at a retinal and neural level, where information provided by past experience have a greater say on how a scene has been interpreted than immediate information provided by external organs. For example an ellipse projected into a human retina can be interpreted as a circle due to our experiences with perspective\cite{eyebrain}.
+For most visual systems while everything is seen for the first time our senses do not keep telling us things we already know, this is because between scenes, most important environmental information stays constant. This process is a form of sensory adaption where perception is temporarily changed when exposed to new stimuli in an attempt to normalise visual experience.\cite{Webster2015} This happens at a retinal and neural level, where information provided by past experience have a greater say on how a scene has been interpreted than immediate information provided by external organs. 
 
-Many species exhibit a form of pattern or feature detection to trigger neural responses to visual changes. In contrast to humans which detect generic images features such as shapes, many lower organisms utilise goal-based feature detection. For example arthopods such as honey bees readily distinguish features such as flowers in the environment that pertain to the goal of gathering food. Similarly a frog's eye is stimulated when a black disc moves in an arc rapidly within the receptor field indicating that a flying insect is near and triggers the frogs feeding response \cite{eyebrain} thus satisfying the goal of feeding.
+For example an ellipse projected into a human retina can be interpreted as a circle due to our experiences with perspective. 
+%\cite{The eye the brain the computer p208}
 
-This is useful to the field of Computer Science because it allows us to model intelligence agents on such processes, which are typically simple and linear in that there is only one way of achieving the goal and that task assumes the agents complete engagement.
+Many species exhibit a form of pattern or feature detection to trigger neural responses to visual changes. In contrast to humans which detect generic images features such as shapes, many lower organisms utilise goal-based feature detection. This is useful to the field of computer science because it allows us to model intelligence agents on such processes, which are typically simple and linear in that there is only one way of achieving the goal and that task assumes the agents complete engagement.
+
+For example arthopods such as honey bees readily distinguish features such as flowers in the environment that pertain to the goal of gathering food. Similarly a frog's eye is stimulated when a black disc moves in an arc rapidly within the receptor field indicating that a flying insect is near and triggers the frogs feeding response \cite{} thus satisfying the goal of feeding.
 
 \subsection{Extracting Features}
 
-What determines if an area of a scene is worth triggering neural activity is different for different species. In image processing software attempts are made to find features which are unique, that can be easily tracked and can be easily compared. These features can be used for many different types of processing such as calculating a Histogram of Oriented Gradients (HOG) which can then used for object classifiers.
+What determines if an area of a scene is worth triggering neural activity is different for different species. In image processing software attempts are made to find features which are unique, that can be easily tracked and can be easily compared. These features can be used for many different types of processing such as calculating a histogram of oriented gradients (HOG) which can then used for object classifiers.
 
 \subsubsection{FAST Feature Detection}
 
@@ -300,17 +312,17 @@ Determining what an object is is from within an image generally requires a form 
 
 \subsubsection{Convolutional Neural Networks (CNN)}
   
-Convolutional Neural Networks (CNN) are a type of deep neural network which since 2012\cite{Girshick2014} has been  increasingly popular and suited for object recognition and classification in images. This is namely because:
+Convolutional Neural Networks (CNN) are a type of deep neural network which since 2012\cite{} has been  increasingly popular and suited for object recognition and classification in images. This is namely because:
 
 \begin{itemize}
-\item It is rugged to distortions such as different lighting and occlusion.
-\item Training can be spread across several GPU's resulting in very deep networks
-\item It features fewer parameters than standard neural networks meaning training time is substantially reduced
+\item it is rugged to distortions such as different lighting and  occlusion
+\item training can be spread across several GPU's resulting in very deep networks
+\item it features fewer parameters than standard neural networks meaning training time is substantially reduced
 \end{itemize}
 
-A CNN uses many identical copies of the same neuron, meaning the network can have a large amount of neurons expressing computationally large models while keeping the parameters the neurons have to learn very small. \cite{NIPS2012_4824}
+A CNN uses many identical copies of the same neuron, meaning the network can have a large amount of neurons thus expressing computationally large models while keeping the parameters the neurons have to learn very small. \cite{NIPS2012_4824}
   
-An approach called \textit{symmetry} is used to look for properties in the data where at each segment, properties. Therefore a group of neurons, $A$ can be introduced to a neural network that computes certain features such as the presence of an edge and then the output of this layer is fed into a fully-connected layer, $F$. ****Not convincing
+An approach called \textit{symmetry} is used to look for properties in the data where at each segment of data we care about the same properties at the same time. Therefore a group of neurons, $A$ can be introduced to a neural network that computes certain features such as the presence of an edge and then the output of this layer is fed into a fully-connected layer, $F$. ****Not convincing
   
 \begin{figure}[h]
   \caption{The convolutional layer is represented by the group of neurons $A$.}
@@ -319,7 +331,7 @@ An approach called \textit{symmetry} is used to look for properties in the data 
   \label{fig:Basic CNN diagram}
 \end{figure}
 
-These convolutional layers are composable, thus you can feed the output into the input of another layer detecting more abstract features. A max-pooling layer is often used which takes the maximum features over segments of a previous layer, this allows further convultional layers to work on larger sections of the data, this works because it is not wholly useful to know the exact pixel position of an edge but it is enough to know its location within a few pixels.
+These convolutional layers are composable, meaning you can feed the output into the input of another layer detecting more abstract features. A max-pooling layer is often used which takes the maximum features over segments of a previous layer, this allows further convultional layers to work on larger sections of the data, this works because it is not wholly useful to know the exact pixel position of an edge but it is enough to know it's location within a few pixels.
  
 \begin{figure}[h]
   \caption{Featuring a max-pooling layer}
@@ -330,11 +342,12 @@ These convolutional layers are composable, thus you can feed the output into the
 
 At every convolution an element-wise operation called Rectified Linear Unit (RelU)is performed that replaces negative pixel values with zeros. This introduces non-linearity into the network because most real world data is linear.
 
+http://colah.github.io/posts/2014-07-Conv-Nets-Modular/
 
 \subsubsection{MobileNet with TensorFlow}
-TensorFlow is an open source software library produced by Google Brain for machine learning. It is frequently used due to the fact that it identifies and uses GPUs and multiple cores by default allocating 100\% of GPU RAM for each process, this results in a very high performance. In TensorFlow, computations are represented as a graph, nodes are representations of operations and edges are multi-dimensional arrays called tensors (represented as numpy arrays in Python). This graph occurs within a session and is executed on the CPU or GPU. 
+TensorFlow is an open source software library produced by Google Brain for machine learning. It is frequently used due to the fact that it discovers and uses GPUs and multiple cores by default allocating 100\% of GPU RAM for each process, this results in a very high performance. In TensorFlow, computations are represented as a graph, nodes are representations of operations and edges are multi-dimensional arrays called tensors (represented as numpy in Python). This graph occurs within a session and is executed on the CPU or GPU. 
   
-MobileNet is a is a deep convolutional neural network for image recognition found in TensorFlow\cite{HowardZCKWWAA17}. The model has been trained on the 2012 ImageNet dataset and is highly optimised for efficiency and size at the expense of accuracy. However the error rate of not providing a correct classification within the top five results is only 10.5\% which for most applications is adequate. Like most pre-trained models it can be retrained to solve specific problems. This network has been used for real-time classifications on memory scarce devices and is particularly applicable to robotics.
+MobileNet is a is a deep convolutional neural network for image recognition found in TensorFlow\cite{HowardZCKWWAA17}. The model has been trained on the 2012 ImageNet dataset and is highly optimized for efficiency and size at the expense of accuracy. However the error rate of not providing a correct classification within the top five results is only 10.5\% which for most applications is adequate. Like most pre-trained models it can be retrained to solve specific problems. This network has been used for real-time classifications on memory scarce devices and is particularly applicable to robotics.
   
   \subsubsection{Google Vision API}
   
@@ -342,7 +355,7 @@ The Google Vision API is a cloud implementation of a deep convolutional neural n
 
 \subsection{Regions with Convolutional Neural Networks (R-CNN)}
 
-Detection systems utilise classifiers to evaluate potential objects. Yet there is no standard way of localising objects within an image which is often in robotics for example to estimate the distance of such object. One such approach is called Regions with Convolutional Neural Networks (R-CNN) and is considerable more efficient than previous approaches and at the time of it's release, R-CNN had the best detection performance on the PASCAL VOC 2012 image dataset. In the paper "Rich Feature Hierarchies For Accurate Object Detection and Semantic Segmentation"\cite{Girshick2014} Girshick et al. suggest a method which involves taking an image and identifying objects using bounding boxes and then performing a classification on these areas to create a label for each object. 
+Detection systems utilise classifiers to evaluate potential objects. Yet there is no standard way of localising objects within an image which is often in robotics for example to estimate the distance of such object. One such approach is called Regions with Convolutional Neural Networks (R-CNN) and is considerable more efficient than previous approaches and at the time of it's release, R-CNN had the best detection performance on the PASCAL VOC 2012 image dataset. In the paper "Rich Feature Hierarchies For Accurate Object Detection and Semantic Segmentation"\cite{Girshick2014} the authors suggest a method which involves taking an image and identifying objects using bounding boxes and then performing a classification on these areas to create a label for each object. 
 
 \begin{figure}[h]
   \caption{Illustration of the stages found in R-CNN}
@@ -354,20 +367,19 @@ Detection systems utilise classifiers to evaluate potential objects. Yet there i
 Roughly two thousand bounding boxes, or region proposals are created using the process of Selective Search which performs a segmentation algorithm that groups regions together by color, intensity or texture.\cite{Sande2013} This is in contrast to using an exhaustive sliding window approach found in Deformable Parts Models.\cite{voc-release4} Each selected region is warped to a 227 x 227 square RGB image and fed through a CNN which computes features. The final stage involves running a Support Vector Machine (SVM) on the feature vector of each region to classify and score the object within the region (if any). Greedy non-maximum suppression is used to merge the regions which share the same object resulting in accurate bounding boxes for each object. 
 
 
-\section{Conclusion}
-
-To achieve the objective of the project it was first nessessary to understand the hardware of the Turtlebot and how to communicate with it which required knowledge of ROS. The Turtlebot requires use of cameras and both the Kinect and Zed Camera have been considered, however the Kinect features the largest amount of documentation and other developers and therefore was chosen to be the default camera for this project. 
-
-Many SLAM packages exist however only one has been identified, RTABMap to produce 3D maps which was required to fufill the project objective. Object detection was investigated within the context of the natural world. This allowed a greater understanding of the purpose and implementation of detection systems. How to achieve these kinds of systems with computer vision was explored and two different implementations of image classifiers were identified and discussed as well as a very successful model, R-CNN. Using some of these examples of software and models helped inform the development of the object recognition software. The next chapter will discuss the requirements and system design of the project.
+\section{Summary and Discussion}
+\subsection{What currently exists for completing the objectives}
+\subsection{What are the my knowledge gaps, What do I have to do to fill the gaps}
+\subsection{What methods are not appropriate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{System Design}
 
-This chapter first examines and prioritises the different requirements of the project. Then considering these requirements, this chapter identifies alternative approaches to fufill the project objective. These approaches are discussed in context of their feasibility and potential successfulness. Finally a high-level description of the system design is provided. 
+This chapter first examines and prioritises the different requirements of the project. Then considering these requirements, this chapter will identify different approaches to fufil the project objective. These approaches will be discussed in context of their feasibility and potential successfulness. Finally a high-level description of the system design will be provided. 
 
 \section{Requirements}
  
-The objective of this project is broad enough that it can be interpreted in many different ways. Therefore at the beginning stage of the project key system requirements were developed which help create an overaching system design and well as create a focused implementation stage. These are divided into functional and non-functional requirements. A functional requirement specifies a behaviour of the system, while a non-functional requirement describes a constraint of how the system must be developed. The defined requirements are prioritised in a MoSCoW table which states whether the requirement is Must have, Should have, Could have or Won’t have
+The problem statement/objective of this project is broad enough that it can be interpreted in many different ways. Therefore at the beginning stage of the project key system requirements were developed which help create an overaching system design and well as create a focused implementation stage. These are divided into functional and non-functional requirements. A functional requirement specifies a behaviour of the system, while a non-functional requirement describes a constraint of how the system must be developed. The defined requirements are prioritised in a MoSCoW table which states whether the requirement is Must have, Should have, Could have or Won’t have
 
 \subsection{Functional Requirements}
 \begin{itemize}
@@ -441,15 +453,15 @@ The project will consist of four main processes, SLAM mapping, exploration, obje
 \subsection{Alternative Approaches}
 
 \begin{enumerate}
-\item Utilise prebuilt software for all components of the system. The project would stitch them together while providing a facade for user interaction. This approach would require using a general purpose object recognition system which would not easily provide the localisation of objects in a 3D map without editing the source code. This would task would involve decomposing very large and complex systems which is unnessessary. Similarly, stitching together components means the project will be highly coupled to external software which may affect futureproofing and futher reuse.
-\item Create a bespoke object detection package which by default does not need a map, but has functionality to locate objects within a map. This would also require incorporating external packages for SLAM etc. into the project. This approach would produce a highly reusable generic object detection service that could be used with just a RGB-D or Stereo camera. However, this is not required to achieve the project objectives and would require substantial research and time invested into developing a process of maintaining  persistance when tracking objects in a 2D image.
-\item Create a package from scratch which would solve simple SLAM while providing exploration and object detection. This approach  would require a considerable amount of time and an advanced background in mathematics.
+\item Utilise prebuilt software for all components of the system. The project would stitch them together while providing a facade for user interaction. - This approach would require using a general purpose object recognition system which would not easily provide the localisation of objects in a 3D map without editing the source code. This would task would involve decomposing very large and complex systems which is unnessessary. Similarly, stitching together components means the project will be highly coupled to external software which may affect futureproofing and futher reuse.
+\item Create a bespoke object detection package which by default does not need a map, but has functionality to locate objects within a map. This would also require incorporating external packages for SLAM etc. into the project. - This approach would produce a highly reusable generic object detection service that could be used with just a RGB-D or Stereo camera. However, this is not required to achieve the project objectives and would require substantial research and time invested into developing a process of maintaining  persistance when tracking objects in a 2D image.
+\item Create a package from scratch which would solve simple SLAM while providing exploration and object detection. - This approach  would require a considerable amount of time and an advanced background in mathematics.
 \end{enumerate}
 
 
 \section{System Architecture}
 
-Due to there being many different ways to implement the project at a low-level either by choice of technology or algorithms etc. a high-level system architecture diagram is discussed. The system is described as a graph and this is informed by the stated approach and background research undertaken.
+Due to there being many different ways to implement the project at a low-level either by choice of technology or algorithms etc. a high-level system architecture diagram will be discussed. The system is described as a graph and this is informed by the stated approach and background research undertaken.
 
 \begin{figure}[h]
   \caption{High-Level System Architecture. Consisting of the four main active processes of the project, as well as the passive hardware components (Turtlebot and camera).}
@@ -458,36 +470,39 @@ Due to there being many different ways to implement the project at a low-level e
   \label{fig:System Diagram}
 \end{figure}
 
-The advantage of using this type of design is it that it maps directly to the way ROS works. A node is equivalent to a ROS node and contains a process while edges are equivalent to ROS topics. This design allows some nodes to be removed, for example frontier exploration and map visualisation and the other nodes still work as expected. This is useful because the system can developed and tested in modular stages. Similarly nodes can be replaced, for example the Turtlebot and camera can be replaced by a simulation which will provide the same edges meaning there is scope for adaption and code reuse for future projects.
+The advantage of using this type of design is it that it maps directly to the way ROS works. A node is equivalent to a ROS node and contains a process while edges are equivalent to ROS topics. This design allows some nodes to be removed, for example frontier exploration and map visualisation and the other nodes will still work as expected. This is useful because the system can developed and tested in modular stages. Similarly nodes can be replaced, for example the Turtlebot and camera can be replaced by a simulation which will provide the same edges meaning their is scope for adaption and code reuse for future projects.
 
 \section{Conclusion}
 
-Formulating requirements provides a clear understanding of the scope of the project. This allowed the system design to be flexible and account for an iterative process where different modules were  completed and tested in stages. The high-level system design is able to capture the requirements and is sufficiently modular. The next chapter describes the implementation process of the stated design.
+Formulating requirements provides a clear understanding of the scope of the project. This also allows the system design to be flexible and account for an iterative processes where different modules can be completed and tested in stages. The high-level system is able to capture the requirements and is sufficiently modular. The next chapter will describe the implementation process of the stated design... More***  
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Implementation}
+\section{Introduction}
 
-This chapter describes how the chosen system design was implemented. This is  achieved by dividing the system into three sections; mapping, exploration and object detection and recognition. Mapping and exploration both required the use of external packages but these were still required to be interfaced with hardware and each other. The object section however, is bespoke and its development process is described in considerable detail.  
+Emphasis the connection between nodes. Tested throughout
 
-Figure [] illustrates a lower level design of the completed system...
+\subsection{System Diagram}
 
 \section{Mapping}
 
-The RTABMap software was used for mapping environments with the Kinect and Zed Camera. RTABMap requires the use of odometry, RGB image, RGB camera information, depth image and a laser scan topics. Simulated visual odometry is usually provided by the RTABMap itself however for this project the Turtlebot's odometry is used which is much more accurate. The other topics are all published by camera nodes. However, each camera uses different topic names for the same thing so different remappings are required for each. The scan topic needs to created by a different node, depthimage\_to\_laserscan this takes a depth image and generates a 2D laser scan. 
+I did this because of this which allows this
 
-All of these nodes are combined in launch files with default arguments provided which are specific for use with the Turtlebot, for example a minimum distance is set which accounts for its manoeuvrability. This, however, allows RTABMap to be easily customized. Upon initiating the launch files RTABMaps GUI is launch as well, this provides visual notifications of loop closures which is very useful for debugging. An RViz file has also been created which allows the map and pointcloud RTABMap creates to be visualized.  
+Integrating with the cameras tricky.
 
-FIGURE, rtabmap 
+RTABMap has software
+
+More about RVIZ
 
 \section{Frontier Exploration}
 
-Different built in generic frontier exploration packages in ROS were tested including frontier\_exploration. However, in every case they would not work with the Turtlebot. An open source package hosted on Github was instead used. \cite{} This package was built for usage with the Turtlebot and only required a map topic which RTABMap provides.
+why I choose it justify.
 
-It is based on the detection of frontiers within a map. A frontier is defined as is an area which is known to be neither an occupied or open area. The map topic in ROS uses the map message which consists of a 2D grid of either open, occupied or empty pixels. This is used to build an algorithm where unexplored zones are detected and ranked based on their size. The largest frontier is chosen and a path is found using an A* search. Once at the location the Turtlebot is spun in place to discover more of the map.
+How it works brieflfly.
 
-The package was slightly edited to slightly slow down the speed the robot explored at. It was noticed during tests that a fast moving camera meant less features were detected by RTABMap due to a blurred image resulting in frequent losses of odometry.
-
+Slowed down
+Too fast camera motion for the framerate: If the camera is moved too fast, there will be less features to match between successive frames. RGB images can be also blurry depending of the camera, which decreases the number of good visual matches between frames.
 \section{Object Detection and Recognition}
 The purpose of the object detection and recognition package is to be able to locate potential objects within a scene, classify them and note their location within the map being built using SLAM.
 
@@ -498,7 +513,7 @@ This package was written in Python 2.7 primarily to make use of the ROS and Open
 
 \subsection{Detection}
 
-Similar detection software was consulted and in all cases some form of blob detection was used to determine salient regions, frequently called Regions of Interest (ROI) \cite{HosangBS14}. Blob detection allows areas of a 2D image with similiar parameters such as brightness or colour to be distinguished from their surroundings. Blob detection is a sequential process and each stage is described is elaborated.
+Similar detection software was consulted and in all cases some form of blob detection was used to determine salient regions, frequently called Regions of Interest (ROI) \cite{HosangBS14}. Blob detection allows areas of a 2D image with similiar parameters such as brightness or colour to be distinguished from their surroundings. Blob detection is a sequential process and each stage is described.  **** What does R-CNN do... hybrid system...
 
 \subsubsection{0. Initial Exploratory Blob Detection}
 
@@ -658,7 +673,11 @@ Another advantage of the Google Vision API was discovered through sustained use 
 
 
 
-\subsubsection{Adding Object Persistance}
+\subsubsection{Adding markers}
+
+
+
+These two classifiers are combined in a process where on discovering a new region of interest...
 
 Objects need to be detected in 3D and previously classified objects need to persist meaning that the same object is identified between frames.
 
@@ -674,14 +693,10 @@ The complete algorithm for the process of classification can be can be seen in F
 
 ALGORITHM
 
-These markers are displayed in RViz as text at the relevant point in the map, STMs are coloured yellow while LTMs are coloured red. A simple GUI in OpenCV was created which displays the object detections within an camera frame. The object circumference is shown as well as the centre location, object label and number of FAST features found within the image.
+These markers are displayed in RVIZ as text at the relevant point in the map. A simple GUI in OpenCV was created which also displayed the detected objects.
+Red = long term, Yellow = STM
 
-Picture of the GUI
-
-\section{Conclusion}
-
-Implementing the system design required the use of two external packages, both of which handled complex and performance optimisation. Once these parts were implemented the object detection and recognition section was implemented in Python. Considerable experiments into different low-level methods such as using a Haar Cascade were tested, while these did not work they helped inform the subsequent successful processes developed. The final implementation of the  object detection and recognition section features system which detects regions of interest, classifies them and gives persistance to the recognised objects.  
-The next chapter records experiments and testing to evaluate the successfulness of the project.
+\subsection{Conclusion}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -725,7 +740,8 @@ Map of the room accurate
 FIGURE words
 A map features light gray for discovered with no barriers, black barriers, medium grey for undiscovered.
 
-
+Yellow = STM
+RED = LTM
 
 
 \subsubsection{Experiment 1}
@@ -811,7 +827,7 @@ Comments: Using teleoperation resulted in a map with more coverage than Experime
 
 
  \begin{figure}
-   \caption{Yellow = STM, RED = LTM}
+   \caption{Red arrow indicating the start pose}
    \centering
    \includegraphics[width=0.5\textwidth]{images/ex2.png}
 \end{figure}
@@ -848,7 +864,7 @@ Experiment 3 was successful it produced the most accurate map and point cloud de
 \end{figure}
 
  \begin{figure}
-   \caption{Text partially obscured by point cloud, Yellow = STM, RED = LTM}
+   \caption{Text partially obscured by point cloud}
    \centering
    \includegraphics[width=0.8\textwidth]{images/ex3pc.png}
    \hfill
@@ -880,6 +896,6 @@ Create database of objects
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % it is fine to change the bibliography style if you want
-\bibliographystyle{unsrt}
+\bibliographystyle{plain}
 \bibliography{mproj}
 \end{document}

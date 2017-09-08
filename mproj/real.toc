@@ -1,72 +1,64 @@
-\contentsline {chapter}{\numberline {1}Introduction}{6}
-\contentsline {section}{\numberline {1.1}Sentence}{6}
-\contentsline {section}{\numberline {1.2}Importance/Context/Motivation}{6}
-\contentsline {section}{\numberline {1.3}Objectives/Problem statement}{6}
-\contentsline {section}{\numberline {1.4}System Overview}{7}
-\contentsline {subsection}{\numberline {1.4.1}System Diagram}{7}
-\contentsline {subsection}{\numberline {1.4.2}How I achieved it}{7}
-\contentsline {section}{\numberline {1.5}Outline of the dissertation}{7}
-\contentsline {chapter}{\numberline {2}Background}{8}
-\contentsline {section}{\numberline {2.1}Mobile Robots}{8}
-\contentsline {subsection}{\numberline {2.1.1}Turtlebot 2}{8}
-\contentsline {subsection}{\numberline {2.1.2}Cameras}{9}
-\contentsline {section}{\numberline {2.2}Robot Operating System (ROS)}{10}
-\contentsline {subsection}{\numberline {2.2.1}How does ROS work?}{10}
-\contentsline {section}{\numberline {2.3}SLAM (Simultaneous Localisation and Mapping)}{11}
-\contentsline {subsection}{\numberline {2.3.1}RTABMap}{13}
-\contentsline {section}{\numberline {2.4}Object Detection and Classification}{14}
-\contentsline {subsection}{\numberline {2.4.1}Introduction}{14}
-\contentsline {subsection}{\numberline {2.4.2}Detection in the Natural World}{14}
-\contentsline {subsection}{\numberline {2.4.3}Extracting Features}{15}
-\contentsline {subsubsection}{FAST Feature Detection}{15}
-\contentsline {subsection}{\numberline {2.4.4}Object Classification with Deep Learning}{15}
-\contentsline {subsubsection}{Convolutional Neural Networks (CNN)}{16}
-\contentsline {subsubsection}{MobileNet with TensorFlow}{17}
-\contentsline {subsubsection}{Google Vision API}{18}
-\contentsline {subsection}{\numberline {2.4.5}Regions with Convolutional Neural Networks (R-CNN)}{18}
-\contentsline {section}{\numberline {2.5}Summary and Discussion}{19}
-\contentsline {subsection}{\numberline {2.5.1}What currently exists for completing the objectives}{19}
-\contentsline {subsection}{\numberline {2.5.2}What are the my knowledge gaps, What do I have to do to fill the gaps}{19}
-\contentsline {subsection}{\numberline {2.5.3}What methods are not appropriate}{19}
-\contentsline {chapter}{\numberline {3}System Design}{20}
-\contentsline {section}{\numberline {3.1}Requirements}{20}
-\contentsline {subsection}{\numberline {3.1.1}Functional Requirements}{20}
-\contentsline {subsection}{\numberline {3.1.2}Non-Functional Requirements}{21}
-\contentsline {subsubsection}{Platform Requirements}{21}
-\contentsline {subsection}{\numberline {3.1.3}MOSCOW TABLE}{22}
-\contentsline {section}{\numberline {3.2}Design Approach}{22}
-\contentsline {subsection}{\numberline {3.2.1}Alternative Approaches}{22}
-\contentsline {section}{\numberline {3.3}System Architecture}{23}
-\contentsline {section}{\numberline {3.4}Conclusion}{24}
-\contentsline {chapter}{\numberline {4}Implementation}{25}
-\contentsline {section}{\numberline {4.1}Introduction}{25}
-\contentsline {subsection}{\numberline {4.1.1}System Diagram}{25}
-\contentsline {section}{\numberline {4.2}Mapping}{25}
-\contentsline {section}{\numberline {4.3}Frontier Exploration}{25}
-\contentsline {section}{\numberline {4.4}Object Detection and Recognition}{26}
-\contentsline {subsection}{\numberline {4.4.1}Detection}{26}
+\contentsline {chapter}{\numberline {1}Introduction}{5}
+\contentsline {section}{\numberline {1.1}Motivation}{5}
+\contentsline {section}{\numberline {1.2}Objective}{6}
+\contentsline {section}{\numberline {1.3}System Overview}{6}
+\contentsline {section}{\numberline {1.4}Outline}{6}
+\contentsline {chapter}{\numberline {2}Background Survey}{7}
+\contentsline {section}{\numberline {2.1}Mobile Robots}{7}
+\contentsline {subsection}{\numberline {2.1.1}Turtlebot 2}{7}
+\contentsline {subsection}{\numberline {2.1.2}Cameras}{8}
+\contentsline {section}{\numberline {2.2}Robot Operating System (ROS)}{9}
+\contentsline {subsection}{\numberline {2.2.1}How does ROS work?}{9}
+\contentsline {section}{\numberline {2.3}SLAM (Simultaneous Localisation and Mapping)}{10}
+\contentsline {subsection}{\numberline {2.3.1}RTABMap}{12}
+\contentsline {section}{\numberline {2.4}Object Detection and Classification}{13}
+\contentsline {subsection}{\numberline {2.4.1}Introduction}{13}
+\contentsline {subsection}{\numberline {2.4.2}Detection in the Natural World}{13}
+\contentsline {subsection}{\numberline {2.4.3}Extracting Features}{14}
+\contentsline {subsubsection}{FAST Feature Detection}{14}
+\contentsline {subsection}{\numberline {2.4.4}Object Classification with Deep Learning}{14}
+\contentsline {subsubsection}{Convolutional Neural Networks (CNN)}{15}
+\contentsline {subsubsection}{MobileNet with TensorFlow}{16}
+\contentsline {subsubsection}{Google Vision API}{17}
+\contentsline {subsection}{\numberline {2.4.5}Regions with Convolutional Neural Networks (R-CNN)}{17}
+\contentsline {section}{\numberline {2.5}Conclusion}{18}
+\contentsline {chapter}{\numberline {3}System Design}{19}
+\contentsline {section}{\numberline {3.1}Requirements}{19}
+\contentsline {subsection}{\numberline {3.1.1}Functional Requirements}{19}
+\contentsline {subsection}{\numberline {3.1.2}Non-Functional Requirements}{20}
+\contentsline {subsubsection}{Platform Requirements}{20}
+\contentsline {subsection}{\numberline {3.1.3}MOSCOW TABLE}{21}
+\contentsline {section}{\numberline {3.2}Design Approach}{21}
+\contentsline {subsection}{\numberline {3.2.1}Alternative Approaches}{21}
+\contentsline {section}{\numberline {3.3}System Architecture}{22}
+\contentsline {section}{\numberline {3.4}Conclusion}{23}
+\contentsline {chapter}{\numberline {4}Implementation}{24}
+\contentsline {section}{\numberline {4.1}Mapping}{24}
+\contentsline {section}{\numberline {4.2}Frontier Exploration}{25}
+\contentsline {section}{\numberline {4.3}Object Detection and Recognition}{25}
+\contentsline {subsection}{\numberline {4.3.1}Detection}{25}
 \contentsline {subsubsection}{0. Initial Exploratory Blob Detection}{26}
-\contentsline {subsubsection}{1. Thresholding with Otsu's Method}{27}
+\contentsline {subsubsection}{1. Thresholding with Otsu's Method}{26}
 \contentsline {subsubsection}{1.5. Calibration Tool}{27}
-\contentsline {subsubsection}{2. Combining with a Depth Mask}{28}
+\contentsline {subsubsection}{2. Combining with a Depth Mask}{27}
 \contentsline {subsubsection}{3. Clustering}{28}
 \contentsline {subsubsection}{4. Creating Bounding Boxes}{29}
-\contentsline {subsection}{\numberline {4.4.2}Classification}{30}
+\contentsline {subsection}{\numberline {4.3.2}Classification}{30}
 \contentsline {subsubsection}{Haar Cascade}{30}
-\contentsline {subsubsection}{Robot Visual Memory Model}{31}
+\contentsline {subsubsection}{Robot Visual Memory Model}{30}
 \contentsline {subsubsection}{Implementing the Memory Model}{31}
-\contentsline {subsubsection}{Adding markers}{32}
-\contentsline {subsection}{\numberline {4.4.3}Conclusion}{33}
-\contentsline {chapter}{\numberline {5}Evaluation}{34}
-\contentsline {section}{\numberline {5.1}Testing}{34}
-\contentsline {subsection}{\numberline {5.1.1}Experiments}{34}
-\contentsline {subsubsection}{Experiment Setup}{35}
-\contentsline {subsubsection}{Experiment 1}{35}
+\contentsline {subsubsection}{Adding Object Persistance}{32}
+\contentsline {subsection}{\numberline {4.3.3}Conclusion}{32}
+\contentsline {chapter}{\numberline {5}Evaluation}{33}
+\contentsline {section}{\numberline {5.1}Testing}{33}
+\contentsline {subsection}{\numberline {5.1.1}Experiments}{33}
+\contentsline {subsubsection}{Experiment Setup}{34}
+\contentsline {subsubsection}{Experiment 1}{34}
 \contentsline {subsubsection}{Experiment 2}{36}
-\contentsline {subsubsection}{Experiment 3}{37}
-\contentsline {section}{\numberline {5.2}Conclusion}{39}
-\contentsline {chapter}{\numberline {6}Conclusion}{41}
-\contentsline {subsection}{\numberline {6.0.1}Future work}{41}
-\contentsline {chapter}{\numberline {A}First appendix}{42}
-\contentsline {section}{\numberline {A.1}Section of first appendix}{42}
-\contentsline {chapter}{\numberline {B}Second appendix}{43}
+\contentsline {subsubsection}{Experiment 3}{36}
+\contentsline {section}{\numberline {5.2}Conclusion}{38}
+\contentsline {chapter}{\numberline {6}Conclusion}{40}
+\contentsline {subsection}{\numberline {6.0.1}Future work}{40}
+\contentsline {chapter}{\numberline {A}First appendix}{41}
+\contentsline {section}{\numberline {A.1}Section of first appendix}{41}
+\contentsline {chapter}{\numberline {B}Second appendix}{42}
